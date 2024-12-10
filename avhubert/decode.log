@@ -1,0 +1,1273 @@
+INFO:fairseq.distributed.utils:distributed init (rank 2): tcp://localhost:12717
+INFO:fairseq.distributed.utils:distributed init (rank 4): tcp://localhost:12717
+INFO:fairseq.distributed.utils:distributed init (rank 0): tcp://localhost:12717
+INFO:fairseq.distributed.utils:distributed init (rank 1): tcp://localhost:12717
+INFO:fairseq.distributed.utils:initialized host dell-SYS-4029GP-TRT as rank 1
+INFO:fairseq.distributed.utils:distributed init (rank 6): tcp://localhost:12717
+INFO:fairseq.distributed.utils:initialized host dell-SYS-4029GP-TRT as rank 6
+INFO:fairseq.distributed.utils:distributed init (rank 7): tcp://localhost:12717
+INFO:fairseq.distributed.utils:initialized host dell-SYS-4029GP-TRT as rank 7
+INFO:fairseq.distributed.utils:distributed init (rank 5): tcp://localhost:12717
+INFO:fairseq.distributed.utils:distributed init (rank 3): tcp://localhost:12717
+INFO:fairseq.distributed.utils:initialized host dell-SYS-4029GP-TRT as rank 5
+INFO:fairseq.distributed.utils:initialized host dell-SYS-4029GP-TRT as rank 3
+INFO:fairseq.distributed.utils:initialized host dell-SYS-4029GP-TRT as rank 2
+INFO:fairseq.distributed.utils:initialized host dell-SYS-4029GP-TRT as rank 4
+INFO:fairseq.distributed.utils:initialized host dell-SYS-4029GP-TRT as rank 0
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+INFO:avhubert.hubert_pretraining:current directory is /workspace/av_hubert/avhubert/outputs/2024-11-11/17-05-33
+INFO:avhubert.hubert_pretraining:AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/workspace/lrs2/433h_data', 'labels': ['wrd'], 'label_dir': '/workspace/lrs2/433h_data', 'label_rate': -1, 'sample_rate': 16000, 'normalize': True, 'enable_padding': False, 'max_sample_size': 500, 'min_sample_size': None, 'max_trim_sample_size': '${task.max_sample_size}', 'single_target': True, 'random_crop': False, 'pad_audio': True, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['video'], 'is_s2s': True, 'tokenizer_bpe_name': 'sentencepiece', 'tokenizer_bpe_model': '/workspace/lrs2/spm1000/spm_unigram1000.model', 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': True}
+INFO:avhubert.hubert_pretraining:current directory is /workspace/av_hubert/avhubert/outputs/2024-11-11/17-05-33
+INFO:avhubert.hubert_pretraining:AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/workspace/lrs2/433h_data', 'labels': ['km'], 'label_dir': '/checkpoint/bshi/data/lrs3//video/hubert/stitch-iters/envox-iter4-l12c2000/', 'label_rate': 25, 'sample_rate': 25, 'normalize': True, 'enable_padding': False, 'max_sample_size': 2000, 'min_sample_size': 5, 'max_trim_sample_size': 400, 'single_target': False, 'random_crop': True, 'pad_audio': False, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['audio', 'video'], 'is_s2s': False, 'tokenizer_bpe_name': None, 'tokenizer_bpe_model': None, 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': False}
+INFO:avhubert.hubert:HubertModel Config: {'_name': 'av_hubert', 'label_rate': 25, 'input_modality': '${task.input_modality}', 'extractor_mode': default, 'encoder_layers': 12, 'encoder_embed_dim': 768, 'encoder_ffn_embed_dim': 3072, 'encoder_attention_heads': 12, 'activation_fn': gelu, 'dropout': 0.0, 'attention_dropout': 0.0, 'activation_dropout': 0.1, 'encoder_layerdrop': 0.1, 'dropout_input': 0.0, 'dropout_features': 0.1, 'final_dim': 256, 'untie_final_proj': True, 'layer_norm_first': True, 'conv_feature_layers': '[(512,10,5)] + [(512,3,2)] * 4 + [(512,2,2)] * 2', 'conv_bias': False, 'logit_temp': 0.1, 'target_glu': False, 'feature_grad_mult': 1.0, 'mask_length_audio': 10, 'mask_prob_audio': 0.8, 'mask_length_image': 5, 'mask_prob_image': 0.3, 'mask_selection': static, 'mask_other': 0.0, 'no_mask_overlap': False, 'mask_min_space': 1, 'mask_channel_length': 10, 'mask_channel_prob': 0.0, 'mask_channel_selection': static, 'mask_channel_other': 0.0, 'no_mask_channel_overlap': False, 'mask_channel_min_space': 1, 'conv_pos': 128, 'conv_pos_groups': 16, 'latent_temp': [2.0, 0.5, 0.999995], 'skip_masked': False, 'skip_nomask': False, 'resnet_relu_type': 'prelu', 'resnet_weights': None, 'sim_type': 'cosine', 'sub_encoder_layers': 0, 'audio_feat_dim': 104, 'modality_dropout': 0.5, 'audio_dropout': 0.5, 'modality_fuse': 'concat', 'selection_type': 'same_seq', 'masking_type': 'input', 'decoder_embed_dim': 768, 'decoder_ffn_embed_dim': 3072, 'decoder_layers': 6, 'decoder_layerdrop': 0.0, 'decoder_attention_heads': 4, 'decoder_learned_pos': False, 'decoder_normalize_before': False, 'no_token_positional_embeddings': False, 'decoder_dropout': 0.1, 'decoder_attention_dropout': 0.1, 'decoder_activation_dropout': 0.0, 'max_target_positions': 2048, 'share_decoder_input_output_embed': False, 'no_scale_embedding': True}
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+INFO:avhubert.hubert_pretraining:current directory is /workspace/av_hubert/avhubert/outputs/2024-11-11/17-05-33
+INFO:avhubert.hubert_pretraining:AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/workspace/lrs2/433h_data', 'labels': ['wrd'], 'label_dir': '/workspace/lrs2/433h_data', 'label_rate': -1, 'sample_rate': 16000, 'normalize': True, 'enable_padding': False, 'max_sample_size': 500, 'min_sample_size': None, 'max_trim_sample_size': '${task.max_sample_size}', 'single_target': True, 'random_crop': False, 'pad_audio': True, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['video'], 'is_s2s': True, 'tokenizer_bpe_name': 'sentencepiece', 'tokenizer_bpe_model': '/workspace/lrs2/spm1000/spm_unigram1000.model', 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': True}
+{'_name': None, 'task': None, 'generation': {'_name': None, 'beam': 50, 'nbest': 1, 'max_len_a': 1.0, 'max_len_b': 0, 'min_len': 1, 'match_source_len': False, 'unnormalized': False, 'no_early_stop': False, 'no_beamable_mm': False, 'lenpen': 1.0, 'unkpen': 0.0, 'replace_unk': None, 'sacrebleu': False, 'score_reference': False, 'prefix_size': 0, 'no_repeat_ngram_size': 0, 'sampling': False, 'sampling_topk': -1, 'sampling_topp': -1.0, 'constraints': None, 'temperature': 1.0, 'diverse_beam_groups': -1, 'diverse_beam_strength': 0.5, 'diversity_rate': -1.0, 'print_alignment': None, 'print_step': False, 'lm_path': None, 'lm_weight': 0.0, 'iter_decode_eos_penalty': 0.0, 'iter_decode_max_iter': 10, 'iter_decode_force_max_iter': False, 'iter_decode_with_beam': 1, 'iter_decode_with_external_reranker': False, 'retain_iter_history': False, 'retain_dropout': False, 'retain_dropout_modules': None, 'decoding_format': None, 'no_seed_provided': False}, 'common': {'_name': None, 'no_progress_bar': False, 'log_interval': 100, 'log_format': None, 'log_file': None, 'tensorboard_logdir': None, 'wandb_project': None, 'azureml_logging': False, 'seed': 1, 'cpu': False, 'tpu': False, 'bf16': False, 'memory_efficient_bf16': False, 'fp16': False, 'memory_efficient_fp16': False, 'fp16_no_flatten_grads': False, 'fp16_init_scale': 128, 'fp16_scale_window': None, 'fp16_scale_tolerance': 0.0, 'on_cpu_convert_precision': False, 'min_loss_scale': 0.0001, 'threshold_loss_scale': None, 'amp': False, 'amp_batch_retries': 2, 'amp_init_scale': 128, 'amp_scale_window': None, 'user_dir': '/workspace/av_hubert/avhubert', 'empty_cache_freq': 0, 'all_gather_list_size': 16384, 'model_parallel_size': 1, 'quantization_config_path': None, 'profile': False, 'reset_logging': False, 'suppress_crashes': False, 'use_plasma_view': False, 'plasma_path': '/tmp/plasma'}, 'common_eval': {'_name': None, 'path': '/workspace/av_hubert/finetune/checkpoints/checkpoint_best.pt', 'post_process': None, 'quiet': False, 'model_overrides': '{}', 'results_path': '/workspace/av_hubert/decode/s2s/test'}, 'checkpoint': {'_name': None, 'save_dir': 'checkpoints', 'restore_file': 'checkpoint_last.pt', 'finetune_from_model': None, 'reset_dataloader': False, 'reset_lr_scheduler': False, 'reset_meters': False, 'reset_optimizer': False, 'optimizer_overrides': '{}', 'save_interval': 1, 'save_interval_updates': 0, 'keep_interval_updates': -1, 'keep_interval_updates_pattern': -1, 'keep_last_epochs': -1, 'keep_best_checkpoints': -1, 'no_save': False, 'no_epoch_checkpoints': False, 'no_last_checkpoints': False, 'no_save_optimizer_state': False, 'best_checkpoint_metric': 'loss', 'maximize_best_checkpoint_metric': False, 'patience': -1, 'checkpoint_suffix': '', 'checkpoint_shard_count': 1, 'load_checkpoint_on_all_dp_ranks': False, 'write_checkpoints_asynchronously': False, 'model_parallel_size': 1}, 'distributed_training': {'_name': None, 'distributed_world_size': 8, 'distributed_num_procs': 8, 'distributed_rank': 0, 'distributed_backend': 'nccl', 'distributed_init_method': 'tcp://localhost:12717', 'distributed_port': -1, 'device_id': 0, 'distributed_no_spawn': False, 'ddp_backend': 'pytorch_ddp', 'ddp_comm_hook': 'none', 'bucket_cap_mb': 25, 'fix_batches_to_gpus': False, 'find_unused_parameters': False, 'fast_stat_sync': False, 'heartbeat_timeout': -1, 'broadcast_buffers': False, 'slowmo_momentum': None, 'slowmo_algorithm': 'LocalSGD', 'localsgd_frequency': 3, 'nprocs_per_node': 8, 'pipeline_model_parallel': False, 'pipeline_balance': None, 'pipeline_devices': None, 'pipeline_chunks': 0, 'pipeline_encoder_balance': None, 'pipeline_encoder_devices': None, 'pipeline_decoder_balance': None, 'pipeline_decoder_devices': None, 'pipeline_checkpoint': 'never', 'zero_sharding': 'none', 'fp16': False, 'memory_efficient_fp16': False, 'tpu': False, 'no_reshard_after_forward': False, 'fp32_reduce_scatter': False, 'cpu_offload': False, 'use_sharded_state': False}, 'dataset': {'_name': None, 'num_workers': 0, 'skip_invalid_size_inputs_valid_test': False, 'max_tokens': 1000, 'batch_size': None, 'required_batch_size_multiple': 8, 'required_seq_len_multiple': 1, 'dataset_impl': None, 'data_buffer_size': 10, 'train_subset': 'train', 'valid_subset': 'valid', 'combine_valid_subsets': None, 'ignore_unused_valid_subsets': False, 'validate_interval': 1, 'validate_interval_updates': 0, 'validate_after_updates': 0, 'fixed_validation_seed': None, 'disable_validation': False, 'max_tokens_valid': 1000, 'batch_size_valid': None, 'max_valid_steps': None, 'curriculum': 0, 'gen_subset': 'test', 'num_shards': 1, 'shard_id': 0}, 'override': {'_name': None, 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': 0.0, 'modalities': ['video'], 'data': None, 'label_dir': None}, 'is_ax': False}
+INFO:hybrid.speech_recognize:{'_name': None, 'task': None, 'generation': {'_name': None, 'beam': 50, 'nbest': 1, 'max_len_a': 1.0, 'max_len_b': 0, 'min_len': 1, 'match_source_len': False, 'unnormalized': False, 'no_early_stop': False, 'no_beamable_mm': False, 'lenpen': 1.0, 'unkpen': 0.0, 'replace_unk': None, 'sacrebleu': False, 'score_reference': False, 'prefix_size': 0, 'no_repeat_ngram_size': 0, 'sampling': False, 'sampling_topk': -1, 'sampling_topp': -1.0, 'constraints': None, 'temperature': 1.0, 'diverse_beam_groups': -1, 'diverse_beam_strength': 0.5, 'diversity_rate': -1.0, 'print_alignment': None, 'print_step': False, 'lm_path': None, 'lm_weight': 0.0, 'iter_decode_eos_penalty': 0.0, 'iter_decode_max_iter': 10, 'iter_decode_force_max_iter': False, 'iter_decode_with_beam': 1, 'iter_decode_with_external_reranker': False, 'retain_iter_history': False, 'retain_dropout': False, 'retain_dropout_modules': None, 'decoding_format': None, 'no_seed_provided': False}, 'common': {'_name': None, 'no_progress_bar': False, 'log_interval': 100, 'log_format': None, 'log_file': None, 'tensorboard_logdir': None, 'wandb_project': None, 'azureml_logging': False, 'seed': 1, 'cpu': False, 'tpu': False, 'bf16': False, 'memory_efficient_bf16': False, 'fp16': False, 'memory_efficient_fp16': False, 'fp16_no_flatten_grads': False, 'fp16_init_scale': 128, 'fp16_scale_window': None, 'fp16_scale_tolerance': 0.0, 'on_cpu_convert_precision': False, 'min_loss_scale': 0.0001, 'threshold_loss_scale': None, 'amp': False, 'amp_batch_retries': 2, 'amp_init_scale': 128, 'amp_scale_window': None, 'user_dir': '/workspace/av_hubert/avhubert', 'empty_cache_freq': 0, 'all_gather_list_size': 16384, 'model_parallel_size': 1, 'quantization_config_path': None, 'profile': False, 'reset_logging': False, 'suppress_crashes': False, 'use_plasma_view': False, 'plasma_path': '/tmp/plasma'}, 'common_eval': {'_name': None, 'path': '/workspace/av_hubert/finetune/checkpoints/checkpoint_best.pt', 'post_process': None, 'quiet': False, 'model_overrides': '{}', 'results_path': '/workspace/av_hubert/decode/s2s/test'}, 'checkpoint': {'_name': None, 'save_dir': 'checkpoints', 'restore_file': 'checkpoint_last.pt', 'finetune_from_model': None, 'reset_dataloader': False, 'reset_lr_scheduler': False, 'reset_meters': False, 'reset_optimizer': False, 'optimizer_overrides': '{}', 'save_interval': 1, 'save_interval_updates': 0, 'keep_interval_updates': -1, 'keep_interval_updates_pattern': -1, 'keep_last_epochs': -1, 'keep_best_checkpoints': -1, 'no_save': False, 'no_epoch_checkpoints': False, 'no_last_checkpoints': False, 'no_save_optimizer_state': False, 'best_checkpoint_metric': 'loss', 'maximize_best_checkpoint_metric': False, 'patience': -1, 'checkpoint_suffix': '', 'checkpoint_shard_count': 1, 'load_checkpoint_on_all_dp_ranks': False, 'write_checkpoints_asynchronously': False, 'model_parallel_size': 1}, 'distributed_training': {'_name': None, 'distributed_world_size': 8, 'distributed_num_procs': 8, 'distributed_rank': 0, 'distributed_backend': 'nccl', 'distributed_init_method': 'tcp://localhost:12717', 'distributed_port': -1, 'device_id': 0, 'distributed_no_spawn': False, 'ddp_backend': 'pytorch_ddp', 'ddp_comm_hook': 'none', 'bucket_cap_mb': 25, 'fix_batches_to_gpus': False, 'find_unused_parameters': False, 'fast_stat_sync': False, 'heartbeat_timeout': -1, 'broadcast_buffers': False, 'slowmo_momentum': None, 'slowmo_algorithm': 'LocalSGD', 'localsgd_frequency': 3, 'nprocs_per_node': 8, 'pipeline_model_parallel': False, 'pipeline_balance': None, 'pipeline_devices': None, 'pipeline_chunks': 0, 'pipeline_encoder_balance': None, 'pipeline_encoder_devices': None, 'pipeline_decoder_balance': None, 'pipeline_decoder_devices': None, 'pipeline_checkpoint': 'never', 'zero_sharding': 'none', 'fp16': False, 'memory_efficient_fp16': False, 'tpu': False, 'no_reshard_after_forward': False, 'fp32_reduce_scatter': False, 'cpu_offload': False, 'use_sharded_state': False}, 'dataset': {'_name': None, 'num_workers': 0, 'skip_invalid_size_inputs_valid_test': False, 'max_tokens': 1000, 'batch_size': None, 'required_batch_size_multiple': 8, 'required_seq_len_multiple': 1, 'dataset_impl': None, 'data_buffer_size': 10, 'train_subset': 'train', 'valid_subset': 'valid', 'combine_valid_subsets': None, 'ignore_unused_valid_subsets': False, 'validate_interval': 1, 'validate_interval_updates': 0, 'validate_after_updates': 0, 'fixed_validation_seed': None, 'disable_validation': False, 'max_tokens_valid': 1000, 'batch_size_valid': None, 'max_valid_steps': None, 'curriculum': 0, 'gen_subset': 'test', 'num_shards': 1, 'shard_id': 0}, 'override': {'_name': None, 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': 0.0, 'modalities': ['video'], 'data': None, 'label_dir': None}, 'is_ax': False}
+INFO:avhubert.hubert_pretraining:Using tokenizer
+INFO:avhubert.hubert_dataset:max_keep=500, min_keep=None, loaded 1243, skipped 0 short and 0 long and 0 unaligned, longest-loaded=145, shortest-loaded=15
+INFO:avhubert.hubert_dataset:/workspace/lrs2/433h_data/test.wrd is sequence label. skipped
+INFO:avhubert.hubert_dataset:image transform: Compose(
+    Normalize(mean=0.0, std=255.0)
+    <avhubert.utils.CenterCrop object at 0x7fe9e3447b20>
+    Normalize(mean=0.421, std=0.165)
+)
+INFO:avhubert.hubert_dataset:pad_audio=True, random_crop=False, normalize=True, max_sample_size=500, seqs2seq data=True,
+INFO:avhubert.hubert_dataset:Noise wav: None->0 wav, Prob: 0.0, SNR: 0.0, Number of mixture: 1
+
+REF:it's a very attractive guide price for a substantial house so well
+HYP:it's a very attractive and high price for us to potential house so well
+
+INFO:hybrid.speech_recognize:
+REF:it's a very attractive guide price for a substantial house so well
+HYP:it's a very attractive and high price for us to potential house so well
+
+
+REF:they say that the king may not raise taxation without the consent of parliament
+HYP:they stay there that the king may not raise an extension without the extensive parliament
+
+INFO:hybrid.speech_recognize:
+REF:they say that the king may not raise taxation without the consent of parliament
+HYP:they stay there that the king may not raise an extension without the extensive parliament
+
+
+REF:but it has established the infrastructure of a police state and it could be open to abuse in the
+HYP:but it has established the infrastructure of a police state and it could be up to abuse in the
+
+INFO:hybrid.speech_recognize:
+REF:but it has established the infrastructure of a police state and it could be open to abuse in the
+HYP:but it has established the infrastructure of a police state and it could be up to abuse in the
+
+
+REF:so i think it is a piece of very one dimensional left wing propaganda
+HYP:so i think it does a piece of very one dimensional left one properly and
+
+INFO:hybrid.speech_recognize:
+REF:so i think it is a piece of very one dimensional left wing propaganda
+HYP:so i think it does a piece of very one dimensional left one properly and
+
+
+REF:because the whole point of 9 11 is that it's the just<unk>ication for the police state
+HYP:because the whole point of nine 11 is that it's the chance of occasion for the police again
+
+INFO:hybrid.speech_recognize:
+REF:because the whole point of 9 11 is that it's the just<unk>ication for the police state
+HYP:because the whole point of nine 11 is that it's the chance of occasion for the police again
+
+
+REF:i'm starting up a venue for yank holiday makers on an island at bahamas
+HYP:i'm starting up a venue for yank holiday makers on an island at bahamas
+
+INFO:hybrid.speech_recognize:
+REF:i'm starting up a venue for yank holiday makers on an island at bahamas
+HYP:i'm starting up a venue for yank holiday makers on an island at bahamas
+
+
+REF:the president elect has met with president obama
+HYP:of the president collect i'm here with president obama
+
+INFO:hybrid.speech_recognize:
+REF:the president elect has met with president obama
+HYP:of the president collect i'm here with president obama
+
+
+REF:people are happy to be there and it's a good vibe
+HYP:people are happy to be there and it's getting a good farm
+
+INFO:hybrid.speech_recognize:
+REF:people are happy to be there and it's a good vibe
+HYP:people are happy to be there and it's getting a good farm
+
+
+REF:did they get it done on time and for the right money
+HYP:did they get it done on time and for the right money
+
+INFO:hybrid.speech_recognize:
+REF:did they get it done on time and for the right money
+HYP:did they get it done on time and for the right money
+
+
+REF:many people did slip and fall and break a leg
+HYP:many people who didn't sleep in fork brick and egg
+
+INFO:hybrid.speech_recognize:
+REF:many people did slip and fall and break a leg
+HYP:many people who didn't sleep in fork brick and egg
+
+
+REF:but it seems the pendant is to everyone's personal taste
+HYP:but it seems depending doesn't everyone's personal taste
+
+INFO:hybrid.speech_recognize:
+REF:but it seems the pendant is to everyone's personal taste
+HYP:but it seems depending doesn't everyone's personal taste
+
+
+REF:but we're going to improve on things like the green roof
+HYP:but we're going to improve on the things that i think we can prove
+
+INFO:hybrid.speech_recognize:
+REF:but we're going to improve on things like the green roof
+HYP:but we're going to improve on the things that i think we can prove
+
+
+REF:the romans felt their presence was strong enough here
+HYP:the romans felt that their present was strong enough here
+
+INFO:hybrid.speech_recognize:
+REF:the romans felt their presence was strong enough here
+HYP:the romans felt that their present was strong enough here
+
+
+REF:what's the best thing about the royal highland show
+HYP:what's the best thing about a real island to do
+
+INFO:hybrid.speech_recognize:
+REF:what's the best thing about the royal highland show
+HYP:what's the best thing about a real island to do
+
+
+REF:taking horticulture to the extreme
+HYP:taking older culture to these free
+
+INFO:hybrid.speech_recognize:
+REF:taking horticulture to the extreme
+HYP:taking older culture to these free
+
+
+REF:there aren't any biscuits in that barrel
+HYP:there aren't any business to tell about
+
+INFO:hybrid.speech_recognize:
+REF:there aren't any biscuits in that barrel
+HYP:there aren't any business to tell about
+
+
+REF:four kilometres without even really thinking about it
+HYP:four kilometres without even really thinking about it
+
+INFO:hybrid.speech_recognize:
+REF:four kilometres without even really thinking about it
+HYP:four kilometres without even really thinking about it
+
+
+REF:this auction lot has it in spades
+HYP:this auction lot has it in spain
+
+INFO:hybrid.speech_recognize:
+REF:this auction lot has it in spades
+HYP:this auction lot has it in spain
+
+
+REF:there are times i like to listen to bananarama
+HYP:and there are times i sensible art drama
+
+INFO:hybrid.speech_recognize:
+REF:there are times i like to listen to bananarama
+HYP:and there are times i sensible art drama
+
+
+REF:and for me the surprise was
+HYP:and for me the surprise was
+
+INFO:hybrid.speech_recognize:
+REF:and for me the surprise was
+HYP:and for me the surprise was
+
+
+REF:they have no idea what to expect
+HYP:they have no idea what to expect
+
+INFO:hybrid.speech_recognize:
+REF:they have no idea what to expect
+HYP:they have no idea what to expect
+
+
+REF:all of the brain is combining all the different senses
+HYP:all of the brains combining all the different senses
+
+INFO:hybrid.speech_recognize:
+REF:all of the brain is combining all the different senses
+HYP:all of the brains combining all the different senses
+
+
+REF:that makes a grand total of six
+HYP:that makes the grand total of six
+
+INFO:hybrid.speech_recognize:
+REF:that makes a grand total of six
+HYP:that makes the grand total of six
+
+
+REF:all hoping the king would fall
+HYP:all hoping the king would fall
+
+INFO:hybrid.speech_recognize:
+REF:all hoping the king would fall
+HYP:all hoping the king would fall
+
+
+REF:rescuing a damsel in distress
+HYP:rescue and attempt to lead distress
+
+INFO:hybrid.speech_recognize:
+REF:rescuing a damsel in distress
+HYP:rescue and attempt to lead distress
+
+
+REF:because there was no role model
+HYP:because it was none of all the wrong model
+
+INFO:hybrid.speech_recognize:
+REF:because there was no role model
+HYP:because it was none of all the wrong model
+
+
+REF:but i come across training prisons now
+HYP:but i come across training in prisoners now
+
+INFO:hybrid.speech_recognize:
+REF:but i come across training prisons now
+HYP:but i come across training in prisoners now
+
+
+REF:and that had an important effect
+HYP:and that has an important effect
+
+INFO:hybrid.speech_recognize:
+REF:and that had an important effect
+HYP:and that has an important effect
+
+
+REF:pondering the immensity
+HYP:passed away in the immensity
+
+INFO:hybrid.speech_recognize:
+REF:pondering the immensity
+HYP:passed away in the immensity
+
+
+REF:the appliances have been done nicely
+HYP:the appliances have been done nicely
+
+INFO:hybrid.speech_recognize:
+REF:the appliances have been done nicely
+HYP:the appliances have been done nicely
+
+
+REF:get yourself over here because first up tonight
+HYP:late self harvey because first up tonight
+
+INFO:hybrid.speech_recognize:
+REF:get yourself over here because first up tonight
+HYP:late self harvey because first up tonight
+
+
+REF:i'm just saying that denise brought me up
+HYP:i'm just saying that the kids brought me up
+
+INFO:hybrid.speech_recognize:
+REF:i'm just saying that denise brought me up
+HYP:i'm just saying that the kids brought me up
+
+
+REF:or properties should i say
+HYP:or properties just say
+
+INFO:hybrid.speech_recognize:
+REF:or properties should i say
+HYP:or properties just say
+
+
+REF:it was incredible entertainment
+HYP:it was an incredible entertainment
+
+INFO:hybrid.speech_recognize:
+REF:it was incredible entertainment
+HYP:it was an incredible entertainment
+
+
+REF:judging by what i saw today
+HYP:judging a b one is not in air
+
+INFO:hybrid.speech_recognize:
+REF:judging by what i saw today
+HYP:judging a b one is not in air
+
+
+REF:some burn brightly for a year or two
+HYP:tom burn brightly for a year or two
+
+INFO:hybrid.speech_recognize:
+REF:some burn brightly for a year or two
+HYP:tom burn brightly for a year or two
+
+
+REF:a revolution is taking place
+HYP:a revolution taking place
+
+INFO:hybrid.speech_recognize:
+REF:a revolution is taking place
+HYP:a revolution taking place
+
+
+REF:the man who cares about animals
+HYP:the man who cares about animals
+
+INFO:hybrid.speech_recognize:
+REF:the man who cares about animals
+HYP:the man who cares about animals
+
+
+REF:so ten cubic metres
+HYP:to sell the herbing reasons
+
+INFO:hybrid.speech_recognize:
+REF:so ten cubic metres
+HYP:to sell the herbing reasons
+
+
+REF:and went on the ordinary wing
+HYP:and went on the look of the queen
+
+INFO:hybrid.speech_recognize:
+REF:and went on the ordinary wing
+HYP:and went on the look of the queen
+
+
+REF:you never know by the end of the build
+HYP:you never know by the end of the build
+
+INFO:hybrid.speech_recognize:
+REF:you never know by the end of the build
+HYP:you never know by the end of the build
+
+
+REF:killing him and five friends
+HYP:killing him and five friends
+
+INFO:hybrid.speech_recognize:
+REF:killing him and five friends
+HYP:killing him and five friends
+
+
+REF:it's become so fragmented
+HYP:it's become so fragmented
+
+INFO:hybrid.speech_recognize:
+REF:it's become so fragmented
+HYP:it's become so fragmented
+
+
+REF:but for all that
+HYP:but for all that
+
+INFO:hybrid.speech_recognize:
+REF:but for all that
+HYP:but for all that
+
+
+REF:that's according to the police watchdog
+HYP:he's according to the police watchdog
+
+INFO:hybrid.speech_recognize:
+REF:that's according to the police watchdog
+HYP:he's according to the police watchdog
+
+
+REF:that would just make things worse
+HYP:they were explaining sweets
+
+INFO:hybrid.speech_recognize:
+REF:that would just make things worse
+HYP:they were explaining sweets
+
+
+REF:the perfect family
+HYP:the perfect family
+
+INFO:hybrid.speech_recognize:
+REF:the perfect family
+HYP:the perfect family
+
+
+REF:but i felt he was exposed
+HYP:but i felt he was exposed
+
+INFO:hybrid.speech_recognize:
+REF:but i felt he was exposed
+HYP:but i felt he was exposed
+
+
+REF:they were innocent and charming
+HYP:they were in a danger army
+
+INFO:hybrid.speech_recognize:
+REF:they were innocent and charming
+HYP:they were in a danger army
+
+
+REF:so in the meantime
+HYP:so in the meantime
+
+INFO:hybrid.speech_recognize:
+REF:so in the meantime
+HYP:so in the meantime
+
+
+REF:and yet that and fish and chips
+HYP:and yet to 1 000 fish and chips
+
+INFO:hybrid.speech_recognize:
+REF:and yet that and fish and chips
+HYP:and yet to 1 000 fish and chips
+
+
+REF:we like to reminisce
+HYP:we liked it robert hitch
+
+INFO:hybrid.speech_recognize:
+REF:we like to reminisce
+HYP:we liked it robert hitch
+
+
+REF:it's an amazing place
+HYP:it's an amazing place
+
+INFO:hybrid.speech_recognize:
+REF:it's an amazing place
+HYP:it's an amazing place
+
+
+REF:herself currently learning to sign
+HYP:ourselves are inside
+
+INFO:hybrid.speech_recognize:
+REF:herself currently learning to sign
+HYP:ourselves are inside
+
+
+REF:the government looks set to win
+HYP:the government looks tend to win
+
+INFO:hybrid.speech_recognize:
+REF:the government looks set to win
+HYP:the government looks tend to win
+
+
+REF:my first granddaughter
+HYP:my first great soldier
+
+INFO:hybrid.speech_recognize:
+REF:my first granddaughter
+HYP:my first great soldier
+
+
+REF:but i couldn't believe it would be true
+HYP:but i couldn't believe it would be true
+
+INFO:hybrid.speech_recognize:
+REF:but i couldn't believe it would be true
+HYP:but i couldn't believe it would be true
+
+
+REF:stick some james bond on
+HYP:assessment james bonton on
+
+INFO:hybrid.speech_recognize:
+REF:stick some james bond on
+HYP:assessment james bonton on
+
+
+REF:the perfect house
+HYP:the perfect house
+
+INFO:hybrid.speech_recognize:
+REF:the perfect house
+HYP:the perfect house
+
+
+REF:destroying the property
+HYP:destroying the property
+
+INFO:hybrid.speech_recognize:
+REF:destroying the property
+HYP:destroying the property
+
+
+REF:i have had my fitting now
+HYP:i have had my feature now
+
+INFO:hybrid.speech_recognize:
+REF:i have had my fitting now
+HYP:i have had my feature now
+
+
+REF:and i do mean hundreds
+HYP:and i do mean hundreds
+
+INFO:hybrid.speech_recognize:
+REF:and i do mean hundreds
+HYP:and i do mean hundreds
+
+
+REF:if you intend to bid on a place
+HYP:if you intend to be on a plan
+
+INFO:hybrid.speech_recognize:
+REF:if you intend to bid on a place
+HYP:if you intend to be on a plan
+
+
+REF:best and happiest of all
+HYP:best and happiness for
+
+INFO:hybrid.speech_recognize:
+REF:best and happiest of all
+HYP:best and happiness for
+
+
+REF:go about telling him that
+HYP:go about turning up there
+
+INFO:hybrid.speech_recognize:
+REF:go about telling him that
+HYP:go about turning up there
+
+
+REF:we don't want to spend more than
+HYP:when i wanted to spend more than
+
+INFO:hybrid.speech_recognize:
+REF:we don't want to spend more than
+HYP:when i wanted to spend more than
+
+
+REF:you are dynamic
+HYP:you had that slapping
+
+INFO:hybrid.speech_recognize:
+REF:you are dynamic
+HYP:you had that slapping
+
+
+REF:what was it that made you think
+HYP:what was it that made you think
+
+INFO:hybrid.speech_recognize:
+REF:what was it that made you think
+HYP:what was it that made you think
+
+
+REF:rather than using drugs
+HYP:rather than using drugs
+
+INFO:hybrid.speech_recognize:
+REF:rather than using drugs
+HYP:rather than using drugs
+
+
+REF:they get lost on the way home
+HYP:they get lost in the way home
+
+INFO:hybrid.speech_recognize:
+REF:they get lost on the way home
+HYP:they get lost in the way home
+
+
+REF:lots of things to think about
+HYP:a lot of things to think about
+
+INFO:hybrid.speech_recognize:
+REF:lots of things to think about
+HYP:a lot of things to think about
+
+
+REF:but not for me as a farmer
+HYP:but not for me as a farmer
+
+INFO:hybrid.speech_recognize:
+REF:but not for me as a farmer
+HYP:but not for me as a farmer
+
+
+REF:we've got 24 characters
+HYP:we've got 24 characters
+
+INFO:hybrid.speech_recognize:
+REF:we've got 24 characters
+HYP:we've got 24 characters
+
+
+REF:see how much it comes to
+HYP:so how much he comes through
+
+INFO:hybrid.speech_recognize:
+REF:see how much it comes to
+HYP:so how much he comes through
+
+
+REF:one northern welsh ruler
+HYP:one north and welsh ruler
+
+INFO:hybrid.speech_recognize:
+REF:one northern welsh ruler
+HYP:one north and welsh ruler
+
+
+REF:you've really made my day
+HYP:you've really made me today
+
+INFO:hybrid.speech_recognize:
+REF:you've really made my day
+HYP:you've really made me today
+
+
+REF:in other words made the base
+HYP:the other words make the pitch
+
+INFO:hybrid.speech_recognize:
+REF:in other words made the base
+HYP:the other words make the pitch
+
+
+REF:i can plant them in that spot
+HYP:i employ them at the export
+
+INFO:hybrid.speech_recognize:
+REF:i can plant them in that spot
+HYP:i employ them at the export
+
+
+REF:it can be quite expensive
+HYP:it can be quite expensive
+
+INFO:hybrid.speech_recognize:
+REF:it can be quite expensive
+HYP:it can be quite expensive
+
+
+REF:i just don't get it
+HYP:i just don't get it
+
+INFO:hybrid.speech_recognize:
+REF:i just don't get it
+HYP:i just don't get it
+
+
+REF:and getting rid of it
+HYP:and i think really funny is
+
+INFO:hybrid.speech_recognize:
+REF:and getting rid of it
+HYP:and i think really funny is
+
+
+REF:we've not discussed it
+HYP:we've got nothing to any
+
+INFO:hybrid.speech_recognize:
+REF:we've not discussed it
+HYP:we've got nothing to any
+
+
+REF:with billy not being yours
+HYP:with billy<unk>tions
+
+INFO:hybrid.speech_recognize:
+REF:with billy not being yours
+HYP:with billy<unk>tions
+
+
+REF:that would be fantastic
+HYP:that would be fantastic
+
+INFO:hybrid.speech_recognize:
+REF:that would be fantastic
+HYP:that would be fantastic
+
+
+REF:i went to use my right arm
+HYP:i went to my radar
+
+INFO:hybrid.speech_recognize:
+REF:i went to use my right arm
+HYP:i went to my radar
+
+
+REF:if it was going to be increased
+HYP:if you were going to be a quest
+
+INFO:hybrid.speech_recognize:
+REF:if it was going to be increased
+HYP:if you were going to be a quest
+
+
+REF:i think it looks great
+HYP:i think it looks great
+
+INFO:hybrid.speech_recognize:
+REF:i think it looks great
+HYP:i think it looks great
+
+
+REF:our journey isn't over yet
+HYP:our journey into overcame
+
+INFO:hybrid.speech_recognize:
+REF:our journey isn't over yet
+HYP:our journey into overcame
+
+
+REF:they love architecture
+HYP:they love architecture
+
+INFO:hybrid.speech_recognize:
+REF:they love architecture
+HYP:they love architecture
+
+
+REF:no one would look tw<unk>
+HYP:no one will tw<unk>
+
+INFO:hybrid.speech_recognize:
+REF:no one would look tw<unk>
+HYP:no one will tw<unk>
+
+
+REF:he still wanted
+HYP:he still wanted
+
+INFO:hybrid.speech_recognize:
+REF:he still wanted
+HYP:he still wanted
+
+
+REF:he made the superstructure
+HYP:he made it so much treasure
+
+INFO:hybrid.speech_recognize:
+REF:he made the superstructure
+HYP:he made it so much treasure
+
+
+REF:but she's not confused
+HYP:which is not confused
+
+INFO:hybrid.speech_recognize:
+REF:but she's not confused
+HYP:which is not confused
+
+
+REF:about 20 years ago
+HYP:about 20 years ago
+
+INFO:hybrid.speech_recognize:
+REF:about 20 years ago
+HYP:about 20 years ago
+
+
+REF:it's a plus point
+HYP:it's a plus point
+
+INFO:hybrid.speech_recognize:
+REF:it's a plus point
+HYP:it's a plus point
+
+
+REF:you unfold the board
+HYP:you won't vote the board
+
+INFO:hybrid.speech_recognize:
+REF:you unfold the board
+HYP:you won't vote the board
+
+
+REF:and the champagne
+HYP:cleaning the champagne
+
+INFO:hybrid.speech_recognize:
+REF:and the champagne
+HYP:cleaning the champagne
+
+
+REF:but it might be too late by then
+HYP:but it might be too late by this
+
+INFO:hybrid.speech_recognize:
+REF:but it might be too late by then
+HYP:but it might be too late by this
+
+
+REF:real friends that care about me
+HYP:real friends and care about me
+
+INFO:hybrid.speech_recognize:
+REF:real friends that care about me
+HYP:real friends and care about me
+
+
+REF:but when you look inside
+HYP:but when you look inside
+
+INFO:hybrid.speech_recognize:
+REF:but when you look inside
+HYP:but when you look inside
+
+
+REF:it didn't survive
+HYP:it doesn't survive
+
+INFO:hybrid.speech_recognize:
+REF:it didn't survive
+HYP:it doesn't survive
+
+
+REF:we would love to sell it
+HYP:we would love to sell it
+
+INFO:hybrid.speech_recognize:
+REF:we would love to sell it
+HYP:we would love to sell it
+
+
+REF:you see that present
+HYP:you see that present
+
+INFO:hybrid.speech_recognize:
+REF:you see that present
+HYP:you see that present
+
+
+REF:but at the same time
+HYP:but are the same name
+
+INFO:hybrid.speech_recognize:
+REF:but at the same time
+HYP:but are the same name
+
+
+REF:it's a baking show
+HYP:it's a pecky show
+
+INFO:hybrid.speech_recognize:
+REF:it's a baking show
+HYP:it's a pecky show
+
+
+REF:thank you very much
+HYP:thank you very much
+
+INFO:hybrid.speech_recognize:
+REF:thank you very much
+HYP:thank you very much
+
+
+REF:keep going on about this
+HYP:i'm going on about this
+
+INFO:hybrid.speech_recognize:
+REF:keep going on about this
+HYP:i'm going on about this
+
+
+REF:enjoy the money
+HYP:enjoy the money
+
+INFO:hybrid.speech_recognize:
+REF:enjoy the money
+HYP:enjoy the money
+
+
+REF:and on sunday at 12
+HYP:and you're setting into it
+
+INFO:hybrid.speech_recognize:
+REF:and on sunday at 12
+HYP:and you're setting into it
+
+
+REF:but in those days
+HYP:but in those days
+
+INFO:hybrid.speech_recognize:
+REF:but in those days
+HYP:but in those days
+
+
+REF:some you have to book
+HYP:some you have to book
+
+INFO:hybrid.speech_recognize:
+REF:some you have to book
+HYP:some you have to book
+
+
+REF:my little boy is
+HYP:my little boy is
+
+INFO:hybrid.speech_recognize:
+REF:my little boy is
+HYP:my little boy is
+
+
+REF:leave that to me
+HYP:leave that to me
+
+INFO:hybrid.speech_recognize:
+REF:leave that to me
+HYP:leave that to me
+
+
+REF:to see these animals
+HYP:to these elements
+
+INFO:hybrid.speech_recognize:
+REF:to see these animals
+HYP:to these elements
+
+
+REF:without further ado
+HYP:and that feels for you
+
+INFO:hybrid.speech_recognize:
+REF:without further ado
+HYP:and that feels for you
+
+
+REF:sometimes it doesn't
+HYP:sometimes it doesn't
+
+INFO:hybrid.speech_recognize:
+REF:sometimes it doesn't
+HYP:sometimes it doesn't
+
+
+REF:the following spring
+HYP:you don't disappear
+
+INFO:hybrid.speech_recognize:
+REF:the following spring
+HYP:you don't disappear
+
+
+REF:tickets for the match
+HYP:says for the marsh
+
+INFO:hybrid.speech_recognize:
+REF:tickets for the match
+HYP:says for the marsh
+
+
+REF:thank you very much
+HYP:thank you very much
+
+INFO:hybrid.speech_recognize:
+REF:thank you very much
+HYP:thank you very much
+
+
+REF:we need to be a team
+HYP:we need to be a team
+
+INFO:hybrid.speech_recognize:
+REF:we need to be a team
+HYP:we need to be a team
+
+
+REF:when you came back
+HYP:when you came back
+
+INFO:hybrid.speech_recognize:
+REF:when you came back
+HYP:when you came back
+
+
+REF:so let's get on with it
+HYP:so let's get on with it
+
+INFO:hybrid.speech_recognize:
+REF:so let's get on with it
+HYP:so let's get on with it
+
+
+REF:which is incredible
+HYP:which is incredible
+
+INFO:hybrid.speech_recognize:
+REF:which is incredible
+HYP:which is incredible
+
+
+REF:or whatever it was
+HYP:how do whatever it was
+
+INFO:hybrid.speech_recognize:
+REF:or whatever it was
+HYP:how do whatever it was
+
+
+REF:in all seriousness
+HYP:he looks as if he says
+
+INFO:hybrid.speech_recognize:
+REF:in all seriousness
+HYP:he looks as if he says
+
+
+REF:and with that in mind
+HYP:and with that in mainten
+
+INFO:hybrid.speech_recognize:
+REF:and with that in mind
+HYP:and with that in mainten
+
+
+REF:the guilt would go
+HYP:the king's would sell
+
+INFO:hybrid.speech_recognize:
+REF:the guilt would go
+HYP:the king's would sell
+
+
+REF:but you don't need to worry
+HYP:you don't need to worry
+
+INFO:hybrid.speech_recognize:
+REF:but you don't need to worry
+HYP:you don't need to worry
+
+
+REF:it's higher than before
+HYP:he's higher than before
+
+INFO:hybrid.speech_recognize:
+REF:it's higher than before
+HYP:he's higher than before
+
+
+REF:she is hysterical
+HYP:is it sarahold
+
+INFO:hybrid.speech_recognize:
+REF:she is hysterical
+HYP:is it sarahold
+
+
+REF:this is one of the questions
+HYP:that's one of the questions
+
+INFO:hybrid.speech_recognize:
+REF:this is one of the questions
+HYP:that's one of the questions
+
+
+REF:but ten years ago
+HYP:but ten years ago
+
+INFO:hybrid.speech_recognize:
+REF:but ten years ago
+HYP:but ten years ago
+
+
+REF:stretching back 3
+HYP:it's writing my dream
+
+INFO:hybrid.speech_recognize:
+REF:stretching back 3
+HYP:it's writing my dream
+
+
+REF:i'm not satisfied
+HYP:i'm not satisfied
+
+INFO:hybrid.speech_recognize:
+REF:i'm not satisfied
+HYP:i'm not satisfied
+
+
+REF:which explains it
+HYP:which makes it
+
+INFO:hybrid.speech_recognize:
+REF:which explains it
+HYP:which makes it
+
+
+REF:thanks for watching
+HYP:thanks for watching
+
+INFO:hybrid.speech_recognize:
+REF:thanks for watching
+HYP:thanks for watching
+
+
+REF:in the basement
+HYP:in the basement
+
+INFO:hybrid.speech_recognize:
+REF:in the basement
+HYP:in the basement
+
+
+REF:let's just calm down
+HYP:this job done
+
+INFO:hybrid.speech_recognize:
+REF:let's just calm down
+HYP:this job done
+
+
+REF:thanks for watching
+HYP:thanks for watching
+
+INFO:hybrid.speech_recognize:
+REF:thanks for watching
+HYP:thanks for watching
+
+
+REF:that's very good
+HYP:that's very good
+
+INFO:hybrid.speech_recognize:
+REF:that's very good
+HYP:that's very good
+
+
+REF:thanks for watching
+HYP:thanks for watching
+
+INFO:hybrid.speech_recognize:
+REF:thanks for watching
+HYP:thanks for watching
+
+
+REF:it's not a career
+HYP:it's not a good thing
+
+INFO:hybrid.speech_recognize:
+REF:it's not a career
+HYP:it's not a good thing
+
+
+REF:that was amazing
+HYP:that was amazing
+
+INFO:hybrid.speech_recognize:
+REF:that was amazing
+HYP:that was amazing
+
+
+REF:thanks for watching
+HYP:thanks for watching
+
+INFO:hybrid.speech_recognize:
+REF:thanks for watching
+HYP:thanks for watching
+
+
+REF:but you have to go
+HYP:that you have to go
+
+INFO:hybrid.speech_recognize:
+REF:but you have to go
+HYP:that you have to go
+
+
+REF:something like that
+HYP:something like that
+
+INFO:hybrid.speech_recognize:
+REF:something like that
+HYP:something like that
+
+
+REF:i don't want to
+HYP:i don't
+
+INFO:hybrid.speech_recognize:
+REF:i don't want to
+HYP:i don't
+
+
+REF:and then of course
+HYP:and then of course
+
+INFO:hybrid.speech_recognize:
+REF:and then of course
+HYP:and then of course
+
+
+REF:you don't need it
+HYP:you don't need it
+
+INFO:hybrid.speech_recognize:
+REF:you don't need it
+HYP:you don't need it
+
+
+REF:i can't believe
+HYP:i come and get
+
+INFO:hybrid.speech_recognize:
+REF:i can't believe
+HYP:i come and get
+
+NOTE: hypothesis and token scores are output in base 2
+INFO:hybrid.speech_recognize:NOTE: hypothesis and token scores are output in base 2
+Recognized 150 utterances (1473 tokens) in 45.8s (3.28 sentences/s, 32.19 tokens/s)
+INFO:hybrid.speech_recognize:Recognized 150 utterances (1473 tokens) in 45.8s (3.28 sentences/s, 32.19 tokens/s)
+WER: 32.13859020310633%
+INFO:hybrid.speech_recognize:WER: 32.13859020310633%
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)

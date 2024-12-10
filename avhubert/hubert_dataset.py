@@ -233,6 +233,14 @@ class AVHubertDataset(FairseqDataset):
         logger.info(
             f"Noise wav: {noise_fn}->{len(self.noise_wav)} wav, Prob: {self.noise_prob}, SNR: {self.noise_snr}, Number of mixture: {self.noise_num}"
         )
+        count_of_each = len(self.names) // 100
+        eta = 25
+        type_list = [1] * count_of_each * eta  + [2]  * count_of_each * eta
+        complete = (len(self.names) - len(type_list)) * [0]
+        type_list += complete
+        # 使用随机洗牌来打乱列表
+        np.random.shuffle(type_list)
+        self.type_list = type_list
 
     def get_label(self, index, label_idx):
         if self.store_labels:
@@ -348,7 +356,16 @@ class AVHubertDataset(FairseqDataset):
     def __getitem__(self, index):
         video_feats, audio_feats = self.load_feature(self.names[index])
         audio_feats, video_feats = torch.from_numpy(audio_feats.astype(np.float32)) if audio_feats is not None else None, torch.from_numpy(video_feats.astype(np.float32)) if video_feats is not None else None
-        if self.normalize and 'audio' in self.modalities:
+        
+        # video缺失
+        if self.type_list[index] == 1:
+            video_feats = torch.zeros_like(video_feats)
+        # audio缺失
+        elif self.type_list[index] == 2:
+            audio_feats = torch.zeros_like(audio_feats)
+        
+        if self.normalize and 'audio' in self.modalities \
+            and self.type_list[index] != 2:
             with torch.no_grad():
                 audio_feats = F.layer_norm(audio_feats, audio_feats.shape[1:])
         labels = self.get_labels(index)
@@ -399,6 +416,7 @@ class AVHubertDataset(FairseqDataset):
             collated_videos, padding_mask, audio_starts = self.collater_audio(video_source, audio_size, audio_starts)
         else:
             collated_videos = None
+        type = [self.type_list[s["id"]] for s in samples]
         targets_by_label = [
             [s["label_list"][i] for s in samples]
             for i in range(self.num_labels)
@@ -406,7 +424,7 @@ class AVHubertDataset(FairseqDataset):
         targets_list, lengths_list, ntokens_list = self.collater_label(
             targets_by_label, audio_size, audio_starts
         )
-        source = {"audio": collated_audios, "video": collated_videos}
+        source = {"audio": collated_audios, "video": collated_videos, "type": type}
         net_input = {"source": source, "padding_mask": padding_mask}
         batch = {
             "id": torch.LongTensor([s["id"] for s in samples]),

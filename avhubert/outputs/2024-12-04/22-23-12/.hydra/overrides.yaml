@@ -1,0 +1,5 @@
+- dataset.gen_subset=test
+- common_eval.path=finetune_prompt/checkpoints/checkpoint_best.pt
+- common_eval.results_path=finetune_prompt/decode/s2s/test
+- override.modalities=[video,audio]
+- common.user_dir=/workspace/av_hubert/avhubert

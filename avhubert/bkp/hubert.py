@@ -24,7 +24,6 @@ from fairseq.models.wav2vec.wav2vec2 import (
 )
 from fairseq.modules import GradMultiply, LayerNorm
 from copy import deepcopy
-from .encoder import TransformerEncoder_prompt
 
 DBG=True if len(sys.argv) == 1 else False
 
@@ -315,121 +314,19 @@ class AVHubertConfig(FairseqDataclass):
     )
     no_scale_embedding: bool = field(default=True, metadata={'help': 'scale embedding'})
 
-def _get_clones(module, N):
-    return nn.ModuleList([deepcopy(module) for i in range(N)])
-
-class MultiModalPromptLearner(nn.Module):
-    def __init__(self, prompt_length, prompt_depth, dtype=torch.float32):
-        super().__init__()
-        prompt_length_half = prompt_length//3 # use half length for generating static prompts, and the other for generating dynamic prompts
-        # Default is 1, which is compound shallow prompting
-        embed_dim_audio = 768
-        embed_dim_video = 768
-        embed_dim = embed_dim_audio + embed_dim_video
-        
-        self.prompt_depth = prompt_depth  # max=12, but will create 11 such shared prompts
-        self.video_prompt_complete = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_video, dtype=dtype), std=0.02))
-        self.video_prompt_missing = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_video, dtype=dtype), std=0.02))
-        self.audio_prompt_complete = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
-        self.audio_prompt_missing = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
-        self.common_prompt_complete = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
-        self.common_prompt_video = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
-        self.common_prompt_audio = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
-        # Also make corresponding projection layers, for each prompt
-        r = 16
-        single_layer = nn.Sequential(
-                nn.Linear(embed_dim, embed_dim//r),
-                nn.GELU(),
-                nn.Linear(embed_dim//r, embed_dim_audio),
-                )
-        self.compound_prompt_projections_audio = _get_clones(single_layer, self.prompt_depth) # modal-common prompts
-        self.layernorm_audio = nn.ModuleList([torch.nn.LayerNorm(embed_dim) for _ in range(self.prompt_depth)])
-        
-        single_layer = nn.Sequential(
-                nn.Linear(embed_dim, embed_dim//r),
-                nn.GELU(),
-                nn.Linear(embed_dim//r, embed_dim_video),
-                )
-        self.compound_prompt_projections_video = _get_clones(single_layer, self.prompt_depth) # modal-common prompts
-        self.layernorm_video = nn.ModuleList([torch.nn.LayerNorm(embed_dim) for _ in range(self.prompt_depth)])
-        self.common_prompt_projection_video = nn.Sequential(
-                nn.Linear(embed_dim_audio, embed_dim_audio//r),
-                nn.GELU(),
-                nn.Linear(embed_dim_audio//r, embed_dim_video),
-                )
-        self.common_prompt_projection_audio = nn.Sequential(
-                nn.Linear(embed_dim_audio, embed_dim_audio//r),
-                nn.GELU(),
-                nn.Linear(embed_dim_audio//r, embed_dim_audio),
-                )
-
-    def forward(self, missing_type):
-
-        # Before returning, need to transform
-        # prompts to 768 for the video side   
-        
-        # Prompts of prompt_depth layers (combination of 3 kinds)
-        all_prompts_video = [ [] for _ in range(self.prompt_depth)]
-        all_prompts_audio = [ [] for _ in range(self.prompt_depth)]
-        
-        # print("MISSING TYPE: ", missing_type)
-        # import pdb; pdb.set_trace()
-        
-        for i in range(len(missing_type)):
-            # set initial prompts for each modality
-            if missing_type[i] == 0:  # modality complete
-                initial_prompt_video = self.video_prompt_complete
-                initial_prompt_audio = self.audio_prompt_complete
-                common_prompt = self.common_prompt_complete
-            elif missing_type[i] == 1:  # missing audio 
-                initial_prompt_video = self.video_prompt_complete
-                initial_prompt_audio = self.audio_prompt_missing
-                common_prompt = self.common_prompt_video
-            elif missing_type[i] == 2:  # missing video 
-                initial_prompt_video = self.video_prompt_missing
-                initial_prompt_audio = self.audio_prompt_complete
-                common_prompt = self.common_prompt_audio
-            # print(self.video_prompt_missing, "video_prompt_missing")
-            # print(self.audio_prompt_complete, "audio_prompt_complete")
-            # generate the prompts of the first layer
-            all_prompts_video[0].append(self.compound_prompt_projections_video[0](self.layernorm_video[0](torch.cat([initial_prompt_video, initial_prompt_audio], -1))))
-            all_prompts_audio[0].append(self.compound_prompt_projections_audio[0](self.layernorm_audio[0](torch.cat([initial_prompt_video, initial_prompt_audio], -1))))
-            # generate the prompts of the rest layers
-            for index in range(1, self.prompt_depth):
-                all_prompts_video[index].append(
-                    self.compound_prompt_projections_video[index](self.layernorm_video[index](torch.cat([all_prompts_video[index-1][-1], all_prompts_audio[index-1][-1]], -1))))
-                all_prompts_audio[index].append(
-                    self.compound_prompt_projections_audio[index](self.layernorm_audio[index](torch.cat([all_prompts_video[index-1][-1], all_prompts_audio[index-1][-1]], -1))))
-            all_prompts_video[0][i] = torch.cat([
-                    all_prompts_video[0][i], 
-                    self.common_prompt_projection_video(common_prompt)]
-                    ,0)
-            all_prompts_audio[0][i] = torch.cat([
-                    all_prompts_audio[0][i], 
-                    self.common_prompt_projection_audio(common_prompt)]
-                    ,0)
-        # generate the prompts in each layer as a tensor [B, L, C]
-        all_prompts_video = [torch.stack(prompts) for prompts in all_prompts_video]
-        all_prompts_audio = [torch.stack(prompts) for prompts in all_prompts_audio]
-        
-        # print("length of all_prompts_video", len(all_prompts_video))
-        # print("length of all_prompts_video[0]", all_prompts_video[0].shape)
-        
-        return all_prompts_video, all_prompts_audio   
-
 class SubModel(nn.Module):
     def __init__(self, resnet=None, input_dim=None, cfg=None):
         super().__init__()
         self.resnet = resnet
         self.proj = nn.Linear(input_dim, cfg.encoder_embed_dim)
-        self.encoder = TransformerEncoder_prompt(cfg) if cfg.encoder_layers > 0 else None
+        self.encoder = TransformerEncoder(cfg) if cfg.encoder_layers > 0 else None
 
-    def forward(self, x, prompts):
+    def forward(self, x):
         if self.resnet is not None:
             x = self.resnet(x)
         x = self.proj(x.transpose(1, 2))
         if self.encoder is not None:
-            x = self.encoder(x, prompts)[0].transpose(1, 2)
+            x = self.encoder(x)[0].transpose(1, 2)
         else:
             x = x.transpose(1, 2)
         return x
@@ -499,12 +396,6 @@ class AVHubertModel(BaseFairseqModel):
             torch.FloatTensor(cfg.audio_feat_dim).uniform_() if self.masking_type == 'input' else torch.FloatTensor(cfg.encoder_embed_dim).uniform_()
         )
 
-        self.prompt_length = 72
-        self.prompt_depth = 12
-        self.modal_prompt_learner = MultiModalPromptLearner(self.prompt_length, self.prompt_depth)
-        self.video_encoder = TransformerEncoder_prompt(cfg)
-        self.audio_encoder = TransformerEncoder_prompt(cfg)
-        
         self.encoder = TransformerEncoder(cfg)
         self.layer_norm = LayerNorm(self.embed)
 
@@ -644,15 +535,15 @@ class AVHubertModel(BaseFairseqModel):
 
         return x, mask_indices
 
-    def forward_features(self, source: torch.Tensor, prompts: torch.Tensor, modality: str) -> torch.Tensor:
+    def forward_features(self, source: torch.Tensor, modality: str) -> torch.Tensor:
         extractor = eval(f"self.feature_extractor_{modality}")
         if self.feature_grad_mult > 0:
-            features = extractor(source, prompts)
+            features = extractor(source)
             if self.feature_grad_mult != 1.0:
                 features = GradMultiply.apply(features, self.feature_grad_mult)
         else:
             with torch.no_grad():
-                features = extractor(source, prompts)
+                features = extractor(source)
         return features
 
     def forward_targets(
@@ -801,7 +692,7 @@ class AVHubertModel(BaseFairseqModel):
         return feature, res["padding_mask"]
 
     def extract_finetune(self, source, padding_mask=None, mask=False, ret_conv=False, output_layer=None):
-        src_audio, src_video, missing_type = source['audio'], source['video'], source['type']
+        src_audio, src_video = source['audio'], source['video']
         if mask and self.masking_type == 'input':
             src_video, mask_indices_video = self.apply_input_mask(src_video, padding_mask, target_list=None)
             src_audio, mask_indices_audio = self.apply_input_mask(src_audio, padding_mask, target_list=None)
@@ -809,52 +700,23 @@ class AVHubertModel(BaseFairseqModel):
         else:
             src_audio, src_video, mask_indices = src_audio, src_video, None
 
-        prompts_video, prompts_audio = self.modal_prompt_learner(missing_type)
-
         if src_audio is not None and src_video is None:
-            features_audio = self.forward_features(src_audio, prompts_audio, modality='audio') # features: [B, F, T]
+            features_audio = self.forward_features(src_audio, modality='audio') # features: [B, F, T]
             features_video = features_audio.new_zeros(features_audio.size(0), self.encoder_embed_dim, features_audio.size(-1))
         elif src_audio is None and src_video is not None:
-            features_video = self.forward_features(src_video, prompts_video, modality='video')
+            features_video = self.forward_features(src_video, modality='video')
             features_audio = features_video.new_zeros(features_video.size(0), self.encoder_embed_dim, features_video.size(-1))
         elif src_audio is not None and src_video is not None:
-            features_video = self.forward_features(src_video, prompts_video, modality='video')
-            features_audio = self.forward_features(src_audio, prompts_audio, modality='audio') # features: [B, F, T]
-
-        # print("features_video shape: ", features_video.shape)
-        # print("features_audio shape: ", features_audio.shape)
-
-        features_video = features_video.transpose(1, 2)
-        features_audio = features_audio.transpose(1, 2)
-
-        features_video, _ = self.video_encoder(
-            features_video,
-            prompts_video,
-            padding_mask=padding_mask,
-            layer=None if output_layer is None else output_layer - 1
-        )            
-        
-        features_audio, _ = self.audio_encoder(
-            features_audio,
-            prompts_audio,
-            padding_mask=padding_mask,
-            layer=None if output_layer is None else output_layer - 1
-        )
+            features_video = self.forward_features(src_video, modality='video')
+            features_audio = self.forward_features(src_audio, modality='audio') # features: [B, F, T]
 
         if self.modality_fuse == 'concat':
-            features = torch.cat([features_audio, features_video], dim=2)
+            features = torch.cat([features_audio, features_video], dim=1)
         elif self.modality_fuse == 'add':
             features = features_audio + features_video
         features_pen = features.float().pow(2).mean()
 
-        # features = features.transpose(1, 2)
-        
-        # print("===================")
-        # print("features shape : ", features.shape)
-        # print("self.embed : ", self.embed)
-        # print("self.modality_fuse : ", self.modality_fuse)
-        # print("===================")
-        
+        features = features.transpose(1, 2)
         features = self.layer_norm(features)
         unmasked_features = features.clone()
 
@@ -874,11 +736,6 @@ class AVHubertModel(BaseFairseqModel):
         # x: (B, T, D), float
         # padding_mask: (B, T), bool
         # mask_indices: (B, T), bool
-        # print("features_video shape: ", features_video.shape)
-        # print("features_audio shape: ", features_audio.shape)
-        # print("x shape: ", x.shape)
-        # print("prompts audio[0] shape: ", prompts_audio[0].shape)
-        # print("prompts video[0] shape: ", prompts_video[0].shape)
         x, _ = self.encoder(
             x,
             padding_mask=padding_mask,

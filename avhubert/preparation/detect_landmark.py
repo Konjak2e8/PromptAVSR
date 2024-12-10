@@ -66,7 +66,7 @@ if __name__ == '__main__':
     parser.add_argument('--ffmpeg', type=str, help='ffmpeg path')
     args = parser.parse_args()
     import skvideo
-    skvideo.setFFmpegPath(os.path.dirname(args.ffmpeg))
+    # skvideo.setFFmpegPath(os.path.dirname(args.ffmpeg))
     print(skvideo.getFFmpegPath())
     import skvideo.io
     detect_face_landmarks(args.face_predictor, args.cnn_detector, args.root, args.landmark, args.manifest, args.rank, args.nshard)
