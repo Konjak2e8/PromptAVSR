@@ -321,7 +321,7 @@ def _get_clones(module, N):
 class MultiModalPromptLearner(nn.Module):
     def __init__(self, prompt_length, prompt_depth, dtype=torch.float32):
         super().__init__()
-        prompt_length_half = prompt_length//3 # use half length for generating static prompts, and the other for generating dynamic prompts
+        prompt_length_half = prompt_length // 3 # use half length for generating static prompts, and the other for generating dynamic prompts
         # Default is 1, which is compound shallow prompting
         embed_dim_audio = 768
         embed_dim_video = 768
@@ -336,7 +336,7 @@ class MultiModalPromptLearner(nn.Module):
         self.common_prompt_video = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
         self.common_prompt_audio = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
         # Also make corresponding projection layers, for each prompt
-        r = 16
+        r = 8
         single_layer = nn.Sequential(
                 nn.Linear(embed_dim, embed_dim//r),
                 nn.GELU(),
@@ -372,9 +372,6 @@ class MultiModalPromptLearner(nn.Module):
         all_prompts_video = [ [] for _ in range(self.prompt_depth)]
         all_prompts_audio = [ [] for _ in range(self.prompt_depth)]
         
-        # print("MISSING TYPE: ", missing_type)
-        # import pdb; pdb.set_trace()
-        
         for i in range(len(missing_type)):
             # set initial prompts for each modality
             if missing_type[i] == 0:  # modality complete
@@ -389,8 +386,7 @@ class MultiModalPromptLearner(nn.Module):
                 initial_prompt_video = self.video_prompt_missing
                 initial_prompt_audio = self.audio_prompt_complete
                 common_prompt = self.common_prompt_audio
-            # print(self.video_prompt_missing, "video_prompt_missing")
-            # print(self.audio_prompt_complete, "audio_prompt_complete")
+
             # generate the prompts of the first layer
             all_prompts_video[0].append(self.compound_prompt_projections_video[0](self.layernorm_video[0](torch.cat([initial_prompt_video, initial_prompt_audio], -1))))
             all_prompts_audio[0].append(self.compound_prompt_projections_audio[0](self.layernorm_audio[0](torch.cat([initial_prompt_video, initial_prompt_audio], -1))))

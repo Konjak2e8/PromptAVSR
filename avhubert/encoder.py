@@ -113,6 +113,7 @@ class TransformerEncoder_prompt(nn.Module):
                     x_cat = torch.cat([x, prompts[i]], dim=0)
                     x_cat, z = layer(x_cat, self_attn_padding_mask=new_padding_mask, need_weights=False)
                     # x = x_cat[prompts[i].shape[0]:, :, :] # remove prompts' output
+                    
                     # prompts[i] = prompts[i].transpose(0, 1)
                     # prompts[i] = torch.cat([prompts[i], torch.zeros([x.shape[0] - prompts[i].shape[0], prompts[i].shape[1], prompts[i].shape[2]], dtype=prompts[i].dtype).to(prompts[i].device)])
                     # x_cat = x + prompts[i]
