@@ -1,18 +1,18 @@
-2024-12-14 22:45:02 | INFO | fairseq.distributed.utils | distributed init (rank 0): tcp://localhost:12143
-2024-12-14 22:45:03 | INFO | fairseq.distributed.utils | distributed init (rank 2): tcp://localhost:12143
-2024-12-14 22:45:03 | INFO | fairseq.distributed.utils | distributed init (rank 3): tcp://localhost:12143
-2024-12-14 22:45:03 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 2
-2024-12-14 22:45:03 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 3
-2024-12-14 22:45:03 | INFO | fairseq.distributed.utils | distributed init (rank 1): tcp://localhost:12143
-2024-12-14 22:45:03 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 1
-2024-12-14 22:45:03 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 0
-[2024-12-14 22:45:04,097][fairseq_cli.train][INFO] - {'_name': None, 'common': {'_name': None, 'no_progress_bar': False, 'log_interval': 200, 'log_format': 'json', 'log_file': None, 'tensorboard_logdir': 'tblog', 'wandb_project': None, 'azureml_logging': False, 'seed': 1337, 'cpu': False, 'tpu': False, 'bf16': False, 'memory_efficient_bf16': False, 'fp16': True, 'memory_efficient_fp16': False, 'fp16_no_flatten_grads': False, 'fp16_init_scale': 128, 'fp16_scale_window': None, 'fp16_scale_tolerance': 0.0, 'on_cpu_convert_precision': False, 'min_loss_scale': 0.0001, 'threshold_loss_scale': None, 'amp': False, 'amp_batch_retries': 2, 'amp_init_scale': 128, 'amp_scale_window': None, 'user_dir': '/workspace/av_hubert/avhubert', 'empty_cache_freq': 0, 'all_gather_list_size': 16384, 'model_parallel_size': 1, 'quantization_config_path': None, 'profile': False, 'reset_logging': False, 'suppress_crashes': False, 'use_plasma_view': False, 'plasma_path': '/tmp/plasma'}, 'common_eval': {'_name': None, 'path': None, 'post_process': None, 'quiet': False, 'model_overrides': '{}', 'results_path': None}, 'distributed_training': {'_name': None, 'distributed_world_size': 4, 'distributed_num_procs': 4, 'distributed_rank': 0, 'distributed_backend': 'nccl', 'distributed_init_method': 'tcp://localhost:12143', 'distributed_port': -1, 'device_id': 0, 'distributed_no_spawn': False, 'ddp_backend': 'c10d', 'ddp_comm_hook': 'none', 'bucket_cap_mb': 25, 'fix_batches_to_gpus': False, 'find_unused_parameters': True, 'fast_stat_sync': False, 'heartbeat_timeout': -1, 'broadcast_buffers': False, 'slowmo_momentum': None, 'slowmo_algorithm': 'LocalSGD', 'localsgd_frequency': 3, 'nprocs_per_node': 8, 'pipeline_model_parallel': False, 'pipeline_balance': None, 'pipeline_devices': None, 'pipeline_chunks': 0, 'pipeline_encoder_balance': None, 'pipeline_encoder_devices': None, 'pipeline_decoder_balance': None, 'pipeline_decoder_devices': None, 'pipeline_checkpoint': 'never', 'zero_sharding': 'none', 'fp16': True, 'memory_efficient_fp16': False, 'tpu': False, 'no_reshard_after_forward': False, 'fp32_reduce_scatter': False, 'cpu_offload': False, 'use_sharded_state': False}, 'dataset': {'_name': None, 'num_workers': 6, 'skip_invalid_size_inputs_valid_test': False, 'max_tokens': 1000, 'batch_size': None, 'required_batch_size_multiple': 8, 'required_seq_len_multiple': 1, 'dataset_impl': None, 'data_buffer_size': 10, 'train_subset': 'train', 'valid_subset': 'valid', 'combine_valid_subsets': None, 'ignore_unused_valid_subsets': False, 'validate_interval': 2, 'validate_interval_updates': 0, 'validate_after_updates': 0, 'fixed_validation_seed': None, 'disable_validation': False, 'max_tokens_valid': 1000, 'batch_size_valid': None, 'max_valid_steps': None, 'curriculum': 0, 'gen_subset': 'test', 'num_shards': 1, 'shard_id': 0}, 'optimization': {'_name': None, 'max_epoch': 0, 'max_update': 45000, 'stop_time_hours': 0.0, 'clip_norm': 0.0, 'sentence_avg': True, 'update_freq': [1], 'lr': [0.001], 'stop_min_lr': -1.0, 'use_bmuf': False}, 'checkpoint': {'_name': None, 'save_dir': 'checkpoints', 'restore_file': 'checkpoint_last.pt', 'finetune_from_model': None, 'reset_dataloader': False, 'reset_lr_scheduler': False, 'reset_meters': False, 'reset_optimizer': True, 'optimizer_overrides': '{}', 'save_interval': 2, 'save_interval_updates': 0, 'keep_interval_updates': 1, 'keep_interval_updates_pattern': -1, 'keep_last_epochs': -1, 'keep_best_checkpoints': -1, 'no_save': False, 'no_epoch_checkpoints': True, 'no_last_checkpoints': False, 'no_save_optimizer_state': False, 'best_checkpoint_metric': 'accuracy', 'maximize_best_checkpoint_metric': True, 'patience': -1, 'checkpoint_suffix': '', 'checkpoint_shard_count': 1, 'load_checkpoint_on_all_dp_ranks': False, 'write_checkpoints_asynchronously': False, 'model_parallel_size': 1}, 'bmuf': {'_name': None, 'block_lr': 1.0, 'block_momentum': 0.875, 'global_sync_iter': 50, 'warmup_iterations': 500, 'use_nbm': False, 'average_sync': False, 'distributed_world_size': 4}, 'generation': {'_name': None, 'beam': 5, 'nbest': 1, 'max_len_a': 0.0, 'max_len_b': 200, 'min_len': 1, 'match_source_len': False, 'unnormalized': False, 'no_early_stop': False, 'no_beamable_mm': False, 'lenpen': 1.0, 'unkpen': 0.0, 'replace_unk': None, 'sacrebleu': False, 'score_reference': False, 'prefix_size': 0, 'no_repeat_ngram_size': 0, 'sampling': False, 'sampling_topk': -1, 'sampling_topp': -1.0, 'constraints': None, 'temperature': 1.0, 'diverse_beam_groups': -1, 'diverse_beam_strength': 0.5, 'diversity_rate': -1.0, 'print_alignment': None, 'print_step': False, 'lm_path': None, 'lm_weight': 0.0, 'iter_decode_eos_penalty': 0.0, 'iter_decode_max_iter': 10, 'iter_decode_force_max_iter': False, 'iter_decode_with_beam': 1, 'iter_decode_with_external_reranker': False, 'retain_iter_history': False, 'retain_dropout': False, 'retain_dropout_modules': None, 'decoding_format': None, 'no_seed_provided': False}, 'eval_lm': {'_name': None, 'output_word_probs': False, 'output_word_stats': False, 'context_window': 0, 'softmax_batch': 9223372036854775807}, 'interactive': {'_name': None, 'buffer_size': 0, 'input': '-'}, 'model': {'_name': 'av_hubert_seq2seq', 'w2v_path': '/workspace/AV_HuBERT_pretrained/base_vox_iter5.pt', 'apply_mask': False, 'mask_selection': 'static', 'mask_length': 10, 'mask_other': 0, 'mask_prob': 0.75, 'mask_channel_selection': 'static', 'mask_channel_length': 64, 'mask_channel_other': 0, 'mask_channel_prob': 0.5, 'layerdrop': 0.1, 'dropout': 0.0, 'activation_dropout': 0.1, 'attention_dropout': 0.0, 'feature_grad_mult': 1.0, 'decoder_layers': 6, 'decoder_dropout': 0.1, 'decoder_attention_dropout': 0.0, 'decoder_activation_dropout': 0.1, 'freeze_finetune_updates': 22500, 'share_decoder_input_output_embed': True, 'decoder_normalize_before': True}, 'task': {'_name': 'av_hubert_pretraining', 'is_s2s': True, 'data': '/workspace/lrs2/433h_data', 'label_dir': '/workspace/lrs2/433h_data', 'tokenizer_bpe_model': '/workspace/lrs2/spm1000/spm_unigram1000.model', 'normalize': True, 'labels': ['wrd'], 'single_target': True, 'fine_tuning': True, 'stack_order_audio': 4, 'tokenizer_bpe_name': 'sentencepiece', 'max_sample_size': 500, 'modalities': ['video', 'audio'], 'image_aug': True, 'pad_audio': True, 'random_crop': False}, 'criterion': {'_name': 'label_smoothed_cross_entropy', 'label_smoothing': 0.1, 'report_accuracy': True, 'ignore_prefix_size': 0, 'sentence_avg': True}, 'optimizer': {'_name': 'adam', 'adam_betas': '(0.9,0.98)', 'adam_eps': 1e-08, 'weight_decay': 0.0, 'use_old_adam': False, 'tpu': False, 'lr': [0.001]}, 'lr_scheduler': {'_name': 'tri_stage', 'warmup_steps': 15000, 'hold_steps': 0, 'decay_steps': 30000, 'phase_ratio': None, 'init_lr_scale': 0.01, 'final_lr_scale': 0.05, 'max_update': 45000, 'lr': [0.001]}, 'scoring': None, 'bpe': None, 'tokenizer': None, 'job_logging_cfg': {'version': 1, 'formatters': {'simple': {'format': '[%(asctime)s][%(name)s][%(levelname)s] - %(message)s'}}, 'handlers': {'console': {'class': 'logging.StreamHandler', 'formatter': 'simple', 'stream': 'ext://sys.stdout'}, 'file': {'class': 'logging.FileHandler', 'formatter': 'simple', 'filename': 'hydra_train.log'}}, 'root': {'level': 'INFO', 'handlers': ['console', 'file']}, 'disable_existing_loggers': False}}
-[2024-12-14 22:45:04,104][avhubert.hubert_pretraining][INFO] - current directory is /workspace/av_hubert/finetune_prompt
-[2024-12-14 22:45:04,104][avhubert.hubert_pretraining][INFO] - AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/workspace/lrs2/433h_data', 'labels': ['wrd'], 'label_dir': '/workspace/lrs2/433h_data', 'label_rate': -1, 'sample_rate': 16000, 'normalize': True, 'enable_padding': False, 'max_sample_size': 500, 'min_sample_size': None, 'max_trim_sample_size': '${task.max_sample_size}', 'single_target': True, 'random_crop': False, 'pad_audio': True, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['video', 'audio'], 'is_s2s': True, 'tokenizer_bpe_name': 'sentencepiece', 'tokenizer_bpe_model': '/workspace/lrs2/spm1000/spm_unigram1000.model', 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': True}
-[2024-12-14 22:45:04,996][avhubert.hubert_pretraining][INFO] - current directory is /workspace/av_hubert/finetune_prompt
-[2024-12-14 22:45:04,997][avhubert.hubert_pretraining][INFO] - AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/workspace/lrs2/433h_data', 'labels': ['km'], 'label_dir': '/checkpoint/bshi/data/lrs3//video/hubert/stitch-iters/envox-iter4-l12c2000/', 'label_rate': 25, 'sample_rate': 25, 'normalize': True, 'enable_padding': False, 'max_sample_size': 2000, 'min_sample_size': 5, 'max_trim_sample_size': 400, 'single_target': False, 'random_crop': True, 'pad_audio': False, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['audio', 'video'], 'is_s2s': False, 'tokenizer_bpe_name': None, 'tokenizer_bpe_model': None, 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': False}
-[2024-12-14 22:45:05,006][avhubert.hubert][INFO] - HubertModel Config: {'_name': 'av_hubert', 'label_rate': 25, 'input_modality': '${task.input_modality}', 'extractor_mode': default, 'encoder_layers': 12, 'encoder_embed_dim': 768, 'encoder_ffn_embed_dim': 3072, 'encoder_attention_heads': 12, 'activation_fn': gelu, 'dropout': 0.0, 'attention_dropout': 0.0, 'activation_dropout': 0.1, 'encoder_layerdrop': 0.1, 'dropout_input': 0.0, 'dropout_features': 0.1, 'final_dim': 256, 'untie_final_proj': True, 'layer_norm_first': True, 'conv_feature_layers': '[(512,10,5)] + [(512,3,2)] * 4 + [(512,2,2)] * 2', 'conv_bias': False, 'logit_temp': 0.1, 'target_glu': False, 'feature_grad_mult': 1.0, 'mask_length_audio': 10, 'mask_prob_audio': 0.8, 'mask_length_image': 5, 'mask_prob_image': 0.3, 'mask_selection': static, 'mask_other': 0.0, 'no_mask_overlap': False, 'mask_min_space': 1, 'mask_channel_length': 10, 'mask_channel_prob': 0.0, 'mask_channel_selection': static, 'mask_channel_other': 0.0, 'no_mask_channel_overlap': False, 'mask_channel_min_space': 1, 'conv_pos': 128, 'conv_pos_groups': 16, 'latent_temp': [2.0, 0.5, 0.999995], 'skip_masked': False, 'skip_nomask': False, 'resnet_relu_type': 'prelu', 'resnet_weights': None, 'sim_type': 'cosine', 'sub_encoder_layers': 0, 'audio_feat_dim': 104, 'modality_dropout': 0.5, 'audio_dropout': 0.5, 'modality_fuse': 'concat', 'selection_type': 'same_seq', 'masking_type': 'input', 'decoder_embed_dim': 768, 'decoder_ffn_embed_dim': 3072, 'decoder_layers': 6, 'decoder_layerdrop': 0.0, 'decoder_attention_heads': 4, 'decoder_learned_pos': False, 'decoder_normalize_before': False, 'no_token_positional_embeddings': False, 'decoder_dropout': 0.1, 'decoder_attention_dropout': 0.1, 'decoder_activation_dropout': 0.0, 'max_target_positions': 2048, 'share_decoder_input_output_embed': False, 'no_scale_embedding': True}
-[2024-12-14 22:45:14,119][fairseq_cli.train][INFO] - AVHubertSeq2Seq(
+2024-12-16 10:46:29 | INFO | fairseq.distributed.utils | distributed init (rank 0): tcp://localhost:17259
+2024-12-16 10:46:29 | INFO | fairseq.distributed.utils | distributed init (rank 1): tcp://localhost:17259
+2024-12-16 10:46:29 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 1
+2024-12-16 10:46:29 | INFO | fairseq.distributed.utils | distributed init (rank 2): tcp://localhost:17259
+2024-12-16 10:46:29 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 2
+2024-12-16 10:46:29 | INFO | fairseq.distributed.utils | distributed init (rank 3): tcp://localhost:17259
+2024-12-16 10:46:29 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 3
+2024-12-16 10:46:29 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 0
+[2024-12-16 10:46:30,461][fairseq_cli.train][INFO] - {'_name': None, 'common': {'_name': None, 'no_progress_bar': False, 'log_interval': 200, 'log_format': 'json', 'log_file': None, 'tensorboard_logdir': 'tblog', 'wandb_project': None, 'azureml_logging': False, 'seed': 1337, 'cpu': False, 'tpu': False, 'bf16': False, 'memory_efficient_bf16': False, 'fp16': True, 'memory_efficient_fp16': False, 'fp16_no_flatten_grads': False, 'fp16_init_scale': 128, 'fp16_scale_window': None, 'fp16_scale_tolerance': 0.0, 'on_cpu_convert_precision': False, 'min_loss_scale': 0.0001, 'threshold_loss_scale': None, 'amp': False, 'amp_batch_retries': 2, 'amp_init_scale': 128, 'amp_scale_window': None, 'user_dir': '/workspace/av_hubert/avhubert', 'empty_cache_freq': 0, 'all_gather_list_size': 16384, 'model_parallel_size': 1, 'quantization_config_path': None, 'profile': False, 'reset_logging': False, 'suppress_crashes': False, 'use_plasma_view': False, 'plasma_path': '/tmp/plasma'}, 'common_eval': {'_name': None, 'path': None, 'post_process': None, 'quiet': False, 'model_overrides': '{}', 'results_path': None}, 'distributed_training': {'_name': None, 'distributed_world_size': 4, 'distributed_num_procs': 4, 'distributed_rank': 0, 'distributed_backend': 'nccl', 'distributed_init_method': 'tcp://localhost:17259', 'distributed_port': -1, 'device_id': 0, 'distributed_no_spawn': False, 'ddp_backend': 'c10d', 'ddp_comm_hook': 'none', 'bucket_cap_mb': 25, 'fix_batches_to_gpus': False, 'find_unused_parameters': True, 'fast_stat_sync': False, 'heartbeat_timeout': -1, 'broadcast_buffers': False, 'slowmo_momentum': None, 'slowmo_algorithm': 'LocalSGD', 'localsgd_frequency': 3, 'nprocs_per_node': 8, 'pipeline_model_parallel': False, 'pipeline_balance': None, 'pipeline_devices': None, 'pipeline_chunks': 0, 'pipeline_encoder_balance': None, 'pipeline_encoder_devices': None, 'pipeline_decoder_balance': None, 'pipeline_decoder_devices': None, 'pipeline_checkpoint': 'never', 'zero_sharding': 'none', 'fp16': True, 'memory_efficient_fp16': False, 'tpu': False, 'no_reshard_after_forward': False, 'fp32_reduce_scatter': False, 'cpu_offload': False, 'use_sharded_state': False}, 'dataset': {'_name': None, 'num_workers': 6, 'skip_invalid_size_inputs_valid_test': False, 'max_tokens': 1000, 'batch_size': None, 'required_batch_size_multiple': 8, 'required_seq_len_multiple': 1, 'dataset_impl': None, 'data_buffer_size': 10, 'train_subset': 'train', 'valid_subset': 'valid', 'combine_valid_subsets': None, 'ignore_unused_valid_subsets': False, 'validate_interval': 2, 'validate_interval_updates': 0, 'validate_after_updates': 0, 'fixed_validation_seed': None, 'disable_validation': False, 'max_tokens_valid': 1000, 'batch_size_valid': None, 'max_valid_steps': None, 'curriculum': 0, 'gen_subset': 'test', 'num_shards': 1, 'shard_id': 0}, 'optimization': {'_name': None, 'max_epoch': 0, 'max_update': 45000, 'stop_time_hours': 0.0, 'clip_norm': 0.0, 'sentence_avg': True, 'update_freq': [1], 'lr': [0.001], 'stop_min_lr': -1.0, 'use_bmuf': False}, 'checkpoint': {'_name': None, 'save_dir': 'checkpoints', 'restore_file': 'checkpoint_last.pt', 'finetune_from_model': None, 'reset_dataloader': False, 'reset_lr_scheduler': False, 'reset_meters': False, 'reset_optimizer': True, 'optimizer_overrides': '{}', 'save_interval': 2, 'save_interval_updates': 0, 'keep_interval_updates': 1, 'keep_interval_updates_pattern': -1, 'keep_last_epochs': -1, 'keep_best_checkpoints': -1, 'no_save': False, 'no_epoch_checkpoints': True, 'no_last_checkpoints': False, 'no_save_optimizer_state': False, 'best_checkpoint_metric': 'accuracy', 'maximize_best_checkpoint_metric': True, 'patience': -1, 'checkpoint_suffix': '', 'checkpoint_shard_count': 1, 'load_checkpoint_on_all_dp_ranks': False, 'write_checkpoints_asynchronously': False, 'model_parallel_size': 1}, 'bmuf': {'_name': None, 'block_lr': 1.0, 'block_momentum': 0.875, 'global_sync_iter': 50, 'warmup_iterations': 500, 'use_nbm': False, 'average_sync': False, 'distributed_world_size': 4}, 'generation': {'_name': None, 'beam': 5, 'nbest': 1, 'max_len_a': 0.0, 'max_len_b': 200, 'min_len': 1, 'match_source_len': False, 'unnormalized': False, 'no_early_stop': False, 'no_beamable_mm': False, 'lenpen': 1.0, 'unkpen': 0.0, 'replace_unk': None, 'sacrebleu': False, 'score_reference': False, 'prefix_size': 0, 'no_repeat_ngram_size': 0, 'sampling': False, 'sampling_topk': -1, 'sampling_topp': -1.0, 'constraints': None, 'temperature': 1.0, 'diverse_beam_groups': -1, 'diverse_beam_strength': 0.5, 'diversity_rate': -1.0, 'print_alignment': None, 'print_step': False, 'lm_path': None, 'lm_weight': 0.0, 'iter_decode_eos_penalty': 0.0, 'iter_decode_max_iter': 10, 'iter_decode_force_max_iter': False, 'iter_decode_with_beam': 1, 'iter_decode_with_external_reranker': False, 'retain_iter_history': False, 'retain_dropout': False, 'retain_dropout_modules': None, 'decoding_format': None, 'no_seed_provided': False}, 'eval_lm': {'_name': None, 'output_word_probs': False, 'output_word_stats': False, 'context_window': 0, 'softmax_batch': 9223372036854775807}, 'interactive': {'_name': None, 'buffer_size': 0, 'input': '-'}, 'model': {'_name': 'av_hubert_seq2seq', 'w2v_path': '/workspace/AV_HuBERT_pretrained/base_vox_iter5.pt', 'apply_mask': False, 'mask_selection': 'static', 'mask_length': 10, 'mask_other': 0, 'mask_prob': 0.75, 'mask_channel_selection': 'static', 'mask_channel_length': 64, 'mask_channel_other': 0, 'mask_channel_prob': 0.5, 'layerdrop': 0.1, 'dropout': 0.0, 'activation_dropout': 0.1, 'attention_dropout': 0.0, 'feature_grad_mult': 1.0, 'decoder_layers': 6, 'decoder_dropout': 0.1, 'decoder_attention_dropout': 0.0, 'decoder_activation_dropout': 0.1, 'freeze_finetune_updates': 22500, 'share_decoder_input_output_embed': True, 'decoder_normalize_before': True}, 'task': {'_name': 'av_hubert_pretraining', 'is_s2s': True, 'data': '/workspace/lrs2/433h_data', 'label_dir': '/workspace/lrs2/433h_data', 'tokenizer_bpe_model': '/workspace/lrs2/spm1000/spm_unigram1000.model', 'normalize': True, 'labels': ['wrd'], 'single_target': True, 'fine_tuning': True, 'stack_order_audio': 4, 'tokenizer_bpe_name': 'sentencepiece', 'max_sample_size': 500, 'modalities': ['video', 'audio'], 'image_aug': True, 'pad_audio': True, 'random_crop': False}, 'criterion': {'_name': 'label_smoothed_cross_entropy', 'label_smoothing': 0.1, 'report_accuracy': True, 'ignore_prefix_size': 0, 'sentence_avg': True}, 'optimizer': {'_name': 'adam', 'adam_betas': '(0.9,0.98)', 'adam_eps': 1e-08, 'weight_decay': 0.0, 'use_old_adam': False, 'tpu': False, 'lr': [0.001]}, 'lr_scheduler': {'_name': 'tri_stage', 'warmup_steps': 15000, 'hold_steps': 0, 'decay_steps': 30000, 'phase_ratio': None, 'init_lr_scale': 0.01, 'final_lr_scale': 0.05, 'max_update': 45000, 'lr': [0.001]}, 'scoring': None, 'bpe': None, 'tokenizer': None, 'job_logging_cfg': {'version': 1, 'formatters': {'simple': {'format': '[%(asctime)s][%(name)s][%(levelname)s] - %(message)s'}}, 'handlers': {'console': {'class': 'logging.StreamHandler', 'formatter': 'simple', 'stream': 'ext://sys.stdout'}, 'file': {'class': 'logging.FileHandler', 'formatter': 'simple', 'filename': 'hydra_train.log'}}, 'root': {'level': 'INFO', 'handlers': ['console', 'file']}, 'disable_existing_loggers': False}}
+[2024-12-16 10:46:30,468][avhubert.hubert_pretraining][INFO] - current directory is /workspace/av_hubert/finetune_prompt
+[2024-12-16 10:46:30,468][avhubert.hubert_pretraining][INFO] - AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/workspace/lrs2/433h_data', 'labels': ['wrd'], 'label_dir': '/workspace/lrs2/433h_data', 'label_rate': -1, 'sample_rate': 16000, 'normalize': True, 'enable_padding': False, 'max_sample_size': 500, 'min_sample_size': None, 'max_trim_sample_size': '${task.max_sample_size}', 'single_target': True, 'random_crop': False, 'pad_audio': True, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['video', 'audio'], 'is_s2s': True, 'tokenizer_bpe_name': 'sentencepiece', 'tokenizer_bpe_model': '/workspace/lrs2/spm1000/spm_unigram1000.model', 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': True}
+[2024-12-16 10:46:31,548][avhubert.hubert_pretraining][INFO] - current directory is /workspace/av_hubert/finetune_prompt
+[2024-12-16 10:46:31,549][avhubert.hubert_pretraining][INFO] - AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/workspace/lrs2/433h_data', 'labels': ['km'], 'label_dir': '/checkpoint/bshi/data/lrs3//video/hubert/stitch-iters/envox-iter4-l12c2000/', 'label_rate': 25, 'sample_rate': 25, 'normalize': True, 'enable_padding': False, 'max_sample_size': 2000, 'min_sample_size': 5, 'max_trim_sample_size': 400, 'single_target': False, 'random_crop': True, 'pad_audio': False, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['audio', 'video'], 'is_s2s': False, 'tokenizer_bpe_name': None, 'tokenizer_bpe_model': None, 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': False}
+[2024-12-16 10:46:31,558][avhubert.hubert][INFO] - HubertModel Config: {'_name': 'av_hubert', 'label_rate': 25, 'input_modality': '${task.input_modality}', 'extractor_mode': default, 'encoder_layers': 12, 'encoder_embed_dim': 768, 'encoder_ffn_embed_dim': 3072, 'encoder_attention_heads': 12, 'activation_fn': gelu, 'dropout': 0.0, 'attention_dropout': 0.0, 'activation_dropout': 0.1, 'encoder_layerdrop': 0.1, 'dropout_input': 0.0, 'dropout_features': 0.1, 'final_dim': 256, 'untie_final_proj': True, 'layer_norm_first': True, 'conv_feature_layers': '[(512,10,5)] + [(512,3,2)] * 4 + [(512,2,2)] * 2', 'conv_bias': False, 'logit_temp': 0.1, 'target_glu': False, 'feature_grad_mult': 1.0, 'mask_length_audio': 10, 'mask_prob_audio': 0.8, 'mask_length_image': 5, 'mask_prob_image': 0.3, 'mask_selection': static, 'mask_other': 0.0, 'no_mask_overlap': False, 'mask_min_space': 1, 'mask_channel_length': 10, 'mask_channel_prob': 0.0, 'mask_channel_selection': static, 'mask_channel_other': 0.0, 'no_mask_channel_overlap': False, 'mask_channel_min_space': 1, 'conv_pos': 128, 'conv_pos_groups': 16, 'latent_temp': [2.0, 0.5, 0.999995], 'skip_masked': False, 'skip_nomask': False, 'resnet_relu_type': 'prelu', 'resnet_weights': None, 'sim_type': 'cosine', 'sub_encoder_layers': 0, 'audio_feat_dim': 104, 'modality_dropout': 0.5, 'audio_dropout': 0.5, 'modality_fuse': 'concat', 'selection_type': 'same_seq', 'masking_type': 'input', 'decoder_embed_dim': 768, 'decoder_ffn_embed_dim': 3072, 'decoder_layers': 6, 'decoder_layerdrop': 0.0, 'decoder_attention_heads': 4, 'decoder_learned_pos': False, 'decoder_normalize_before': False, 'no_token_positional_embeddings': False, 'decoder_dropout': 0.1, 'decoder_attention_dropout': 0.1, 'decoder_activation_dropout': 0.0, 'max_target_positions': 2048, 'share_decoder_input_output_embed': False, 'no_scale_embedding': True}
+[2024-12-16 10:46:40,857][fairseq_cli.train][INFO] - AVHubertSeq2Seq(
   (encoder): HubertEncoderWrapper(
     (w2v_model): AVHubertModel(
       (feature_extractor_audio): SubModel(
@@ -264,80 +264,64 @@
     (layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
   )
 )
-[2024-12-14 22:45:14,126][fairseq_cli.train][INFO] - task: AVHubertPretrainingTask
-[2024-12-14 22:45:14,126][fairseq_cli.train][INFO] - model: AVHubertSeq2Seq
-[2024-12-14 22:45:14,126][fairseq_cli.train][INFO] - criterion: LabelSmoothedCrossEntropyCriterion
-[2024-12-14 22:45:14,131][fairseq_cli.train][INFO] - num. shared model params: 351,303,848 (num. trained: 351,303,848)
-[2024-12-14 22:45:14,135][fairseq_cli.train][INFO] - num. expert model params: 0 (num. trained: 0)
-[2024-12-14 22:45:14,137][avhubert.hubert_pretraining][INFO] - Using tokenizer
-[2024-12-14 22:45:14,146][avhubert.hubert_dataset][INFO] - max_keep=500, min_keep=None, loaded 1082, skipped 0 short and 0 long and 0 unaligned, longest-loaded=153, shortest-loaded=14
-[2024-12-14 22:45:14,147][avhubert.hubert_dataset][INFO] - /workspace/lrs2/433h_data/valid.wrd is sequence label. skipped
-[2024-12-14 22:45:14,147][avhubert.hubert_dataset][INFO] - image transform: Compose(
+[2024-12-16 10:46:40,890][fairseq_cli.train][INFO] - task: AVHubertPretrainingTask
+[2024-12-16 10:46:40,890][fairseq_cli.train][INFO] - model: AVHubertSeq2Seq
+[2024-12-16 10:46:40,890][fairseq_cli.train][INFO] - criterion: LabelSmoothedCrossEntropyCriterion
+[2024-12-16 10:46:40,897][fairseq_cli.train][INFO] - num. shared model params: 351,303,848 (num. trained: 351,303,848)
+[2024-12-16 10:46:40,902][fairseq_cli.train][INFO] - num. expert model params: 0 (num. trained: 0)
+[2024-12-16 10:46:40,904][avhubert.hubert_pretraining][INFO] - Using tokenizer
+[2024-12-16 10:46:40,932][avhubert.hubert_dataset][INFO] - max_keep=500, min_keep=None, loaded 1082, skipped 0 short and 0 long and 0 unaligned, longest-loaded=153, shortest-loaded=14
+[2024-12-16 10:46:40,932][avhubert.hubert_dataset][INFO] - /workspace/lrs2/433h_data/valid.wrd is sequence label. skipped
+[2024-12-16 10:46:40,932][avhubert.hubert_dataset][INFO] - image transform: Compose(
     Normalize(mean=0.0, std=255.0)
-    <avhubert.utils.CenterCrop object at 0x7f93cb10f250>
+    <avhubert.utils.CenterCrop object at 0x7f61fc70e280>
     Normalize(mean=0.421, std=0.165)
 )
-[2024-12-14 22:45:14,147][avhubert.hubert_dataset][INFO] - pad_audio=True, random_crop=False, normalize=True, max_sample_size=500, seqs2seq data=True,
-[2024-12-14 22:45:14,147][avhubert.hubert_dataset][INFO] - Noise wav: None->0 wav, Prob: 0.0, SNR: 0, Number of mixture: 1
-[2024-12-14 22:45:14,340][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.0.conv1.bias
-[2024-12-14 22:45:14,340][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.0.conv2.bias
-[2024-12-14 22:45:14,340][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.1.conv1.bias
-[2024-12-14 22:45:14,340][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.1.conv2.bias
-[2024-12-14 22:45:14,340][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.0.conv1.bias
-[2024-12-14 22:45:14,340][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.0.conv2.bias
-[2024-12-14 22:45:14,340][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.0.downsample.0.bias
-[2024-12-14 22:45:14,340][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.1.conv1.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.1.conv2.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.0.conv1.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.0.conv2.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.0.downsample.0.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.1.conv1.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.1.conv2.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.0.conv1.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.0.conv2.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.0.downsample.0.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.1.conv1.bias
-[2024-12-14 22:45:14,341][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.1.conv2.bias
-[2024-12-14 22:45:15,123][fairseq.utils][INFO] - ***********************CUDA enviroments for all 4 workers***********************
-[2024-12-14 22:45:15,123][fairseq.utils][INFO] - rank   0: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
-[2024-12-14 22:45:15,123][fairseq.utils][INFO] - rank   1: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
-[2024-12-14 22:45:15,123][fairseq.utils][INFO] - rank   2: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
-[2024-12-14 22:45:15,123][fairseq.utils][INFO] - rank   3: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
-[2024-12-14 22:45:15,123][fairseq.utils][INFO] - ***********************CUDA enviroments for all 4 workers***********************
-[2024-12-14 22:45:15,124][fairseq_cli.train][INFO] - training on 4 devices (GPUs/TPUs)
-[2024-12-14 22:45:15,124][fairseq_cli.train][INFO] - max tokens per device = 1000 and max sentences per device = None
-[2024-12-14 22:45:15,125][fairseq.trainer][INFO] - Preparing to load checkpoint checkpoints/checkpoint_last.pt
-[2024-12-14 22:45:39,329][fairseq.trainer][INFO] - Loaded checkpoint checkpoints/checkpoint_last.pt (epoch 123 @ 0 updates)
-[2024-12-14 22:45:39,329][fairseq.trainer][INFO] - loading train data for epoch 123
-[2024-12-14 22:45:39,329][avhubert.hubert_pretraining][INFO] - Using tokenizer
-/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  state = torch.load(f, map_location=torch.device("cpu"))
-/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
-  WeightNorm.apply(module, name, dim)
-/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
-  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
-/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  obj = torch.load(buffer, map_location="cpu")
-[2024-12-14 22:45:40,255][avhubert.hubert_dataset][INFO] - max_keep=500, min_keep=None, loaded 163822, skipped 0 short and 292 long and 0 unaligned, longest-loaded=500, shortest-loaded=0
-[2024-12-14 22:45:40,346][avhubert.hubert_dataset][INFO] - /workspace/lrs2/433h_data/train.wrd is sequence label. skipped
-[2024-12-14 22:45:40,347][avhubert.hubert_dataset][INFO] - image transform: Compose(
+[2024-12-16 10:46:40,933][avhubert.hubert_dataset][INFO] - pad_audio=True, random_crop=False, normalize=True, max_sample_size=500, seqs2seq data=True,
+[2024-12-16 10:46:40,933][avhubert.hubert_dataset][INFO] - Noise wav: None->0 wav, Prob: 0.0, SNR: 0, Number of mixture: 1
+[2024-12-16 10:46:42,666][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.0.conv1.bias
+[2024-12-16 10:46:42,667][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.0.conv2.bias
+[2024-12-16 10:46:42,667][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.1.conv1.bias
+[2024-12-16 10:46:42,667][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.1.conv2.bias
+[2024-12-16 10:46:42,667][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.0.conv1.bias
+[2024-12-16 10:46:42,668][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.0.conv2.bias
+[2024-12-16 10:46:42,668][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.0.downsample.0.bias
+[2024-12-16 10:46:42,668][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.1.conv1.bias
+[2024-12-16 10:46:42,668][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.1.conv2.bias
+[2024-12-16 10:46:42,668][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.0.conv1.bias
+[2024-12-16 10:46:42,669][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.0.conv2.bias
+[2024-12-16 10:46:42,669][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.0.downsample.0.bias
+[2024-12-16 10:46:42,669][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.1.conv1.bias
+[2024-12-16 10:46:42,669][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.1.conv2.bias
+[2024-12-16 10:46:42,669][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.0.conv1.bias
+[2024-12-16 10:46:42,670][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.0.conv2.bias
+[2024-12-16 10:46:42,670][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.0.downsample.0.bias
+[2024-12-16 10:46:42,670][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.1.conv1.bias
+[2024-12-16 10:46:42,670][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.1.conv2.bias
+[2024-12-16 10:46:50,441][fairseq.utils][INFO] - ***********************CUDA enviroments for all 4 workers***********************
+[2024-12-16 10:46:50,441][fairseq.utils][INFO] - rank   0: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2024-12-16 10:46:50,441][fairseq.utils][INFO] - rank   1: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2024-12-16 10:46:50,441][fairseq.utils][INFO] - rank   2: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2024-12-16 10:46:50,441][fairseq.utils][INFO] - rank   3: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2024-12-16 10:46:50,441][fairseq.utils][INFO] - ***********************CUDA enviroments for all 4 workers***********************
+[2024-12-16 10:46:50,441][fairseq_cli.train][INFO] - training on 4 devices (GPUs/TPUs)
+[2024-12-16 10:46:50,442][fairseq_cli.train][INFO] - max tokens per device = 1000 and max sentences per device = None
+[2024-12-16 10:46:50,443][fairseq.trainer][INFO] - Preparing to load checkpoint checkpoints/checkpoint_last.pt
+[2024-12-16 10:47:15,117][fairseq.trainer][INFO] - Loaded checkpoint checkpoints/checkpoint_last.pt (epoch 127 @ 0 updates)
+[2024-12-16 10:47:15,118][fairseq.trainer][INFO] - loading train data for epoch 127
+[2024-12-16 10:47:15,134][avhubert.hubert_pretraining][INFO] - Using tokenizer
+[2024-12-16 10:47:16,000][avhubert.hubert_dataset][INFO] - max_keep=500, min_keep=None, loaded 163822, skipped 0 short and 292 long and 0 unaligned, longest-loaded=500, shortest-loaded=0
+[2024-12-16 10:47:16,109][avhubert.hubert_dataset][INFO] - /workspace/lrs2/433h_data/train.wrd is sequence label. skipped
+[2024-12-16 10:47:16,110][avhubert.hubert_dataset][INFO] - image transform: Compose(
     Normalize(mean=0.0, std=255.0)
     RandomCrop(size=(88, 88))
-    <avhubert.utils.HorizontalFlip object at 0x7f94721f05e0>
+    <avhubert.utils.HorizontalFlip object at 0x7f62a229ed90>
     Normalize(mean=0.421, std=0.165)
 )
-[2024-12-14 22:45:40,347][avhubert.hubert_dataset][INFO] - pad_audio=True, random_crop=False, normalize=True, max_sample_size=500, seqs2seq data=True,
-[2024-12-14 22:45:40,347][avhubert.hubert_dataset][INFO] - Noise wav: None->0 wav, Prob: 0.0, SNR: 0, Number of mixture: 1
-/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  state = torch.load(f, map_location=torch.device("cpu"))
-/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
-  WeightNorm.apply(module, name, dim)
-/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
-  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
-/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  obj = torch.load(buffer, map_location="cpu")
-[2024-12-14 22:45:41,384][fairseq.trainer][INFO] - begin training epoch 123
-[2024-12-14 22:45:41,385][fairseq_cli.train][INFO] - Start iterating over samples
+[2024-12-16 10:47:16,110][avhubert.hubert_dataset][INFO] - pad_audio=True, random_crop=False, normalize=True, max_sample_size=500, seqs2seq data=True,
+[2024-12-16 10:47:16,110][avhubert.hubert_dataset][INFO] - Noise wav: None->0 wav, Prob: 0.0, SNR: 0, Number of mixture: 1
+[2024-12-16 10:47:16,925][fairseq.trainer][INFO] - begin training epoch 127
+[2024-12-16 10:47:16,926][fairseq_cli.train][INFO] - Start iterating over samples
 /workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
   state = torch.load(f, map_location=torch.device("cpu"))
 /root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
@@ -352,585 +336,61 @@
   self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
 /workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
   obj = torch.load(buffer, map_location="cpu")
-[2024-12-14 22:51:16,260][train_inner][INFO] - {"epoch": 123, "update": 122.034, "loss": "54.611", "nll_loss": "1.076", "total": "668.53", "n_correct": "565.33", "ppl": "2.11", "accuracy": "84.563", "wps": "459.8", "ups": "0.69", "wpb": "668.5", "bsz": "28.6", "num_updates": "200", "lr": "2.32e-05", "gnorm": "9.567", "loss_scale": "128", "train_wall": "296", "gb_free": "3.7", "wall": "361"}
-[2024-12-14 22:53:35,870][fairseq.trainer][INFO] - NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 64.0
-[2024-12-14 22:56:00,398][train_inner][INFO] - {"epoch": 123, "update": 122.068, "loss": "54.427", "nll_loss": "1.079", "total": "666.525", "n_correct": "561.815", "ppl": "2.11", "accuracy": "84.29", "wps": "469.2", "ups": "0.7", "wpb": "666.5", "bsz": "28.7", "num_updates": "400", "lr": "3.64e-05", "gnorm": "9.447", "loss_scale": "64", "train_wall": "278", "gb_free": "3.7", "wall": "645"}
-[2024-12-14 23:00:37,526][train_inner][INFO] - {"epoch": 123, "update": 122.103, "loss": "55.295", "nll_loss": "1.043", "total": "664.44", "n_correct": "564.245", "ppl": "2.06", "accuracy": "84.92", "wps": "479.5", "ups": "0.72", "wpb": "664.4", "bsz": "27.8", "num_updates": "600", "lr": "4.96e-05", "gnorm": "9.337", "loss_scale": "64", "train_wall": "271", "gb_free": "3.7", "wall": "922"}
-[2024-12-14 23:05:16,874][train_inner][INFO] - {"epoch": 123, "update": 122.137, "loss": "54.046", "nll_loss": "1.026", "total": "664.895", "n_correct": "566.935", "ppl": "2.04", "accuracy": "85.267", "wps": "476", "ups": "0.72", "wpb": "664.9", "bsz": "28.3", "num_updates": "800", "lr": "6.28e-05", "gnorm": "9.503", "loss_scale": "64", "train_wall": "272", "gb_free": "3.7", "wall": "1202"}
-[2024-12-14 23:10:14,347][train_inner][INFO] - {"epoch": 123, "update": 122.171, "loss": "55.755", "nll_loss": "1.005", "total": "669.66", "n_correct": "572.835", "ppl": "2.01", "accuracy": "85.541", "wps": "450.2", "ups": "0.67", "wpb": "669.7", "bsz": "27.4", "num_updates": "1000", "lr": "7.6e-05", "gnorm": "9.359", "loss_scale": "64", "train_wall": "290", "gb_free": "3.7", "wall": "1499"}
-[2024-12-14 23:15:23,708][train_inner][INFO] - {"epoch": 123, "update": 122.205, "loss": "54.431", "nll_loss": "0.98", "total": "666.265", "n_correct": "572.395", "ppl": "1.97", "accuracy": "85.911", "wps": "430.8", "ups": "0.65", "wpb": "666.3", "bsz": "27.6", "num_updates": "1200", "lr": "8.92e-05", "gnorm": "8.869", "loss_scale": "64", "train_wall": "302", "gb_free": "3.7", "wall": "1809"}
-[2024-12-14 23:20:21,973][train_inner][INFO] - {"epoch": 123, "update": 122.239, "loss": "56.303", "nll_loss": "1.027", "total": "663.765", "n_correct": "565.82", "ppl": "2.04", "accuracy": "85.244", "wps": "445.1", "ups": "0.67", "wpb": "663.8", "bsz": "27.1", "num_updates": "1400", "lr": "0.0001024", "gnorm": "9.416", "loss_scale": "64", "train_wall": "291", "gb_free": "3.7", "wall": "2107"}
-[2024-12-14 23:25:31,521][train_inner][INFO] - {"epoch": 123, "update": 122.273, "loss": "55.091", "nll_loss": "0.996", "total": "660.725", "n_correct": "566.055", "ppl": "1.99", "accuracy": "85.672", "wps": "426.9", "ups": "0.65", "wpb": "660.7", "bsz": "27.2", "num_updates": "1600", "lr": "0.0001156", "gnorm": "8.9", "loss_scale": "64", "train_wall": "302", "gb_free": "3.7", "wall": "2416"}
-[2024-12-14 23:31:13,608][train_inner][INFO] - {"epoch": 123, "update": 122.307, "loss": "52.485", "nll_loss": "0.997", "total": "665.22", "n_correct": "569.35", "ppl": "2", "accuracy": "85.588", "wps": "388.9", "ups": "0.58", "wpb": "665.2", "bsz": "28.8", "num_updates": "1800", "lr": "0.0001288", "gnorm": "8.82", "loss_scale": "64", "train_wall": "334", "gb_free": "3.7", "wall": "2758"}
-[2024-12-14 23:37:06,228][train_inner][INFO] - {"epoch": 123, "update": 122.341, "loss": "54.986", "nll_loss": "0.979", "total": "664.935", "n_correct": "571.72", "ppl": "1.97", "accuracy": "85.981", "wps": "377.2", "ups": "0.57", "wpb": "664.9", "bsz": "27.3", "num_updates": "2000", "lr": "0.000142", "gnorm": "9.275", "loss_scale": "64", "train_wall": "343", "gb_free": "3.7", "wall": "3111"}
-[2024-12-14 23:42:50,608][train_inner][INFO] - {"epoch": 123, "update": 122.375, "loss": "55.096", "nll_loss": "0.986", "total": "668.9", "n_correct": "573.705", "ppl": "1.98", "accuracy": "85.768", "wps": "388.5", "ups": "0.58", "wpb": "668.9", "bsz": "27.5", "num_updates": "2200", "lr": "0.0001552", "gnorm": "9.618", "loss_scale": "64", "train_wall": "335", "gb_free": "3.7", "wall": "3455"}
-[2024-12-14 23:48:47,737][train_inner][INFO] - {"epoch": 123, "update": 122.41, "loss": "54.587", "nll_loss": "1", "total": "663.265", "n_correct": "568.265", "ppl": "2", "accuracy": "85.677", "wps": "371.4", "ups": "0.56", "wpb": "663.3", "bsz": "27.6", "num_updates": "2400", "lr": "0.0001684", "gnorm": "9.125", "loss_scale": "64", "train_wall": "347", "gb_free": "3.7", "wall": "3813"}
-[2024-12-14 23:54:46,498][train_inner][INFO] - {"epoch": 123, "update": 122.444, "loss": "55.577", "nll_loss": "0.978", "total": "676.005", "n_correct": "581.2", "ppl": "1.97", "accuracy": "85.976", "wps": "376.9", "ups": "0.56", "wpb": "676", "bsz": "27.4", "num_updates": "2600", "lr": "0.0001816", "gnorm": "9.478", "loss_scale": "64", "train_wall": "348", "gb_free": "3.7", "wall": "4171"}
-[2024-12-15 00:00:38,422][train_inner][INFO] - {"epoch": 123, "update": 122.478, "loss": "53.923", "nll_loss": "1.001", "total": "662.775", "n_correct": "567.22", "ppl": "2", "accuracy": "85.583", "wps": "376.7", "ups": "0.57", "wpb": "662.8", "bsz": "27.9", "num_updates": "2800", "lr": "0.0001948", "gnorm": "9.219", "loss_scale": "64", "train_wall": "342", "gb_free": "3.7", "wall": "4523"}
-[2024-12-15 00:06:34,803][train_inner][INFO] - {"epoch": 123, "update": 122.512, "loss": "53.525", "nll_loss": "0.972", "total": "663.175", "n_correct": "570.835", "ppl": "1.96", "accuracy": "86.076", "wps": "372.2", "ups": "0.56", "wpb": "663.2", "bsz": "27.9", "num_updates": "3000", "lr": "0.000208", "gnorm": "9.018", "loss_scale": "64", "train_wall": "347", "gb_free": "3.7", "wall": "4880"}
-[2024-12-15 00:12:26,692][train_inner][INFO] - {"epoch": 123, "update": 122.546, "loss": "53.4", "nll_loss": "0.976", "total": "668.725", "n_correct": "574.315", "ppl": "1.97", "accuracy": "85.882", "wps": "380.1", "ups": "0.57", "wpb": "668.7", "bsz": "28.2", "num_updates": "3200", "lr": "0.0002212", "gnorm": "9.098", "loss_scale": "64", "train_wall": "341", "gb_free": "3.7", "wall": "5232"}
-[2024-12-15 00:18:15,702][train_inner][INFO] - {"epoch": 123, "update": 122.58, "loss": "54.603", "nll_loss": "1.003", "total": "661.63", "n_correct": "565.985", "ppl": "2", "accuracy": "85.544", "wps": "379.2", "ups": "0.57", "wpb": "661.6", "bsz": "27.6", "num_updates": "3400", "lr": "0.0002344", "gnorm": "9.631", "loss_scale": "64", "train_wall": "339", "gb_free": "3.7", "wall": "5581"}
-[2024-12-15 00:23:52,853][train_inner][INFO] - {"epoch": 123, "update": 122.614, "loss": "54.925", "nll_loss": "1.01", "total": "656.095", "n_correct": "560.66", "ppl": "2.01", "accuracy": "85.454", "wps": "389.2", "ups": "0.59", "wpb": "656.1", "bsz": "27.3", "num_updates": "3600", "lr": "0.0002476", "gnorm": "9.684", "loss_scale": "64", "train_wall": "328", "gb_free": "3.7", "wall": "5918"}
-[2024-12-15 00:29:40,210][train_inner][INFO] - {"epoch": 123, "update": 122.648, "loss": "52.983", "nll_loss": "0.977", "total": "669.84", "n_correct": "575.645", "ppl": "1.97", "accuracy": "85.938", "wps": "385.7", "ups": "0.58", "wpb": "669.8", "bsz": "28.5", "num_updates": "3800", "lr": "0.0002608", "gnorm": "9.154", "loss_scale": "64", "train_wall": "340", "gb_free": "3.7", "wall": "6265"}
-[2024-12-15 00:35:20,824][train_inner][INFO] - {"epoch": 123, "update": 122.683, "loss": "54.566", "nll_loss": "0.982", "total": "673.745", "n_correct": "578.755", "ppl": "1.98", "accuracy": "85.901", "wps": "395.6", "ups": "0.59", "wpb": "673.7", "bsz": "27.9", "num_updates": "4000", "lr": "0.000274", "gnorm": "9.486", "loss_scale": "64", "train_wall": "333", "gb_free": "3.7", "wall": "6606"}
-[2024-12-15 00:41:01,483][train_inner][INFO] - {"epoch": 123, "update": 122.717, "loss": "54.612", "nll_loss": "0.997", "total": "658.475", "n_correct": "564.61", "ppl": "2", "accuracy": "85.745", "wps": "386.6", "ups": "0.59", "wpb": "658.5", "bsz": "27.4", "num_updates": "4200", "lr": "0.0002872", "gnorm": "9.628", "loss_scale": "64", "train_wall": "333", "gb_free": "3.7", "wall": "6946"}
-[2024-12-15 00:46:47,694][train_inner][INFO] - {"epoch": 123, "update": 122.751, "loss": "53.697", "nll_loss": "1", "total": "662.685", "n_correct": "567.895", "ppl": "2", "accuracy": "85.696", "wps": "382.8", "ups": "0.58", "wpb": "662.7", "bsz": "28", "num_updates": "4400", "lr": "0.0003004", "gnorm": "9.76", "loss_scale": "128", "train_wall": "338", "gb_free": "3.7", "wall": "7293"}
-[2024-12-15 00:52:46,779][train_inner][INFO] - {"epoch": 123, "update": 122.785, "loss": "53.072", "nll_loss": "1.031", "total": "671.225", "n_correct": "570.445", "ppl": "2.04", "accuracy": "84.986", "wps": "373.9", "ups": "0.56", "wpb": "671.2", "bsz": "29.1", "num_updates": "4600", "lr": "0.0003136", "gnorm": "9.798", "loss_scale": "128", "train_wall": "351", "gb_free": "3.7", "wall": "7652"}
-[2024-12-15 00:58:49,583][train_inner][INFO] - {"epoch": 123, "update": 122.819, "loss": "54.753", "nll_loss": "1.021", "total": "668.8", "n_correct": "570.735", "ppl": "2.03", "accuracy": "85.337", "wps": "368.7", "ups": "0.55", "wpb": "668.8", "bsz": "28", "num_updates": "4800", "lr": "0.0003268", "gnorm": "9.848", "loss_scale": "128", "train_wall": "354", "gb_free": "3.7", "wall": "8014"}
-[2024-12-15 01:04:42,755][train_inner][INFO] - {"epoch": 123, "update": 122.853, "loss": "54.015", "nll_loss": "1.031", "total": "663.545", "n_correct": "565.555", "ppl": "2.04", "accuracy": "85.232", "wps": "375.8", "ups": "0.57", "wpb": "663.5", "bsz": "28.2", "num_updates": "5000", "lr": "0.00034", "gnorm": "9.599", "loss_scale": "128", "train_wall": "345", "gb_free": "3.7", "wall": "8368"}
-[2024-12-15 01:10:34,173][train_inner][INFO] - {"epoch": 123, "update": 122.887, "loss": "54.169", "nll_loss": "0.996", "total": "663.705", "n_correct": "568.47", "ppl": "1.99", "accuracy": "85.651", "wps": "377.8", "ups": "0.57", "wpb": "663.7", "bsz": "27.8", "num_updates": "5200", "lr": "0.0003532", "gnorm": "9.762", "loss_scale": "128", "train_wall": "343", "gb_free": "3.7", "wall": "8719"}
-[2024-12-15 01:16:39,164][train_inner][INFO] - {"epoch": 123, "update": 122.921, "loss": "51.62", "nll_loss": "1.022", "total": "665.525", "n_correct": "567.08", "ppl": "2.03", "accuracy": "85.208", "wps": "364.7", "ups": "0.55", "wpb": "665.5", "bsz": "29.5", "num_updates": "5400", "lr": "0.0003664", "gnorm": "9.403", "loss_scale": "128", "train_wall": "356", "gb_free": "3.7", "wall": "9084"}
-[2024-12-15 01:22:18,268][train_inner][INFO] - {"epoch": 123, "update": 122.955, "loss": "54.812", "nll_loss": "1.037", "total": "667.455", "n_correct": "567.7", "ppl": "2.05", "accuracy": "85.054", "wps": "393.7", "ups": "0.59", "wpb": "667.5", "bsz": "28.1", "num_updates": "5600", "lr": "0.0003796", "gnorm": "10.053", "loss_scale": "128", "train_wall": "331", "gb_free": "3.7", "wall": "9423"}
-[2024-12-15 01:28:10,958][train_inner][INFO] - {"epoch": 123, "update": 122.99, "loss": "54.823", "nll_loss": "1.006", "total": "661.83", "n_correct": "566.125", "ppl": "2.01", "accuracy": "85.539", "wps": "375.3", "ups": "0.57", "wpb": "661.8", "bsz": "27.5", "num_updates": "5800", "lr": "0.0003928", "gnorm": "9.733", "loss_scale": "128", "train_wall": "345", "gb_free": "3.7", "wall": "9776"}
-[2024-12-15 01:29:32,923][fairseq_cli.train][INFO] - end of epoch 123 (average epoch stats below)
-[2024-12-15 01:29:32,928][train][INFO] - {"epoch": 123, "train_loss": "54.322", "train_nll_loss": "1.008", "train_total": "665.815", "train_n_correct": "569.215", "train_ppl": "2.01", "train_accuracy": "85.492", "train_wps": "398.7", "train_ups": "0.6", "train_wpb": "665.8", "train_bsz": "27.9", "train_num_updates": "5861", "train_lr": "0.000396826", "train_gnorm": "9.438", "train_loss_scale": "128", "train_train_wall": "9556", "train_gb_free": "3.7", "train_wall": "9858"}
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  obj = torch.load(buffer, map_location="cpu")
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  obj = torch.load(buffer, map_location="cpu")
+[2024-12-16 10:53:07,975][train_inner][INFO] - {"epoch": 127, "update": 126.034, "loss": "137.392", "nll_loss": "5.009", "total": "666.745", "n_correct": "208.71", "ppl": "32.21", "accuracy": "31.303", "wps": "438.6", "ups": "0.66", "wpb": "666.7", "bsz": "27.9", "num_updates": "200", "lr": "2.32e-05", "gnorm": "11.753", "loss_scale": "128", "train_wall": "317", "gb_free": "3.7", "wall": "378"}
+[2024-12-16 10:58:09,063][train_inner][INFO] - {"epoch": 127, "update": 126.068, "loss": "133.9", "nll_loss": "4.991", "total": "663.88", "n_correct": "208.28", "ppl": "31.8", "accuracy": "31.373", "wps": "441", "ups": "0.66", "wpb": "663.9", "bsz": "28.4", "num_updates": "400", "lr": "3.64e-05", "gnorm": "10.955", "loss_scale": "128", "train_wall": "294", "gb_free": "3.7", "wall": "679"}
+[2024-12-16 11:03:17,116][train_inner][INFO] - {"epoch": 127, "update": 126.102, "loss": "135.712", "nll_loss": "4.962", "total": "661.88", "n_correct": "210.425", "ppl": "31.16", "accuracy": "31.792", "wps": "429.7", "ups": "0.65", "wpb": "661.9", "bsz": "27.9", "num_updates": "600", "lr": "4.96e-05", "gnorm": "10.986", "loss_scale": "128", "train_wall": "302", "gb_free": "3.7", "wall": "987"}
+[2024-12-16 11:08:24,599][train_inner][INFO] - {"epoch": 127, "update": 126.136, "loss": "137.436", "nll_loss": "4.948", "total": "668.6", "n_correct": "214.965", "ppl": "30.88", "accuracy": "32.152", "wps": "434.9", "ups": "0.65", "wpb": "668.6", "bsz": "27.7", "num_updates": "800", "lr": "6.28e-05", "gnorm": "11.136", "loss_scale": "128", "train_wall": "300", "gb_free": "3.7", "wall": "1294"}
+[2024-12-16 11:13:33,145][train_inner][INFO] - {"epoch": 127, "update": 126.171, "loss": "141.605", "nll_loss": "4.949", "total": "662.705", "n_correct": "212.13", "ppl": "30.88", "accuracy": "32.01", "wps": "429.6", "ups": "0.65", "wpb": "662.7", "bsz": "26.7", "num_updates": "1000", "lr": "7.6e-05", "gnorm": "11.85", "loss_scale": "128", "train_wall": "301", "gb_free": "3.7", "wall": "1603"}
+[2024-12-16 11:18:45,604][train_inner][INFO] - {"epoch": 127, "update": 126.205, "loss": "135.735", "nll_loss": "4.952", "total": "664.82", "n_correct": "212.82", "ppl": "30.95", "accuracy": "32.012", "wps": "425.5", "ups": "0.64", "wpb": "664.8", "bsz": "27.9", "num_updates": "1200", "lr": "8.92e-05", "gnorm": "11.042", "loss_scale": "128", "train_wall": "305", "gb_free": "3.7", "wall": "1915"}
+[2024-12-16 11:23:46,729][train_inner][INFO] - {"epoch": 127, "update": 126.239, "loss": "133.914", "nll_loss": "4.915", "total": "675.93", "n_correct": "219.32", "ppl": "30.16", "accuracy": "32.447", "wps": "449", "ups": "0.66", "wpb": "675.9", "bsz": "28.6", "num_updates": "1400", "lr": "0.0001024", "gnorm": "11.15", "loss_scale": "128", "train_wall": "294", "gb_free": "3.7", "wall": "2216"}
+[2024-12-16 11:28:43,944][train_inner][INFO] - {"epoch": 127, "update": 126.273, "loss": "136.229", "nll_loss": "4.919", "total": "669.65", "n_correct": "216.825", "ppl": "30.25", "accuracy": "32.379", "wps": "450.6", "ups": "0.67", "wpb": "669.6", "bsz": "27.9", "num_updates": "1600", "lr": "0.0001156", "gnorm": "11.451", "loss_scale": "128", "train_wall": "290", "gb_free": "3.7", "wall": "2513"}
+[2024-12-16 11:33:38,111][train_inner][INFO] - {"epoch": 127, "update": 126.307, "loss": "136.521", "nll_loss": "4.895", "total": "662.74", "n_correct": "216.49", "ppl": "29.75", "accuracy": "32.666", "wps": "450.6", "ups": "0.68", "wpb": "662.7", "bsz": "27.4", "num_updates": "1800", "lr": "0.0001288", "gnorm": "11.396", "loss_scale": "128", "train_wall": "287", "gb_free": "3.7", "wall": "2808"}
+[2024-12-16 11:38:38,106][train_inner][INFO] - {"epoch": 127, "update": 126.341, "loss": "135.916", "nll_loss": "4.899", "total": "662.895", "n_correct": "215.91", "ppl": "29.85", "accuracy": "32.571", "wps": "441.9", "ups": "0.67", "wpb": "662.9", "bsz": "27.6", "num_updates": "2000", "lr": "0.000142", "gnorm": "11.519", "loss_scale": "128", "train_wall": "293", "gb_free": "3.7", "wall": "3108"}
+[2024-12-16 11:43:39,610][train_inner][INFO] - {"epoch": 127, "update": 126.375, "loss": "130.967", "nll_loss": "4.922", "total": "661.36", "n_correct": "213.63", "ppl": "30.31", "accuracy": "32.302", "wps": "438.8", "ups": "0.66", "wpb": "661.4", "bsz": "28.7", "num_updates": "2200", "lr": "0.0001552", "gnorm": "11.338", "loss_scale": "128", "train_wall": "295", "gb_free": "3.7", "wall": "3409"}
+[2024-12-16 11:48:53,162][train_inner][INFO] - {"epoch": 127, "update": 126.409, "loss": "127.712", "nll_loss": "4.909", "total": "670.69", "n_correct": "217.73", "ppl": "30.05", "accuracy": "32.464", "wps": "427.8", "ups": "0.64", "wpb": "670.7", "bsz": "29.8", "num_updates": "2400", "lr": "0.0001684", "gnorm": "10.641", "loss_scale": "128", "train_wall": "306", "gb_free": "3.7", "wall": "3723"}
+[2024-12-16 11:53:51,623][train_inner][INFO] - {"epoch": 127, "update": 126.444, "loss": "130.624", "nll_loss": "4.874", "total": "666.4", "n_correct": "218.085", "ppl": "29.33", "accuracy": "32.726", "wps": "446.6", "ups": "0.67", "wpb": "666.4", "bsz": "28.8", "num_updates": "2600", "lr": "0.0001816", "gnorm": "11.623", "loss_scale": "128", "train_wall": "291", "gb_free": "3.7", "wall": "4021"}
+[2024-12-16 11:58:50,175][train_inner][INFO] - {"epoch": 127, "update": 126.478, "loss": "133.533", "nll_loss": "4.894", "total": "662.745", "n_correct": "215.935", "ppl": "29.73", "accuracy": "32.582", "wps": "444", "ups": "0.67", "wpb": "662.7", "bsz": "28.1", "num_updates": "2800", "lr": "0.0001948", "gnorm": "11.676", "loss_scale": "128", "train_wall": "292", "gb_free": "3.7", "wall": "4320"}
+[2024-12-16 12:03:42,338][train_inner][INFO] - {"epoch": 127, "update": 126.512, "loss": "139.403", "nll_loss": "4.889", "total": "662.635", "n_correct": "217.49", "ppl": "29.63", "accuracy": "32.822", "wps": "453.6", "ups": "0.68", "wpb": "662.6", "bsz": "26.9", "num_updates": "3000", "lr": "0.000208", "gnorm": "11.959", "loss_scale": "128", "train_wall": "285", "gb_free": "3.7", "wall": "4612"}
+[2024-12-16 12:08:48,362][train_inner][INFO] - {"epoch": 127, "update": 126.546, "loss": "130.975", "nll_loss": "4.9", "total": "669.53", "n_correct": "219.1", "ppl": "29.85", "accuracy": "32.724", "wps": "437.6", "ups": "0.65", "wpb": "669.5", "bsz": "28.9", "num_updates": "3200", "lr": "0.0002212", "gnorm": "11.336", "loss_scale": "128", "train_wall": "299", "gb_free": "3.7", "wall": "4918"}
+[2024-12-16 12:13:32,746][train_inner][INFO] - {"epoch": 127, "update": 126.58, "loss": "138.172", "nll_loss": "4.889", "total": "665.84", "n_correct": "218.715", "ppl": "29.62", "accuracy": "32.848", "wps": "468.3", "ups": "0.7", "wpb": "665.8", "bsz": "27.2", "num_updates": "3400", "lr": "0.0002344", "gnorm": "12.045", "loss_scale": "128", "train_wall": "278", "gb_free": "3.7", "wall": "5202"}
+[2024-12-16 12:18:25,818][train_inner][INFO] - {"epoch": 127, "update": 126.614, "loss": "128.391", "nll_loss": "4.896", "total": "664.59", "n_correct": "216.96", "ppl": "29.77", "accuracy": "32.646", "wps": "453.5", "ups": "0.68", "wpb": "664.6", "bsz": "29.3", "num_updates": "3600", "lr": "0.0002476", "gnorm": "11.361", "loss_scale": "128", "train_wall": "287", "gb_free": "3.7", "wall": "5495"}
+[2024-12-16 12:23:23,565][train_inner][INFO] - {"epoch": 127, "update": 126.648, "loss": "137.945", "nll_loss": "4.895", "total": "665.77", "n_correct": "217.315", "ppl": "29.75", "accuracy": "32.641", "wps": "447.2", "ups": "0.67", "wpb": "665.8", "bsz": "27.3", "num_updates": "3800", "lr": "0.0002608", "gnorm": "12.261", "loss_scale": "128", "train_wall": "292", "gb_free": "3.7", "wall": "5793"}
+[2024-12-16 12:28:37,152][train_inner][INFO] - {"epoch": 127, "update": 126.682, "loss": "131.689", "nll_loss": "4.903", "total": "668.46", "n_correct": "217.175", "ppl": "29.92", "accuracy": "32.489", "wps": "426.3", "ups": "0.64", "wpb": "668.5", "bsz": "28.7", "num_updates": "4000", "lr": "0.000274", "gnorm": "11.766", "loss_scale": "128", "train_wall": "307", "gb_free": "3.7", "wall": "6107"}
+[2024-12-16 12:33:34,313][train_inner][INFO] - {"epoch": 127, "update": 126.716, "loss": "137.815", "nll_loss": "4.917", "total": "656.1", "n_correct": "212.435", "ppl": "30.21", "accuracy": "32.378", "wps": "441.6", "ups": "0.67", "wpb": "656.1", "bsz": "27", "num_updates": "4200", "lr": "0.0002872", "gnorm": "12.136", "loss_scale": "256", "train_wall": "290", "gb_free": "3.7", "wall": "6404"}
+[2024-12-16 12:38:28,178][train_inner][INFO] - {"epoch": 127, "update": 126.751, "loss": "137.689", "nll_loss": "4.915", "total": "663.365", "n_correct": "214.315", "ppl": "30.18", "accuracy": "32.307", "wps": "451.5", "ups": "0.68", "wpb": "663.4", "bsz": "27.3", "num_updates": "4400", "lr": "0.0003004", "gnorm": "12.222", "loss_scale": "256", "train_wall": "287", "gb_free": "3.7", "wall": "6698"}
+[2024-12-16 12:43:18,370][train_inner][INFO] - {"epoch": 127, "update": 126.785, "loss": "137.788", "nll_loss": "4.929", "total": "667.485", "n_correct": "215.44", "ppl": "30.46", "accuracy": "32.276", "wps": "460", "ups": "0.69", "wpb": "667.5", "bsz": "27.5", "num_updates": "4600", "lr": "0.0003136", "gnorm": "12.123", "loss_scale": "256", "train_wall": "283", "gb_free": "3.7", "wall": "6988"}
+[2024-12-16 12:48:13,098][train_inner][INFO] - {"epoch": 127, "update": 126.819, "loss": "139.495", "nll_loss": "4.903", "total": "673.255", "n_correct": "218.255", "ppl": "29.92", "accuracy": "32.418", "wps": "456.9", "ups": "0.68", "wpb": "673.3", "bsz": "27.3", "num_updates": "4800", "lr": "0.0003268", "gnorm": "12.186", "loss_scale": "256", "train_wall": "289", "gb_free": "3.7", "wall": "7283"}
+[2024-12-16 12:53:07,518][train_inner][INFO] - {"epoch": 127, "update": 126.853, "loss": "134.079", "nll_loss": "4.927", "total": "665.13", "n_correct": "214.84", "ppl": "30.41", "accuracy": "32.3", "wps": "451.8", "ups": "0.68", "wpb": "665.1", "bsz": "28.2", "num_updates": "5000", "lr": "0.00034", "gnorm": "11.943", "loss_scale": "256", "train_wall": "288", "gb_free": "3.7", "wall": "7577"}
+[2024-12-16 12:58:03,628][train_inner][INFO] - {"epoch": 127, "update": 126.887, "loss": "137.175", "nll_loss": "4.932", "total": "669.615", "n_correct": "215.59", "ppl": "30.53", "accuracy": "32.196", "wps": "452.3", "ups": "0.68", "wpb": "669.6", "bsz": "27.8", "num_updates": "5200", "lr": "0.0003532", "gnorm": "11.809", "loss_scale": "256", "train_wall": "290", "gb_free": "3.7", "wall": "7873"}
+[2024-12-16 13:02:58,437][train_inner][INFO] - {"epoch": 127, "update": 126.921, "loss": "135.255", "nll_loss": "4.895", "total": "662.74", "n_correct": "216.58", "ppl": "29.75", "accuracy": "32.679", "wps": "449.6", "ups": "0.68", "wpb": "662.7", "bsz": "27.7", "num_updates": "5400", "lr": "0.0003664", "gnorm": "12.089", "loss_scale": "256", "train_wall": "288", "gb_free": "3.7", "wall": "8168"}
+[2024-12-16 13:07:54,007][train_inner][INFO] - {"epoch": 127, "update": 126.955, "loss": "135.637", "nll_loss": "4.919", "total": "668.155", "n_correct": "217.07", "ppl": "30.25", "accuracy": "32.488", "wps": "452.1", "ups": "0.68", "wpb": "668.2", "bsz": "27.9", "num_updates": "5600", "lr": "0.0003796", "gnorm": "12.424", "loss_scale": "256", "train_wall": "288", "gb_free": "3.7", "wall": "8464"}
+[2024-12-16 13:12:47,493][train_inner][INFO] - {"epoch": 127, "update": 126.989, "loss": "135.234", "nll_loss": "4.921", "total": "663.9", "n_correct": "214.32", "ppl": "30.29", "accuracy": "32.282", "wps": "452.4", "ups": "0.68", "wpb": "663.9", "bsz": "27.9", "num_updates": "5800", "lr": "0.0003928", "gnorm": "12.175", "loss_scale": "256", "train_wall": "286", "gb_free": "3.7", "wall": "8757"}
+[2024-12-16 13:14:00,975][fairseq_cli.train][INFO] - end of epoch 127 (average epoch stats below)
+[2024-12-16 13:14:00,979][train][INFO] - {"epoch": 127, "train_loss": "135.212", "train_nll_loss": "4.92", "train_total": "665.831", "train_n_correct": "215.415", "train_ppl": "30.26", "train_accuracy": "32.353", "train_wps": "445.7", "train_ups": "0.67", "train_wpb": "665.8", "train_bsz": "27.9", "train_num_updates": "5862", "train_lr": "0.000396892", "train_gnorm": "11.669", "train_loss_scale": "256", "train_train_wall": "8577", "train_gb_free": "3.7", "train_wall": "8831"}
 /workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
   with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
-[2024-12-15 01:29:34,455][fairseq.trainer][INFO] - begin training epoch 124
-[2024-12-15 01:29:34,456][fairseq_cli.train][INFO] - Start iterating over samples
+/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
+[2024-12-16 13:14:02,357][fairseq.trainer][INFO] - begin training epoch 128
+[2024-12-16 13:14:02,359][fairseq_cli.train][INFO] - Start iterating over samples
 /workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
   with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
 /workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
   with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
-/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
-  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
-[2024-12-15 01:34:11,754][train_inner][INFO] - {"epoch": 124, "update": 123.024, "loss": "53.673", "nll_loss": "0.972", "total": "668.175", "n_correct": "575.01", "ppl": "1.96", "accuracy": "86.057", "wps": "370.4", "ups": "0.55", "wpb": "668.2", "bsz": "28", "num_updates": "6000", "lr": "0.000406", "gnorm": "9.704", "loss_scale": "128", "train_wall": "319", "gb_free": "3.7", "wall": "10137"}
-[2024-12-15 01:40:03,240][train_inner][INFO] - {"epoch": 124, "update": 123.058, "loss": "51.715", "nll_loss": "0.956", "total": "670.385", "n_correct": "579.09", "ppl": "1.94", "accuracy": "86.382", "wps": "381.5", "ups": "0.57", "wpb": "670.4", "bsz": "29", "num_updates": "6200", "lr": "0.0004192", "gnorm": "9.607", "loss_scale": "128", "train_wall": "343", "gb_free": "3.7", "wall": "10488"}
-[2024-12-15 01:45:55,680][train_inner][INFO] - {"epoch": 124, "update": 123.092, "loss": "54.193", "nll_loss": "0.985", "total": "662.77", "n_correct": "568.88", "ppl": "1.98", "accuracy": "85.834", "wps": "376.1", "ups": "0.57", "wpb": "662.8", "bsz": "27.6", "num_updates": "6400", "lr": "0.0004324", "gnorm": "9.72", "loss_scale": "128", "train_wall": "345", "gb_free": "3.7", "wall": "10841"}
-[2024-12-15 01:51:46,796][train_inner][INFO] - {"epoch": 124, "update": 123.126, "loss": "54.183", "nll_loss": "0.998", "total": "669.275", "n_correct": "573.23", "ppl": "2", "accuracy": "85.649", "wps": "381.2", "ups": "0.57", "wpb": "669.3", "bsz": "28.1", "num_updates": "6600", "lr": "0.0004456", "gnorm": "10.153", "loss_scale": "128", "train_wall": "343", "gb_free": "3.7", "wall": "11192"}
-[2024-12-15 01:57:38,848][train_inner][INFO] - {"epoch": 124, "update": 123.16, "loss": "53.193", "nll_loss": "0.998", "total": "675.225", "n_correct": "578.105", "ppl": "2", "accuracy": "85.617", "wps": "383.6", "ups": "0.57", "wpb": "675.2", "bsz": "28.8", "num_updates": "6800", "lr": "0.0004588", "gnorm": "9.991", "loss_scale": "128", "train_wall": "344", "gb_free": "3.7", "wall": "11544"}
-[2024-12-15 02:03:29,693][train_inner][INFO] - {"epoch": 124, "update": 123.194, "loss": "53.128", "nll_loss": "0.991", "total": "661.85", "n_correct": "567.66", "ppl": "1.99", "accuracy": "85.769", "wps": "377.3", "ups": "0.57", "wpb": "661.9", "bsz": "28.2", "num_updates": "7000", "lr": "0.000472", "gnorm": "9.842", "loss_scale": "128", "train_wall": "342", "gb_free": "3.7", "wall": "11895"}
-[2024-12-15 02:09:09,812][train_inner][INFO] - {"epoch": 124, "update": 123.228, "loss": "54.447", "nll_loss": "1.024", "total": "668.5", "n_correct": "569.925", "ppl": "2.03", "accuracy": "85.254", "wps": "393.1", "ups": "0.59", "wpb": "668.5", "bsz": "28.2", "num_updates": "7200", "lr": "0.0004852", "gnorm": "10.364", "loss_scale": "128", "train_wall": "333", "gb_free": "3.7", "wall": "12235"}
-[2024-12-15 02:15:02,011][train_inner][INFO] - {"epoch": 124, "update": 123.263, "loss": "54.647", "nll_loss": "1.023", "total": "669.77", "n_correct": "570.72", "ppl": "2.03", "accuracy": "85.211", "wps": "380.4", "ups": "0.57", "wpb": "669.8", "bsz": "28.1", "num_updates": "7400", "lr": "0.0004984", "gnorm": "10.167", "loss_scale": "128", "train_wall": "344", "gb_free": "3.7", "wall": "12587"}
-[2024-12-15 02:20:51,369][train_inner][INFO] - {"epoch": 124, "update": 123.297, "loss": "52.611", "nll_loss": "0.988", "total": "665.03", "n_correct": "570.39", "ppl": "1.98", "accuracy": "85.769", "wps": "380.7", "ups": "0.57", "wpb": "665", "bsz": "28.6", "num_updates": "7600", "lr": "0.0005116", "gnorm": "9.954", "loss_scale": "128", "train_wall": "341", "gb_free": "3.7", "wall": "12936"}
-[2024-12-15 02:26:46,767][train_inner][INFO] - {"epoch": 124, "update": 123.331, "loss": "54.929", "nll_loss": "1.04", "total": "663.805", "n_correct": "564.71", "ppl": "2.06", "accuracy": "85.072", "wps": "373.6", "ups": "0.56", "wpb": "663.8", "bsz": "27.9", "num_updates": "7800", "lr": "0.0005248", "gnorm": "10.483", "loss_scale": "128", "train_wall": "346", "gb_free": "3.7", "wall": "13292"}
-[2024-12-15 02:32:58,564][train_inner][INFO] - {"epoch": 124, "update": 123.365, "loss": "54.629", "nll_loss": "1.028", "total": "671.345", "n_correct": "571.7", "ppl": "2.04", "accuracy": "85.157", "wps": "361.2", "ups": "0.54", "wpb": "671.3", "bsz": "28.2", "num_updates": "8000", "lr": "0.000538", "gnorm": "10.137", "loss_scale": "128", "train_wall": "363", "gb_free": "3.7", "wall": "13663"}
-[2024-12-15 02:39:10,649][train_inner][INFO] - {"epoch": 124, "update": 123.399, "loss": "52.758", "nll_loss": "1.004", "total": "664.015", "n_correct": "568.64", "ppl": "2.01", "accuracy": "85.637", "wps": "356.9", "ups": "0.54", "wpb": "664", "bsz": "28.7", "num_updates": "8200", "lr": "0.0005512", "gnorm": "9.912", "loss_scale": "128", "train_wall": "363", "gb_free": "3.7", "wall": "14035"}
-[2024-12-15 02:45:37,356][train_inner][INFO] - {"epoch": 124, "update": 123.433, "loss": "55.243", "nll_loss": "1.04", "total": "668.275", "n_correct": "568.545", "ppl": "2.06", "accuracy": "85.077", "wps": "345.6", "ups": "0.52", "wpb": "668.3", "bsz": "27.9", "num_updates": "8400", "lr": "0.0005644", "gnorm": "10.518", "loss_scale": "128", "train_wall": "378", "gb_free": "3.7", "wall": "14422"}
-[2024-12-15 02:52:08,402][train_inner][INFO] - {"epoch": 124, "update": 123.467, "loss": "54.438", "nll_loss": "1.043", "total": "668.73", "n_correct": "568.515", "ppl": "2.06", "accuracy": "85.014", "wps": "342", "ups": "0.51", "wpb": "668.7", "bsz": "28.4", "num_updates": "8600", "lr": "0.0005776", "gnorm": "10.244", "loss_scale": "256", "train_wall": "381", "gb_free": "3.7", "wall": "14813"}
-[2024-12-15 02:58:36,673][train_inner][INFO] - {"epoch": 124, "update": 123.501, "loss": "52.46", "nll_loss": "1.043", "total": "664.225", "n_correct": "564.975", "ppl": "2.06", "accuracy": "85.058", "wps": "342.1", "ups": "0.52", "wpb": "664.2", "bsz": "29.2", "num_updates": "8800", "lr": "0.0005908", "gnorm": "10.09", "loss_scale": "256", "train_wall": "379", "gb_free": "3.7", "wall": "15202"}
-[2024-12-15 03:04:34,533][train_inner][INFO] - {"epoch": 124, "update": 123.535, "loss": "54.88", "nll_loss": "1.066", "total": "665.39", "n_correct": "562.915", "ppl": "2.09", "accuracy": "84.599", "wps": "371.9", "ups": "0.56", "wpb": "665.4", "bsz": "28.2", "num_updates": "9000", "lr": "0.000604", "gnorm": "10.385", "loss_scale": "256", "train_wall": "349", "gb_free": "3.7", "wall": "15559"}
-[2024-12-15 03:10:37,999][train_inner][INFO] - {"epoch": 124, "update": 123.57, "loss": "58.4", "nll_loss": "1.055", "total": "661.205", "n_correct": "560.82", "ppl": "2.08", "accuracy": "84.818", "wps": "363.8", "ups": "0.55", "wpb": "661.2", "bsz": "26.3", "num_updates": "9200", "lr": "0.0006172", "gnorm": "11.044", "loss_scale": "256", "train_wall": "355", "gb_free": "3.7", "wall": "15923"}
-[2024-12-15 03:16:54,804][train_inner][INFO] - {"epoch": 124, "update": 123.604, "loss": "56.749", "nll_loss": "1.066", "total": "669.945", "n_correct": "567.28", "ppl": "2.09", "accuracy": "84.676", "wps": "355.6", "ups": "0.53", "wpb": "669.9", "bsz": "27.5", "num_updates": "9400", "lr": "0.0006304", "gnorm": "10.806", "loss_scale": "256", "train_wall": "367", "gb_free": "3.7", "wall": "16300"}
-[2024-12-15 03:23:12,726][train_inner][INFO] - {"epoch": 124, "update": 123.638, "loss": "55.933", "nll_loss": "1.057", "total": "660.8", "n_correct": "560.11", "ppl": "2.08", "accuracy": "84.762", "wps": "349.7", "ups": "0.53", "wpb": "660.8", "bsz": "27.4", "num_updates": "9600", "lr": "0.0006436", "gnorm": "10.674", "loss_scale": "256", "train_wall": "369", "gb_free": "3.7", "wall": "16678"}
-[2024-12-15 03:28:53,726][train_inner][INFO] - {"epoch": 124, "update": 123.672, "loss": "57.439", "nll_loss": "1.082", "total": "656.69", "n_correct": "553.44", "ppl": "2.12", "accuracy": "84.277", "wps": "385.2", "ups": "0.59", "wpb": "656.7", "bsz": "26.8", "num_updates": "9800", "lr": "0.0006568", "gnorm": "10.857", "loss_scale": "256", "train_wall": "333", "gb_free": "3.7", "wall": "17019"}
-[2024-12-15 03:34:45,758][train_inner][INFO] - {"epoch": 124, "update": 123.706, "loss": "54.829", "nll_loss": "1.063", "total": "666.51", "n_correct": "563.765", "ppl": "2.09", "accuracy": "84.585", "wps": "378.7", "ups": "0.57", "wpb": "666.5", "bsz": "28.3", "num_updates": "10000", "lr": "0.00067", "gnorm": "10.173", "loss_scale": "256", "train_wall": "344", "gb_free": "3.7", "wall": "17371"}
-[2024-12-15 03:40:40,481][train_inner][INFO] - {"epoch": 124, "update": 123.74, "loss": "56.56", "nll_loss": "1.107", "total": "673.265", "n_correct": "564.745", "ppl": "2.15", "accuracy": "83.882", "wps": "379.6", "ups": "0.56", "wpb": "673.3", "bsz": "28.2", "num_updates": "10200", "lr": "0.0006832", "gnorm": "10.546", "loss_scale": "256", "train_wall": "346", "gb_free": "3.7", "wall": "17725"}
-[2024-12-15 03:46:23,477][train_inner][INFO] - {"epoch": 124, "update": 123.774, "loss": "56.879", "nll_loss": "1.1", "total": "662.58", "n_correct": "556.46", "ppl": "2.14", "accuracy": "83.984", "wps": "386.4", "ups": "0.58", "wpb": "662.6", "bsz": "27.5", "num_updates": "10400", "lr": "0.0006964", "gnorm": "10.9", "loss_scale": "256", "train_wall": "336", "gb_free": "3.7", "wall": "18068"}
-[2024-12-15 03:49:06,653][fairseq.trainer][INFO] - NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 128.0
-[2024-12-15 03:52:16,864][train_inner][INFO] - {"epoch": 124, "update": 123.809, "loss": "56.371", "nll_loss": "1.092", "total": "659.915", "n_correct": "556.09", "ppl": "2.13", "accuracy": "84.267", "wps": "373.5", "ups": "0.57", "wpb": "659.9", "bsz": "27.5", "num_updates": "10600", "lr": "0.0007096", "gnorm": "10.763", "loss_scale": "128", "train_wall": "345", "gb_free": "3.7", "wall": "18422"}
-[2024-12-15 03:57:52,494][train_inner][INFO] - {"epoch": 124, "update": 123.843, "loss": "57.787", "nll_loss": "1.128", "total": "668.27", "n_correct": "559.69", "ppl": "2.19", "accuracy": "83.752", "wps": "398.2", "ups": "0.6", "wpb": "668.3", "bsz": "27.6", "num_updates": "10800", "lr": "0.0007228", "gnorm": "11.082", "loss_scale": "128", "train_wall": "327", "gb_free": "3.7", "wall": "18757"}
-[2024-12-15 04:03:40,741][train_inner][INFO] - {"epoch": 124, "update": 123.877, "loss": "59.578", "nll_loss": "1.139", "total": "662.415", "n_correct": "552.715", "ppl": "2.2", "accuracy": "83.439", "wps": "380.4", "ups": "0.57", "wpb": "662.4", "bsz": "26.6", "num_updates": "11000", "lr": "0.000736", "gnorm": "11.42", "loss_scale": "128", "train_wall": "340", "gb_free": "3.7", "wall": "19106"}
-[2024-12-15 04:09:30,862][train_inner][INFO] - {"epoch": 124, "update": 123.911, "loss": "55.083", "nll_loss": "1.111", "total": "663.915", "n_correct": "557.565", "ppl": "2.16", "accuracy": "83.981", "wps": "379.3", "ups": "0.57", "wpb": "663.9", "bsz": "28.6", "num_updates": "11200", "lr": "0.0007492", "gnorm": "10.851", "loss_scale": "128", "train_wall": "342", "gb_free": "3.7", "wall": "19456"}
-[2024-12-15 04:15:14,620][train_inner][INFO] - {"epoch": 124, "update": 123.945, "loss": "56.477", "nll_loss": "1.104", "total": "664.41", "n_correct": "558.565", "ppl": "2.15", "accuracy": "84.069", "wps": "386.6", "ups": "0.58", "wpb": "664.4", "bsz": "27.8", "num_updates": "11400", "lr": "0.0007624", "gnorm": "10.327", "loss_scale": "128", "train_wall": "336", "gb_free": "3.7", "wall": "19799"}
-[2024-12-15 04:21:10,457][train_inner][INFO] - {"epoch": 124, "update": 123.979, "loss": "57.019", "nll_loss": "1.136", "total": "666.13", "n_correct": "556.825", "ppl": "2.2", "accuracy": "83.591", "wps": "374.4", "ups": "0.56", "wpb": "666.1", "bsz": "27.9", "num_updates": "11600", "lr": "0.0007756", "gnorm": "10.875", "loss_scale": "128", "train_wall": "346", "gb_free": "3.7", "wall": "20155"}
-[2024-12-15 04:24:17,623][fairseq_cli.train][INFO] - begin validation on "valid" subset
-[2024-12-15 04:25:29,253][valid][INFO] - {"epoch": 124, "valid_loss": "26.688", "valid_nll_loss": "0.806", "valid_total": "678.4", "valid_n_correct": "599.3", "valid_ppl": "1.75", "valid_accuracy": "88.34", "valid_wps": "329.8", "valid_wpb": "678.4", "valid_bsz": "54.1", "valid_num_updates": "11722"}
-[2024-12-15 04:25:29,255][fairseq.checkpoint_utils][INFO] - Preparing to save checkpoint for epoch 124 @ 11722 updates
-[2024-12-15 04:25:29,256][fairseq.trainer][INFO] - Saving checkpoint to checkpoints/checkpoint_best.pt
-[2024-12-15 04:25:49,026][fairseq.trainer][INFO] - Finished saving checkpoint to checkpoints/checkpoint_best.pt
-[2024-12-15 04:26:02,158][fairseq.checkpoint_utils][INFO] - Saved checkpoint checkpoints/checkpoint_best.pt (epoch 124 @ 11722 updates, score 88.34) (writing took 32.90222332300618 seconds)
-[2024-12-15 04:26:02,161][fairseq_cli.train][INFO] - end of epoch 124 (average epoch stats below)
-[2024-12-15 04:26:02,189][train][INFO] - {"epoch": 124, "train_loss": "55.229", "train_nll_loss": "1.052", "train_total": "665.807", "train_n_correct": "564.863", "train_ppl": "2.07", "train_accuracy": "84.839", "train_wps": "368.5", "train_ups": "0.55", "train_wpb": "665.8", "train_bsz": "27.9", "train_num_updates": "11722", "train_lr": "0.000783652", "train_gnorm": "10.421", "train_loss_scale": "128", "train_train_wall": "10203", "train_gb_free": "3.7", "train_wall": "20447"}
-[2024-12-15 04:26:08,295][fairseq.trainer][INFO] - begin training epoch 125
-[2024-12-15 04:26:08,296][fairseq_cli.train][INFO] - Start iterating over samples
-[2024-12-15 04:29:02,343][train_inner][INFO] - {"epoch": 125, "update": 124.013, "loss": "57.271", "nll_loss": "1.095", "total": "670.84", "n_correct": "564.59", "ppl": "2.14", "accuracy": "84.162", "wps": "284.3", "ups": "0.42", "wpb": "670.8", "bsz": "27.6", "num_updates": "11800", "lr": "0.0007888", "gnorm": "10.847", "loss_scale": "128", "train_wall": "317", "gb_free": "3.7", "wall": "20627"}
-[2024-12-15 04:34:50,641][train_inner][INFO] - {"epoch": 125, "update": 124.047, "loss": "56.755", "nll_loss": "1.054", "total": "667.955", "n_correct": "565.815", "ppl": "2.08", "accuracy": "84.709", "wps": "383.6", "ups": "0.57", "wpb": "668", "bsz": "27.4", "num_updates": "12000", "lr": "0.000802", "gnorm": "10.877", "loss_scale": "128", "train_wall": "340", "gb_free": "3.7", "wall": "20976"}
-[2024-12-15 04:40:48,837][train_inner][INFO] - {"epoch": 125, "update": 124.082, "loss": "55.942", "nll_loss": "1.056", "total": "667.15", "n_correct": "564.99", "ppl": "2.08", "accuracy": "84.687", "wps": "372.5", "ups": "0.56", "wpb": "667.1", "bsz": "27.7", "num_updates": "12200", "lr": "0.0008152", "gnorm": "10.701", "loss_scale": "128", "train_wall": "350", "gb_free": "3.7", "wall": "21334"}
-[2024-12-15 04:46:30,190][train_inner][INFO] - {"epoch": 125, "update": 124.116, "loss": "58.77", "nll_loss": "1.077", "total": "669.905", "n_correct": "565.82", "ppl": "2.11", "accuracy": "84.463", "wps": "392.5", "ups": "0.59", "wpb": "669.9", "bsz": "26.7", "num_updates": "12400", "lr": "0.0008284", "gnorm": "11.807", "loss_scale": "128", "train_wall": "334", "gb_free": "3.7", "wall": "21675"}
-[2024-12-15 04:52:17,433][train_inner][INFO] - {"epoch": 125, "update": 124.15, "loss": "55.107", "nll_loss": "1.074", "total": "667.505", "n_correct": "563.475", "ppl": "2.11", "accuracy": "84.415", "wps": "384.5", "ups": "0.58", "wpb": "667.5", "bsz": "28.4", "num_updates": "12600", "lr": "0.0008416", "gnorm": "10.635", "loss_scale": "128", "train_wall": "340", "gb_free": "3.7", "wall": "22022"}
-[2024-12-15 04:58:16,081][train_inner][INFO] - {"epoch": 125, "update": 124.184, "loss": "53.437", "nll_loss": "1.068", "total": "673.91", "n_correct": "570.1", "ppl": "2.1", "accuracy": "84.596", "wps": "375.8", "ups": "0.56", "wpb": "673.9", "bsz": "29.4", "num_updates": "12800", "lr": "0.0008548", "gnorm": "10.815", "loss_scale": "128", "train_wall": "350", "gb_free": "3.7", "wall": "22381"}
-[2024-12-15 05:04:02,501][train_inner][INFO] - {"epoch": 125, "update": 124.218, "loss": "58.295", "nll_loss": "1.127", "total": "673.37", "n_correct": "562.525", "ppl": "2.18", "accuracy": "83.539", "wps": "388.8", "ups": "0.58", "wpb": "673.4", "bsz": "27.6", "num_updates": "13000", "lr": "0.000868", "gnorm": "11.56", "loss_scale": "128", "train_wall": "339", "gb_free": "3.7", "wall": "22727"}
-[2024-12-15 05:10:04,160][train_inner][INFO] - {"epoch": 125, "update": 124.252, "loss": "54.425", "nll_loss": "1.08", "total": "667.48", "n_correct": "562.7", "ppl": "2.11", "accuracy": "84.302", "wps": "369.1", "ups": "0.55", "wpb": "667.5", "bsz": "28.8", "num_updates": "13200", "lr": "0.0008812", "gnorm": "10.382", "loss_scale": "128", "train_wall": "354", "gb_free": "3.7", "wall": "23089"}
-[2024-12-15 05:15:55,528][train_inner][INFO] - {"epoch": 125, "update": 124.286, "loss": "56.544", "nll_loss": "1.131", "total": "669.125", "n_correct": "559.275", "ppl": "2.19", "accuracy": "83.583", "wps": "380.9", "ups": "0.57", "wpb": "669.1", "bsz": "28.3", "num_updates": "13400", "lr": "0.0008944", "gnorm": "11.089", "loss_scale": "128", "train_wall": "344", "gb_free": "3.7", "wall": "23440"}
-[2024-12-15 05:21:40,524][train_inner][INFO] - {"epoch": 125, "update": 124.32, "loss": "57.434", "nll_loss": "1.127", "total": "662.86", "n_correct": "554.265", "ppl": "2.18", "accuracy": "83.617", "wps": "384.4", "ups": "0.58", "wpb": "662.9", "bsz": "27.5", "num_updates": "13600", "lr": "0.0009076", "gnorm": "11.854", "loss_scale": "128", "train_wall": "337", "gb_free": "3.7", "wall": "23785"}
-[2024-12-15 05:27:39,961][train_inner][INFO] - {"epoch": 125, "update": 124.354, "loss": "55.396", "nll_loss": "1.135", "total": "666.735", "n_correct": "556.84", "ppl": "2.2", "accuracy": "83.517", "wps": "371", "ups": "0.56", "wpb": "666.7", "bsz": "28.8", "num_updates": "13800", "lr": "0.0009208", "gnorm": "11.144", "loss_scale": "128", "train_wall": "351", "gb_free": "3.7", "wall": "24145"}
-[2024-12-15 05:33:19,787][train_inner][INFO] - {"epoch": 125, "update": 124.389, "loss": "59.412", "nll_loss": "1.125", "total": "668.96", "n_correct": "559.32", "ppl": "2.18", "accuracy": "83.61", "wps": "393.7", "ups": "0.59", "wpb": "669", "bsz": "26.9", "num_updates": "14000", "lr": "0.000934", "gnorm": "11.596", "loss_scale": "128", "train_wall": "333", "gb_free": "3.7", "wall": "24485"}
-[2024-12-15 05:38:59,426][train_inner][INFO] - {"epoch": 125, "update": 124.423, "loss": "58.888", "nll_loss": "1.136", "total": "663.915", "n_correct": "554.215", "ppl": "2.2", "accuracy": "83.477", "wps": "391", "ups": "0.59", "wpb": "663.9", "bsz": "27", "num_updates": "14200", "lr": "0.0009472", "gnorm": "11.643", "loss_scale": "128", "train_wall": "333", "gb_free": "3.7", "wall": "24824"}
-[2024-12-15 05:44:48,659][train_inner][INFO] - {"epoch": 125, "update": 124.457, "loss": "55.202", "nll_loss": "1.11", "total": "661.825", "n_correct": "555.68", "ppl": "2.16", "accuracy": "83.962", "wps": "379", "ups": "0.57", "wpb": "661.8", "bsz": "28.4", "num_updates": "14400", "lr": "0.0009604", "gnorm": "10.818", "loss_scale": "128", "train_wall": "342", "gb_free": "3.7", "wall": "25174"}
-[2024-12-15 05:50:43,778][train_inner][INFO] - {"epoch": 125, "update": 124.491, "loss": "55.975", "nll_loss": "1.119", "total": "670.53", "n_correct": "562.14", "ppl": "2.17", "accuracy": "83.835", "wps": "377.6", "ups": "0.56", "wpb": "670.5", "bsz": "28.5", "num_updates": "14600", "lr": "0.0009736", "gnorm": "11.111", "loss_scale": "256", "train_wall": "348", "gb_free": "3.7", "wall": "25529"}
-[2024-12-15 05:56:29,336][train_inner][INFO] - {"epoch": 125, "update": 124.525, "loss": "60.967", "nll_loss": "1.163", "total": "662.225", "n_correct": "550.835", "ppl": "2.24", "accuracy": "83.179", "wps": "383.3", "ups": "0.58", "wpb": "662.2", "bsz": "26.3", "num_updates": "14800", "lr": "0.0009868", "gnorm": "11.182", "loss_scale": "256", "train_wall": "337", "gb_free": "3.7", "wall": "25874"}
-[2024-12-15 06:02:23,554][train_inner][INFO] - {"epoch": 125, "update": 124.559, "loss": "57.088", "nll_loss": "1.167", "total": "669.48", "n_correct": "555.96", "ppl": "2.24", "accuracy": "83.044", "wps": "378", "ups": "0.56", "wpb": "669.5", "bsz": "28.4", "num_updates": "15000", "lr": "0.001", "gnorm": "10.765", "loss_scale": "256", "train_wall": "346", "gb_free": "3.7", "wall": "26228"}
-[2024-12-15 06:08:09,149][train_inner][INFO] - {"epoch": 125, "update": 124.593, "loss": "58.364", "nll_loss": "1.158", "total": "664.695", "n_correct": "552.77", "ppl": "2.23", "accuracy": "83.161", "wps": "384.7", "ups": "0.58", "wpb": "664.7", "bsz": "27.5", "num_updates": "15200", "lr": "0.000980227", "gnorm": "11.18", "loss_scale": "256", "train_wall": "338", "gb_free": "3.7", "wall": "26574"}
-[2024-12-15 06:14:22,348][train_inner][INFO] - {"epoch": 125, "update": 124.627, "loss": "56.471", "nll_loss": "1.181", "total": "660.39", "n_correct": "547.31", "ppl": "2.27", "accuracy": "82.877", "wps": "353.9", "ups": "0.54", "wpb": "660.4", "bsz": "28.4", "num_updates": "15400", "lr": "0.000960844", "gnorm": "10.764", "loss_scale": "256", "train_wall": "365", "gb_free": "3.7", "wall": "26947"}
-[2024-12-15 06:20:40,112][train_inner][INFO] - {"epoch": 125, "update": 124.662, "loss": "59.108", "nll_loss": "1.163", "total": "667.415", "n_correct": "554.815", "ppl": "2.24", "accuracy": "83.129", "wps": "353.4", "ups": "0.53", "wpb": "667.4", "bsz": "27.3", "num_updates": "15600", "lr": "0.000941845", "gnorm": "11.317", "loss_scale": "256", "train_wall": "369", "gb_free": "3.7", "wall": "27325"}
-[2024-12-15 06:27:17,281][train_inner][INFO] - {"epoch": 125, "update": 124.696, "loss": "54.745", "nll_loss": "1.182", "total": "663.57", "n_correct": "550.21", "ppl": "2.27", "accuracy": "82.917", "wps": "334.2", "ups": "0.5", "wpb": "663.6", "bsz": "29.5", "num_updates": "15800", "lr": "0.000923221", "gnorm": "10.333", "loss_scale": "256", "train_wall": "387", "gb_free": "3.7", "wall": "27722"}
-[2024-12-15 06:33:46,924][train_inner][INFO] - {"epoch": 125, "update": 124.73, "loss": "55.786", "nll_loss": "1.149", "total": "661.78", "n_correct": "551.785", "ppl": "2.22", "accuracy": "83.379", "wps": "339.7", "ups": "0.51", "wpb": "661.8", "bsz": "28.5", "num_updates": "16000", "lr": "0.000904966", "gnorm": "10.549", "loss_scale": "256", "train_wall": "380", "gb_free": "3.7", "wall": "28112"}
-[2024-12-15 06:40:16,924][train_inner][INFO] - {"epoch": 125, "update": 124.764, "loss": "55.818", "nll_loss": "1.19", "total": "663.005", "n_correct": "548.27", "ppl": "2.28", "accuracy": "82.695", "wps": "340", "ups": "0.51", "wpb": "663", "bsz": "29", "num_updates": "16200", "lr": "0.000887072", "gnorm": "11.01", "loss_scale": "256", "train_wall": "380", "gb_free": "3.7", "wall": "28502"}
-[2024-12-15 06:46:44,884][train_inner][INFO] - {"epoch": 125, "update": 124.798, "loss": "57.425", "nll_loss": "1.159", "total": "658.65", "n_correct": "547.85", "ppl": "2.23", "accuracy": "83.178", "wps": "339.6", "ups": "0.52", "wpb": "658.6", "bsz": "27.7", "num_updates": "16400", "lr": "0.000869531", "gnorm": "10.921", "loss_scale": "256", "train_wall": "379", "gb_free": "3.7", "wall": "28890"}
-[2024-12-15 06:53:07,716][train_inner][INFO] - {"epoch": 125, "update": 124.832, "loss": "55.185", "nll_loss": "1.165", "total": "665.44", "n_correct": "553.84", "ppl": "2.24", "accuracy": "83.229", "wps": "347.7", "ups": "0.52", "wpb": "665.4", "bsz": "29.1", "num_updates": "16600", "lr": "0.000852338", "gnorm": "10.42", "loss_scale": "256", "train_wall": "374", "gb_free": "3.7", "wall": "29273"}
-[2024-12-15 06:59:17,612][train_inner][INFO] - {"epoch": 125, "update": 124.866, "loss": "58.396", "nll_loss": "1.157", "total": "665.34", "n_correct": "554.5", "ppl": "2.23", "accuracy": "83.341", "wps": "359.8", "ups": "0.54", "wpb": "665.3", "bsz": "27.5", "num_updates": "16800", "lr": "0.000835484", "gnorm": "10.828", "loss_scale": "256", "train_wall": "361", "gb_free": "3.7", "wall": "29642"}
-[2024-12-15 07:05:19,028][train_inner][INFO] - {"epoch": 125, "update": 124.9, "loss": "59.55", "nll_loss": "1.144", "total": "656.925", "n_correct": "548.21", "ppl": "2.21", "accuracy": "83.451", "wps": "363.5", "ups": "0.55", "wpb": "656.9", "bsz": "26.4", "num_updates": "17000", "lr": "0.000818964", "gnorm": "11.131", "loss_scale": "256", "train_wall": "353", "gb_free": "3.7", "wall": "30004"}
-[2024-12-15 07:11:38,227][train_inner][INFO] - {"epoch": 125, "update": 124.934, "loss": "56.138", "nll_loss": "1.129", "total": "658.655", "n_correct": "551.445", "ppl": "2.19", "accuracy": "83.723", "wps": "347.4", "ups": "0.53", "wpb": "658.7", "bsz": "28", "num_updates": "17200", "lr": "0.00080277", "gnorm": "10.187", "loss_scale": "256", "train_wall": "370", "gb_free": "3.7", "wall": "30383"}
-[2024-12-15 07:17:56,048][train_inner][INFO] - {"epoch": 125, "update": 124.969, "loss": "56.801", "nll_loss": "1.137", "total": "670.565", "n_correct": "559.96", "ppl": "2.2", "accuracy": "83.506", "wps": "355", "ups": "0.53", "wpb": "670.6", "bsz": "28.2", "num_updates": "17400", "lr": "0.000786896", "gnorm": "10.14", "loss_scale": "256", "train_wall": "369", "gb_free": "3.7", "wall": "30761"}
-[2024-12-15 07:22:56,375][fairseq_cli.train][INFO] - end of epoch 125 (average epoch stats below)
-[2024-12-15 07:22:56,378][train][INFO] - {"epoch": 125, "train_loss": "56.91", "train_nll_loss": "1.13", "train_total": "665.831", "train_n_correct": "556.745", "train_ppl": "2.19", "train_accuracy": "83.617", "train_wps": "367.7", "train_ups": "0.55", "train_wpb": "665.8", "train_bsz": "27.9", "train_num_updates": "17584", "train_lr": "0.00077257", "train_gnorm": "10.943", "train_loss_scale": "256", "train_train_wall": "10329", "train_gb_free": "3.7", "train_wall": "31061"}
-[2024-12-15 07:22:57,943][fairseq.trainer][INFO] - begin training epoch 126
-[2024-12-15 07:22:57,943][fairseq_cli.train][INFO] - Start iterating over samples
-[2024-12-15 07:24:09,700][train_inner][INFO] - {"epoch": 126, "update": 125.003, "loss": "58.416", "nll_loss": "1.148", "total": "665.435", "n_correct": "554.755", "ppl": "2.22", "accuracy": "83.367", "wps": "356.2", "ups": "0.54", "wpb": "665.4", "bsz": "27.4", "num_updates": "17600", "lr": "0.000771337", "gnorm": "10.756", "loss_scale": "256", "train_wall": "336", "gb_free": "3.7", "wall": "31135"}
-[2024-12-15 07:30:21,805][train_inner][INFO] - {"epoch": 126, "update": 125.037, "loss": "51.946", "nll_loss": "1", "total": "669.845", "n_correct": "572.485", "ppl": "2", "accuracy": "85.465", "wps": "360", "ups": "0.54", "wpb": "669.8", "bsz": "29.3", "num_updates": "17800", "lr": "0.000756085", "gnorm": "9.589", "loss_scale": "256", "train_wall": "364", "gb_free": "3.7", "wall": "31507"}
-[2024-12-15 07:35:42,510][train_inner][INFO] - {"epoch": 126, "update": 125.071, "loss": "55.727", "nll_loss": "1.011", "total": "670.475", "n_correct": "572.74", "ppl": "2.01", "accuracy": "85.423", "wps": "418.1", "ups": "0.62", "wpb": "670.5", "bsz": "27.5", "num_updates": "18000", "lr": "0.000741134", "gnorm": "10.167", "loss_scale": "256", "train_wall": "314", "gb_free": "3.7", "wall": "31827"}
-[2024-12-15 07:40:15,137][train_inner][INFO] - {"epoch": 126, "update": 125.105, "loss": "56.006", "nll_loss": "1.059", "total": "657.795", "n_correct": "557.36", "ppl": "2.08", "accuracy": "84.732", "wps": "482.6", "ups": "0.73", "wpb": "657.8", "bsz": "27.3", "num_updates": "18200", "lr": "0.00072648", "gnorm": "10.182", "loss_scale": "256", "train_wall": "267", "gb_free": "3.7", "wall": "32100"}
-[2024-12-15 07:44:42,161][train_inner][INFO] - {"epoch": 126, "update": 125.139, "loss": "56.918", "nll_loss": "1.035", "total": "662.675", "n_correct": "562.605", "ppl": "2.05", "accuracy": "84.899", "wps": "496.4", "ups": "0.75", "wpb": "662.7", "bsz": "26.8", "num_updates": "18400", "lr": "0.000712115", "gnorm": "10.697", "loss_scale": "256", "train_wall": "262", "gb_free": "3.7", "wall": "32367"}
-[2024-12-15 07:49:26,314][train_inner][INFO] - {"epoch": 126, "update": 125.173, "loss": "53.082", "nll_loss": "1.021", "total": "661.22", "n_correct": "563.455", "ppl": "2.03", "accuracy": "85.214", "wps": "465.4", "ups": "0.7", "wpb": "661.2", "bsz": "28.6", "num_updates": "18600", "lr": "0.000698034", "gnorm": "9.797", "loss_scale": "256", "train_wall": "279", "gb_free": "3.7", "wall": "32651"}
-[2024-12-15 07:54:04,668][train_inner][INFO] - {"epoch": 126, "update": 125.207, "loss": "53.421", "nll_loss": "1.034", "total": "665.05", "n_correct": "565.65", "ppl": "2.05", "accuracy": "85.054", "wps": "477.9", "ups": "0.72", "wpb": "665.1", "bsz": "28.7", "num_updates": "18800", "lr": "0.000684231", "gnorm": "9.939", "loss_scale": "512", "train_wall": "272", "gb_free": "3.7", "wall": "32930"}
-[2024-12-15 07:58:43,117][train_inner][INFO] - {"epoch": 126, "update": 125.242, "loss": "55.342", "nll_loss": "1.047", "total": "669.115", "n_correct": "567.635", "ppl": "2.07", "accuracy": "84.834", "wps": "480.6", "ups": "0.72", "wpb": "669.1", "bsz": "28", "num_updates": "19000", "lr": "0.000670702", "gnorm": "10.481", "loss_scale": "512", "train_wall": "273", "gb_free": "3.7", "wall": "33208"}
-[2024-12-15 08:03:19,017][train_inner][INFO] - {"epoch": 126, "update": 125.276, "loss": "56.263", "nll_loss": "1.031", "total": "663.665", "n_correct": "565.32", "ppl": "2.04", "accuracy": "85.182", "wps": "481.1", "ups": "0.72", "wpb": "663.7", "bsz": "27.1", "num_updates": "19200", "lr": "0.00065744", "gnorm": "10.086", "loss_scale": "512", "train_wall": "270", "gb_free": "3.7", "wall": "33484"}
-[2024-12-15 08:07:57,899][train_inner][INFO] - {"epoch": 126, "update": 125.31, "loss": "54.368", "nll_loss": "1.03", "total": "663.96", "n_correct": "564.795", "ppl": "2.04", "accuracy": "85.065", "wps": "476.2", "ups": "0.72", "wpb": "664", "bsz": "28.1", "num_updates": "19400", "lr": "0.00064444", "gnorm": "9.792", "loss_scale": "512", "train_wall": "273", "gb_free": "3.7", "wall": "33763"}
-[2024-12-15 08:10:41,555][fairseq.trainer][INFO] - NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 256.0
-[2024-12-15 08:12:35,253][train_inner][INFO] - {"epoch": 126, "update": 125.344, "loss": "56.074", "nll_loss": "1.045", "total": "671.745", "n_correct": "570.695", "ppl": "2.06", "accuracy": "84.957", "wps": "484.4", "ups": "0.72", "wpb": "671.7", "bsz": "27.7", "num_updates": "19600", "lr": "0.000631697", "gnorm": "10.441", "loss_scale": "256", "train_wall": "272", "gb_free": "3.7", "wall": "34040"}
-[2024-12-15 08:17:09,216][train_inner][INFO] - {"epoch": 126, "update": 125.378, "loss": "56.113", "nll_loss": "1.051", "total": "661.085", "n_correct": "561.455", "ppl": "2.07", "accuracy": "84.929", "wps": "482.6", "ups": "0.73", "wpb": "661.1", "bsz": "27.3", "num_updates": "19800", "lr": "0.000619206", "gnorm": "10.081", "loss_scale": "256", "train_wall": "268", "gb_free": "3.7", "wall": "34314"}
-[2024-12-15 08:21:44,902][train_inner][INFO] - {"epoch": 126, "update": 125.412, "loss": "56.474", "nll_loss": "1.059", "total": "669.685", "n_correct": "567.84", "ppl": "2.08", "accuracy": "84.792", "wps": "485.8", "ups": "0.73", "wpb": "669.7", "bsz": "27.6", "num_updates": "20000", "lr": "0.000606962", "gnorm": "10.445", "loss_scale": "256", "train_wall": "270", "gb_free": "3.7", "wall": "34590"}
-[2024-12-15 08:26:18,833][train_inner][INFO] - {"epoch": 126, "update": 125.446, "loss": "54.587", "nll_loss": "1.022", "total": "665.355", "n_correct": "566.955", "ppl": "2.03", "accuracy": "85.211", "wps": "485.8", "ups": "0.73", "wpb": "665.4", "bsz": "27.9", "num_updates": "20200", "lr": "0.000594961", "gnorm": "9.51", "loss_scale": "256", "train_wall": "268", "gb_free": "3.7", "wall": "34864"}
-[2024-12-15 08:30:52,627][train_inner][INFO] - {"epoch": 126, "update": 125.481, "loss": "55.927", "nll_loss": "1.055", "total": "668.225", "n_correct": "566.74", "ppl": "2.08", "accuracy": "84.813", "wps": "488.1", "ups": "0.73", "wpb": "668.2", "bsz": "27.7", "num_updates": "20400", "lr": "0.000583196", "gnorm": "10.194", "loss_scale": "256", "train_wall": "268", "gb_free": "3.7", "wall": "35137"}
-[2024-12-15 08:35:30,059][train_inner][INFO] - {"epoch": 126, "update": 125.515, "loss": "54.531", "nll_loss": "1.029", "total": "670.05", "n_correct": "570.455", "ppl": "2.04", "accuracy": "85.136", "wps": "483", "ups": "0.72", "wpb": "670.1", "bsz": "28.2", "num_updates": "20600", "lr": "0.000571664", "gnorm": "9.761", "loss_scale": "256", "train_wall": "272", "gb_free": "3.7", "wall": "35415"}
-[2024-12-15 08:40:01,315][train_inner][INFO] - {"epoch": 126, "update": 125.549, "loss": "56.691", "nll_loss": "1.041", "total": "661.2", "n_correct": "562.475", "ppl": "2.06", "accuracy": "85.069", "wps": "487.5", "ups": "0.74", "wpb": "661.2", "bsz": "26.9", "num_updates": "20800", "lr": "0.000560361", "gnorm": "10.446", "loss_scale": "256", "train_wall": "266", "gb_free": "3.7", "wall": "35686"}
-[2024-12-15 08:44:36,722][train_inner][INFO] - {"epoch": 126, "update": 125.583, "loss": "54.493", "nll_loss": "1.025", "total": "657.715", "n_correct": "560.875", "ppl": "2.04", "accuracy": "85.276", "wps": "477.6", "ups": "0.73", "wpb": "657.7", "bsz": "27.7", "num_updates": "21000", "lr": "0.00054928", "gnorm": "10.002", "loss_scale": "256", "train_wall": "269", "gb_free": "3.7", "wall": "35962"}
-[2024-12-15 08:49:13,513][train_inner][INFO] - {"epoch": 126, "update": 125.617, "loss": "54.1", "nll_loss": "1.017", "total": "667.385", "n_correct": "569.78", "ppl": "2.02", "accuracy": "85.375", "wps": "482.2", "ups": "0.72", "wpb": "667.4", "bsz": "28.2", "num_updates": "21200", "lr": "0.000538419", "gnorm": "9.724", "loss_scale": "256", "train_wall": "271", "gb_free": "3.7", "wall": "36238"}
-[2024-12-15 08:53:52,380][train_inner][INFO] - {"epoch": 126, "update": 125.651, "loss": "53.606", "nll_loss": "1.022", "total": "669.485", "n_correct": "571.63", "ppl": "2.03", "accuracy": "85.384", "wps": "480.2", "ups": "0.72", "wpb": "669.5", "bsz": "28.6", "num_updates": "21400", "lr": "0.000527773", "gnorm": "10.054", "loss_scale": "256", "train_wall": "273", "gb_free": "3.7", "wall": "36517"}
-[2024-12-15 08:58:25,569][train_inner][INFO] - {"epoch": 126, "update": 125.685, "loss": "56.947", "nll_loss": "1.045", "total": "667.625", "n_correct": "565.745", "ppl": "2.06", "accuracy": "84.74", "wps": "488.8", "ups": "0.73", "wpb": "667.6", "bsz": "27.1", "num_updates": "21600", "lr": "0.000517337", "gnorm": "10.436", "loss_scale": "256", "train_wall": "267", "gb_free": "3.7", "wall": "36790"}
-[2024-12-15 09:03:02,164][train_inner][INFO] - {"epoch": 126, "update": 125.719, "loss": "55.26", "nll_loss": "1.024", "total": "670.415", "n_correct": "571.74", "ppl": "2.03", "accuracy": "85.282", "wps": "484.8", "ups": "0.72", "wpb": "670.4", "bsz": "27.8", "num_updates": "21800", "lr": "0.000507107", "gnorm": "10.406", "loss_scale": "256", "train_wall": "271", "gb_free": "3.7", "wall": "37067"}
-[2024-12-15 09:07:51,967][train_inner][INFO] - {"epoch": 126, "update": 125.753, "loss": "52.042", "nll_loss": "1.011", "total": "669.235", "n_correct": "571.625", "ppl": "2.02", "accuracy": "85.415", "wps": "461.9", "ups": "0.69", "wpb": "669.2", "bsz": "29.3", "num_updates": "22000", "lr": "0.00049708", "gnorm": "9.077", "loss_scale": "256", "train_wall": "283", "gb_free": "3.7", "wall": "37357"}
-[2024-12-15 09:12:30,420][train_inner][INFO] - {"epoch": 126, "update": 125.788, "loss": "53.581", "nll_loss": "1.036", "total": "664.555", "n_correct": "565.235", "ppl": "2.05", "accuracy": "85.055", "wps": "477.3", "ups": "0.72", "wpb": "664.6", "bsz": "28.5", "num_updates": "22200", "lr": "0.000487251", "gnorm": "9.48", "loss_scale": "256", "train_wall": "273", "gb_free": "3.7", "wall": "37635"}
-[2024-12-15 09:17:11,092][train_inner][INFO] - {"epoch": 126, "update": 125.822, "loss": "52.394", "nll_loss": "1.053", "total": "665.27", "n_correct": "563.855", "ppl": "2.08", "accuracy": "84.756", "wps": "474.1", "ups": "0.71", "wpb": "665.3", "bsz": "29.4", "num_updates": "22400", "lr": "0.000477616", "gnorm": "9.432", "loss_scale": "256", "train_wall": "275", "gb_free": "3.7", "wall": "37916"}
-[2024-12-15 09:19:35,845][fairseq.trainer][INFO] - NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 128.0
-[2024-12-15 09:19:37,561][fairseq.trainer][WARNING] - OOM: Ran out of memory with exception: CUDA out of memory. Tried to allocate 1.31 GiB. GPU 0 has a total capacity of 11.76 GiB of which 1.30 GiB is free. Including non-PyTorch memory, this process has 10.46 GiB memory in use. Of the allocated memory 6.94 GiB is allocated by PyTorch, and 3.27 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-[2024-12-15 09:19:37,564][fairseq.trainer][WARNING] - |===========================================================================|
-|                  PyTorch CUDA memory summary, device ID 0                 |
-|---------------------------------------------------------------------------|
-|            CUDA OOMs: 1            |        cudaMalloc retries: 1         |
-|===========================================================================|
-|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
-|---------------------------------------------------------------------------|
-| Allocated memory      |   7110 MiB |   9714 MiB | 189961 GiB | 189954 GiB |
-|       from large pool |   7080 MiB |   9686 MiB | 170976 GiB | 170969 GiB |
-|       from small pool |     30 MiB |     73 MiB |  18985 GiB |  18985 GiB |
-|---------------------------------------------------------------------------|
-| Active memory         |   7110 MiB |   9714 MiB | 189961 GiB | 189954 GiB |
-|       from large pool |   7080 MiB |   9686 MiB | 170976 GiB | 170969 GiB |
-|       from small pool |     30 MiB |     73 MiB |  18985 GiB |  18985 GiB |
-|---------------------------------------------------------------------------|
-| Requested memory      |   7070 MiB |   9681 MiB | 186210 GiB | 186204 GiB |
-|       from large pool |   7040 MiB |   9654 MiB | 167232 GiB | 167225 GiB |
-|       from small pool |     30 MiB |     73 MiB |  18978 GiB |  18978 GiB |
-|---------------------------------------------------------------------------|
-| GPU reserved memory   |  10464 MiB |  10974 MiB |  11010 MiB | 559104 KiB |
-|       from large pool |  10410 MiB |  10778 MiB |  10778 MiB | 376832 KiB |
-|       from small pool |     54 MiB |    196 MiB |    232 MiB | 182272 KiB |
-|---------------------------------------------------------------------------|
-| Non-releasable memory |   3353 MiB |   3732 MiB | 161275 GiB | 161272 GiB |
-|       from large pool |   3329 MiB |   3709 MiB | 141585 GiB | 141582 GiB |
-|       from small pool |     23 MiB |     34 MiB |  19689 GiB |  19689 GiB |
-|---------------------------------------------------------------------------|
-| Allocations           |    1551    |    2660    |  108352 K  |  108350 K  |
-|       from large pool |     463    |     587    |   26080 K  |   26080 K  |
-|       from small pool |    1088    |    2209    |   82271 K  |   82270 K  |
-|---------------------------------------------------------------------------|
-| Active allocs         |    1551    |    2660    |  108352 K  |  108350 K  |
-|       from large pool |     463    |     587    |   26080 K  |   26080 K  |
-|       from small pool |    1088    |    2209    |   82271 K  |   82270 K  |
-|---------------------------------------------------------------------------|
-| GPU reserved segments |      76    |     164    |     182    |     106    |
-|       from large pool |      49    |      66    |      66    |      17    |
-|       from small pool |      27    |      98    |     116    |      89    |
-|---------------------------------------------------------------------------|
-| Non-releasable allocs |      51    |     224    |   49174 K  |   49174 K  |
-|       from large pool |      30    |      50    |   12899 K  |   12899 K  |
-|       from small pool |      21    |     195    |   36275 K  |   36275 K  |
-|---------------------------------------------------------------------------|
-| Oversize allocations  |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize GPU segments |       0    |       0    |       0    |       0    |
-|===========================================================================|
-
-[2024-12-15 09:19:37,565][fairseq.trainer][WARNING] - |===========================================================================|
-|                  PyTorch CUDA memory summary, device ID 1                 |
-|---------------------------------------------------------------------------|
-|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
-|===========================================================================|
-|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
-|---------------------------------------------------------------------------|
-| Allocated memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Active memory         |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Requested memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| GPU reserved memory   |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Non-releasable memory |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Allocations           |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Active allocs         |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| GPU reserved segments |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Non-releasable allocs |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize allocations  |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize GPU segments |       0    |       0    |       0    |       0    |
-|===========================================================================|
-
-[2024-12-15 09:19:37,567][fairseq.trainer][WARNING] - |===========================================================================|
-|                  PyTorch CUDA memory summary, device ID 2                 |
-|---------------------------------------------------------------------------|
-|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
-|===========================================================================|
-|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
-|---------------------------------------------------------------------------|
-| Allocated memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Active memory         |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Requested memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| GPU reserved memory   |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Non-releasable memory |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Allocations           |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Active allocs         |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| GPU reserved segments |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Non-releasable allocs |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize allocations  |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize GPU segments |       0    |       0    |       0    |       0    |
-|===========================================================================|
-
-[2024-12-15 09:19:37,569][fairseq.trainer][WARNING] - |===========================================================================|
-|                  PyTorch CUDA memory summary, device ID 3                 |
-|---------------------------------------------------------------------------|
-|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
-|===========================================================================|
-|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
-|---------------------------------------------------------------------------|
-| Allocated memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Active memory         |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Requested memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| GPU reserved memory   |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Non-releasable memory |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Allocations           |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Active allocs         |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| GPU reserved segments |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Non-releasable allocs |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize allocations  |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize GPU segments |       0    |       0    |       0    |       0    |
-|===========================================================================|
-
-[2024-12-15 09:19:37,570][fairseq.trainer][WARNING] - |===========================================================================|
-|                  PyTorch CUDA memory summary, device ID 4                 |
-|---------------------------------------------------------------------------|
-|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
-|===========================================================================|
-|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
-|---------------------------------------------------------------------------|
-| Allocated memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Active memory         |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Requested memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| GPU reserved memory   |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Non-releasable memory |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Allocations           |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Active allocs         |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| GPU reserved segments |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Non-releasable allocs |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize allocations  |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize GPU segments |       0    |       0    |       0    |       0    |
-|===========================================================================|
-
-[2024-12-15 09:19:37,572][fairseq.trainer][WARNING] - |===========================================================================|
-|                  PyTorch CUDA memory summary, device ID 5                 |
-|---------------------------------------------------------------------------|
-|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
-|===========================================================================|
-|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
-|---------------------------------------------------------------------------|
-| Allocated memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Active memory         |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Requested memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| GPU reserved memory   |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Non-releasable memory |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Allocations           |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Active allocs         |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| GPU reserved segments |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Non-releasable allocs |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize allocations  |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize GPU segments |       0    |       0    |       0    |       0    |
-|===========================================================================|
-
-[2024-12-15 09:19:37,573][fairseq.trainer][WARNING] - |===========================================================================|
-|                  PyTorch CUDA memory summary, device ID 6                 |
-|---------------------------------------------------------------------------|
-|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
-|===========================================================================|
-|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
-|---------------------------------------------------------------------------|
-| Allocated memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Active memory         |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Requested memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| GPU reserved memory   |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Non-releasable memory |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Allocations           |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Active allocs         |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| GPU reserved segments |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Non-releasable allocs |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize allocations  |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize GPU segments |       0    |       0    |       0    |       0    |
-|===========================================================================|
-
-[2024-12-15 09:19:37,575][fairseq.trainer][WARNING] - |===========================================================================|
-|                  PyTorch CUDA memory summary, device ID 7                 |
-|---------------------------------------------------------------------------|
-|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |
-|===========================================================================|
-|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |
-|---------------------------------------------------------------------------|
-| Allocated memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Active memory         |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Requested memory      |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| GPU reserved memory   |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Non-releasable memory |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |
-|---------------------------------------------------------------------------|
-| Allocations           |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Active allocs         |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| GPU reserved segments |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Non-releasable allocs |       0    |       0    |       0    |       0    |
-|       from large pool |       0    |       0    |       0    |       0    |
-|       from small pool |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize allocations  |       0    |       0    |       0    |       0    |
-|---------------------------------------------------------------------------|
-| Oversize GPU segments |       0    |       0    |       0    |       0    |
-|===========================================================================|
-
-/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/autograd/graph.py:769: UserWarning: Grad strides do not match bucket view strides. This may indicate grad was not created according to the gradient layout contract, or that the param's strides changed since DDP was constructed.  This is not an error, but may impair performance.
-grad.sizes() = [64, 1, 5, 7, 7], strides() = [245, 1, 49, 7, 1]
-bucket_view.sizes() = [64, 1, 5, 7, 7], strides() = [245, 245, 49, 7, 1] (Triggered internally at ../torch/csrc/distributed/c10d/reducer.cpp:327.)
-  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
-[2024-12-15 09:19:37,575][fairseq.trainer][ERROR] - OOM during optimization, irrecoverable
-W1215 09:19:40.044730 139918332327744 torch/multiprocessing/spawn.py:146] Terminating process 2344136 via signal SIGTERM
-W1215 09:19:40.045897 139918332327744 torch/multiprocessing/spawn.py:146] Terminating process 2344137 via signal SIGTERM
-W1215 09:19:40.046440 139918332327744 torch/multiprocessing/spawn.py:146] Terminating process 2344138 via signal SIGTERM
-Traceback (most recent call last):
-  File "/workspace/av_hubert/fairseq/fairseq_cli/hydra_train.py", line 46, in hydra_main
-    distributed_utils.call_main(cfg, pre_main)
-  File "/workspace/av_hubert/fairseq/fairseq/distributed/utils.py", line 344, in call_main
-    torch.multiprocessing.spawn(
-  File "/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/multiprocessing/spawn.py", line 282, in spawn
-    return start_processes(fn, args, nprocs, join, daemon, start_method="spawn")
-  File "/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/multiprocessing/spawn.py", line 238, in start_processes
-    while not context.join():
-  File "/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/multiprocessing/spawn.py", line 189, in join
-    raise ProcessRaisedException(msg, error_index, failed_process.pid)
-torch.multiprocessing.spawn.ProcessRaisedException: 
-
--- Process 0 terminated with the following error:
-Traceback (most recent call last):
-  File "/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/multiprocessing/spawn.py", line 76, in _wrap
-    fn(i, *args)
-  File "/workspace/av_hubert/fairseq/fairseq/distributed/utils.py", line 328, in distributed_main
-    main(cfg, **kwargs)
-  File "/workspace/av_hubert/fairseq/fairseq_cli/train.py", line 180, in main
-    valid_losses, should_stop = train(cfg, trainer, task, epoch_itr)
-  File "/root/miniconda3/envs/avhubert/lib/python3.8/contextlib.py", line 75, in inner
-    return func(*args, **kwds)
-  File "/workspace/av_hubert/fairseq/fairseq_cli/train.py", line 291, in train
-    log_output = trainer.train_step(samples)
-  File "/root/miniconda3/envs/avhubert/lib/python3.8/contextlib.py", line 75, in inner
-    return func(*args, **kwds)
-  File "/workspace/av_hubert/fairseq/fairseq/trainer.py", line 862, in train_step
-    raise e
-  File "/workspace/av_hubert/fairseq/fairseq/trainer.py", line 824, in train_step
-    self.task.optimizer_step(
-  File "/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py", line 517, in optimizer_step
-    optimizer.step()
-  File "/workspace/av_hubert/fairseq/fairseq/optim/fp16_optimizer.py", line 213, in step
-    self.fp32_optimizer.step(closure, groups=groups)
-  File "/workspace/av_hubert/fairseq/fairseq/optim/fairseq_optimizer.py", line 127, in step
-    self.optimizer.step(closure)
-  File "/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/optim/optimizer.py", line 484, in wrapper
-    out = func(*args, **kwargs)
-  File "/workspace/av_hubert/fairseq/fairseq/optim/adam.py", line 212, in step
-    denom = exp_avg_sq.sqrt().add_(group["eps"])
-torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.31 GiB. GPU 0 has a total capacity of 11.76 GiB of which 1.30 GiB is free. Including non-PyTorch memory, this process has 10.46 GiB memory in use. Of the allocated memory 6.94 GiB is allocated by PyTorch, and 3.27 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
-
-
-Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.
-/root/miniconda3/envs/avhubert/lib/python3.8/multiprocessing/resource_tracker.py:216: UserWarning: resource_tracker: There appear to be 78 leaked semaphore objects to clean up at shutdown
-  warnings.warn('resource_tracker: There appear to be %d '
+[2024-12-16 13:18:12,814][train_inner][INFO] - {"epoch": 128, "update": 127.024, "loss": "127.889", "nll_loss": "4.873", "total": "672.8", "n_correct": "220.61", "ppl": "29.3", "accuracy": "32.79", "wps": "413.6", "ups": "0.61", "wpb": "672.8", "bsz": "29.6", "num_updates": "6000", "lr": "0.000406", "gnorm": "11.897", "loss_scale": "256", "train_wall": "292", "gb_free": "3.7", "wall": "9082"}
