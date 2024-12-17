@@ -6,7 +6,7 @@
 
 import os,sys
 import logging
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, OrderedDict
 
 import numpy as np
 
@@ -336,7 +336,7 @@ class MultiModalPromptLearner(nn.Module):
         self.common_prompt_video = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
         self.common_prompt_audio = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
         # Also make corresponding projection layers, for each prompt
-        r = 8
+        r = 16
         single_layer = nn.Sequential(
                 nn.Linear(embed_dim, embed_dim//r),
                 nn.GELU(),
@@ -430,6 +430,115 @@ class SubModel(nn.Module):
             x = x.transpose(1, 2)
         return x
 
+class QuickGELU(nn.Module):
+    def forward(self, x: torch.Tensor):
+        return x * torch.sigmoid(1.702 * x)
+
+class ResidualAttentionBlock(nn.Module):
+    def __init__(self, d_model: int, n_head: int, attn_mask: torch.Tensor = None, prompt_length=16,
+                 i=0, prompt_depth=0):
+        super().__init__()
+
+        self.attn = nn.MultiheadAttention(d_model, n_head)
+        self.ln_1 = LayerNorm(d_model)
+        self.mlp = nn.Sequential(OrderedDict([
+            ("c_fc", nn.Linear(d_model, d_model * 4)),
+            ("gelu", QuickGELU()),
+            ("c_proj", nn.Linear(d_model * 4, d_model))
+        ]))
+        self.ln_2 = LayerNorm(d_model)
+        # For the first iteration i, we do not need to add the learnable parameters here
+        # as it will be added in the beginning, for both audio and the vision branch
+        self.attn_mask = attn_mask
+        self.prompt_length_half = prompt_length // 3
+        if i == 0 and i <= prompt_depth:
+            self.attn_prompt = nn.MultiheadAttention(d_model, 1)
+            self.prompts_dynamic_complete = nn.init.normal_(torch.empty(self.prompt_length_half, 1, d_model), std=0.02)
+            self.prompts_dynamic_video = nn.init.normal_(torch.empty(self.prompt_length_half, 1, d_model), std=0.02)
+            self.prompts_dynamic_audio = nn.init.normal_(torch.empty(self.prompt_length_half, 1, d_model), std=0.02)
+        # This must be consistent with the config file prompt
+        if i == 0:
+            self.first_layer = True
+        else:
+            self.first_layer = False
+
+    def attention(self, x: torch.Tensor):
+        self.attn_mask = self.attn_mask.to(dtype=x.dtype, device=x.device) if self.attn_mask is not None else None
+        return self.attn(x, x, x, need_weights=False, attn_mask=self.attn_mask)[0]
+
+    def forward(self, inputs):
+        # For the first layer, we do not need to add any duplicate, as it is already added
+        # as the shallow version
+        x = inputs[0]  # [length, batch, channel]
+        compound_prompts_deeper = inputs[1]
+        counter = inputs[2]
+        missing_type = inputs[3]
+        if len(compound_prompts_deeper) > 0:
+            # This means that deeper compound prompts are turned on
+            # Here it behaves differently for audio and visual side
+            # Forward function is same for both
+
+            # First check if the ith layer needs compound prompts or not
+            if counter == 0:
+                # First check if the ith layer needs compound prompts or not
+                if not (counter > len(compound_prompts_deeper) - 1):
+                    # Remove the outputs produced by learnable tokens of previous layer
+                    if not self.first_layer:
+                        visual_features = x[self.prompt_length_half * 3:, :, :]
+                    else:
+                        visual_features = x
+                    prompts_dynamic = []
+                    for i in range(len(missing_type)):
+                        if missing_type[i] == 0:  # modality complete
+                            prompts_dynamic.append(self.prompts_dynamic_complete)
+                        elif missing_type[i] == 1:  # missing video 
+                            prompts_dynamic.append(self.prompts_dynamic_video)
+                        elif missing_type[i] == 2:  # missing audio
+                            prompts_dynamic.append(self.prompts_dynamic_audio)
+                    # print("prompts_dynamic[0] shape: ", prompts_dynamic[0].shape)
+                    # print("prompts_dynamic length: ", len(prompts_dynamic))
+                    prompts_dynamic = torch.cat(prompts_dynamic, 1)
+                    prompts_dynamic = self.attn_prompt(prompts_dynamic.to(x.get_device()).to(x.dtype), visual_features, visual_features, need_weights=False, attn_mask=None)[0]
+                    # Create/configure learnable tokens of this layer
+                    prompts_staged_and_common = compound_prompts_deeper[counter]  # extract the correct index
+                    # prompts_staged_and_common = prompts_staged_and_common.permute(1, 0, 2)
+                    # Add the learnable tokens of this layer with the input, by replacing previous
+                    # layer learnable tokens
+                    
+                    # print("prompts_staged_and_common shape: ", prompts_staged_and_common.shape)
+                    # print("prompts_dynamic shape: ", prompts_dynamic.shape)
+                    # print("visual_features shape: ", visual_features.shape)
+                    
+                    x = torch.cat([prompts_staged_and_common, prompts_dynamic, visual_features], dim=0)
+
+                    # Once done, update the counter, so that the next time, it does not use same learnable tokens
+                    counter += 1
+            else:
+                # First check if the ith layer needs compound prompts or not
+                if not (counter > len(compound_prompts_deeper) - 1):
+                    # Remove the outputs produced by learnable tokens of previous layer
+                    if not self.first_layer:
+                        features = x[self.prompt_length_half*3:, :, :]
+                    else:
+                        features = x
+                    prompts_dynamic_and_common = x[self.prompt_length_half:self.prompt_length_half*3, :, :]
+                    # Create/configure learnable tokens of this layer
+                    prompts = compound_prompts_deeper[counter]  # extract the correct index
+                    # prompts = prompts.permute(1, 0, 2)
+                    # Add the learnable tokens of this layer with the input, by replacing previous
+                    # layer learnable tokens
+                    
+                    # print("prompts shape: ", prompts.shape)
+                    # print("prompts_dynamic_and_common shape: ", prompts_dynamic_and_common.shape)
+                    # print("features shape: ", features.shape)
+                    
+                    x = torch.cat([prompts, prompts_dynamic_and_common, features], dim=0)
+                    # Once done, update the counter, so that the next time, it does not use same learnable tokens
+                    counter += 1
+        x = x + self.attention(self.ln_1(x))
+        x = x + self.mlp(self.ln_2(x))
+        return [x, compound_prompts_deeper, counter, None]  # return again as a list, so that nn.seq can work
+
 @register_model("av_hubert", dataclass=AVHubertConfig)
 class AVHubertModel(BaseFairseqModel):
     def __init__(
@@ -495,9 +604,16 @@ class AVHubertModel(BaseFairseqModel):
             torch.FloatTensor(cfg.audio_feat_dim).uniform_() if self.masking_type == 'input' else torch.FloatTensor(cfg.encoder_embed_dim).uniform_()
         )
 
-        self.prompt_length = 72
-        self.prompt_depth = 12
+        self.prompt_length = 36
+        self.prompt_depth = 6
         self.modal_prompt_learner = MultiModalPromptLearner(self.prompt_length, self.prompt_depth)
+        
+        # print("CFG : ", cfg)
+        self.resblocks = nn.Sequential(*[
+            ResidualAttentionBlock(cfg.encoder_embed_dim, cfg.encoder_attention_heads, None, self.prompt_length, i, self.prompt_depth)
+            for i in range(cfg.encoder_layers)
+        ])
+        
         self.video_encoder = TransformerEncoder_prompt(cfg)
         self.audio_encoder = TransformerEncoder_prompt(cfg)
         
@@ -806,7 +922,7 @@ class AVHubertModel(BaseFairseqModel):
             src_audio, src_video, mask_indices = src_audio, src_video, None
 
         prompts_video, prompts_audio = self.modal_prompt_learner(missing_type)
-
+        
         if src_audio is not None and src_video is None:
             features_audio = self.forward_features(src_audio, prompts_audio, modality='audio') # features: [B, F, T]
             features_video = features_audio.new_zeros(features_audio.size(0), self.encoder_embed_dim, features_audio.size(-1))
@@ -822,21 +938,27 @@ class AVHubertModel(BaseFairseqModel):
 
         features_video = features_video.transpose(1, 2)
         features_audio = features_audio.transpose(1, 2)
-
+        
         features_video, _ = self.video_encoder(
             features_video,
             prompts_video,
             padding_mask=padding_mask,
-            layer=None if output_layer is None else output_layer - 1
-        )            
+            layer=None if output_layer is None else output_layer - 1,
+        )
+        
+        for i, r in enumerate(self.resblocks):
+            features_video, prompts_video, _, _ = r([features_video, prompts_video, i, missing_type])         
         
         features_audio, _ = self.audio_encoder(
             features_audio,
             prompts_audio,
             padding_mask=padding_mask,
-            layer=None if output_layer is None else output_layer - 1
+            layer=None if output_layer is None else output_layer - 1,
         )
-
+        
+        for i, r in enumerate(self.resblocks):
+            features_audio, prompts_audio, _, _ = r([features_audio, prompts_audio, i, missing_type])   
+        
         if self.modality_fuse == 'concat':
             features = torch.cat([features_audio, features_video], dim=2)
         elif self.modality_fuse == 'add':
