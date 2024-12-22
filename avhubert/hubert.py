@@ -34,12 +34,12 @@ if DBG:
         AVHubertPretrainingTask,
     )
     from resnet import ResEncoder
-    logging.basicConfig(
-        format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-        level=os.environ.get("LOGLEVEL", "INFO").upper(),
-        stream=sys.stdout,
-    )
+    # logging.basicConfig(
+    #     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+    #     datefmt="%Y-%m-%d %H:%M:%S",
+    #     level=os.environ.get("LOGLEVEL", "DEBUG").upper(),
+    #     stream=sys.stdout,
+    # )
     from utils import compute_mask_indices
     from decoder import TransformerDecoder
 
@@ -55,6 +55,7 @@ else:
 from omegaconf import II
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 EXTRACTOR_MODE_CHOICES = ChoiceEnum(["default", "layer_norm"])
 MASKING_DISTRIBUTION_CHOICES = ChoiceEnum(
@@ -408,6 +409,13 @@ class MultiModalPromptLearner(nn.Module):
         all_prompts_video = [torch.stack(prompts) for prompts in all_prompts_video]
         all_prompts_audio = [torch.stack(prompts) for prompts in all_prompts_audio]
         
+        
+        for i, p in enumerate(all_prompts_video):
+            if i > 0 and p.shape[1] == all_prompts_video[i - 1].shape[0]:
+                p = p.transpose(0, 1)
+            if i > 0 and all_prompts_audio[i].shape[1] == all_prompts_audio[i - 1].shape[0]:
+                all_prompts_audio[i] = all_prompts_audio[i].transpose(0, 1)
+            # logger.debug(f"all_prompts_video[{i}] shape: {p.shape}")
         # print("length of all_prompts_video", len(all_prompts_video))
         # print("length of all_prompts_video[0]", all_prompts_video[0].shape)
         
@@ -471,6 +479,12 @@ class ResidualAttentionBlock(nn.Module):
         # as the shallow version
         x = inputs[0]  # [length, batch, channel]
         compound_prompts_deeper = inputs[1]
+        for i, c in enumerate(compound_prompts_deeper):
+            if i > 0 and c.shape[0] == compound_prompts_deeper[i - 1].shape[1]:
+                # logger.debug("compound_prompts_deeper[%d] shape: %s", i - 1, compound_prompts_deeper[i - 1].shape)
+                # logger.debug("compound_prompts_deeper[%d] shape: %s", i, c.shape)
+                compound_prompts_deeper[i] = c.transpose(0, 1)
+                
         counter = inputs[2]
         missing_type = inputs[3]
         if len(compound_prompts_deeper) > 0:
@@ -481,7 +495,7 @@ class ResidualAttentionBlock(nn.Module):
             # First check if the ith layer needs compound prompts or not
             if counter == 0:
                 # First check if the ith layer needs compound prompts or not
-                if not (counter > len(compound_prompts_deeper) - 1):
+                if counter < len(compound_prompts_deeper):
                     # Remove the outputs produced by learnable tokens of previous layer
                     if not self.first_layer:
                         visual_features = x[self.prompt_length_half * 3:, :, :]
@@ -498,6 +512,10 @@ class ResidualAttentionBlock(nn.Module):
                     # print("prompts_dynamic[0] shape: ", prompts_dynamic[0].shape)
                     # print("prompts_dynamic length: ", len(prompts_dynamic))
                     prompts_dynamic = torch.cat(prompts_dynamic, 1)
+                    visual_features = visual_features.transpose(0, 1)
+                    
+                    # print("prompts_dynamic shape: ", prompts_dynamic.shape)
+                    # print("visual_features shape: ", visual_features.shape)
                     prompts_dynamic = self.attn_prompt(prompts_dynamic.to(x.get_device()).to(x.dtype), visual_features, visual_features, need_weights=False, attn_mask=None)[0]
                     # Create/configure learnable tokens of this layer
                     prompts_staged_and_common = compound_prompts_deeper[counter]  # extract the correct index
@@ -505,9 +523,9 @@ class ResidualAttentionBlock(nn.Module):
                     # Add the learnable tokens of this layer with the input, by replacing previous
                     # layer learnable tokens
                     
-                    # print("prompts_staged_and_common shape: ", prompts_staged_and_common.shape)
-                    # print("prompts_dynamic shape: ", prompts_dynamic.shape)
-                    # print("visual_features shape: ", visual_features.shape)
+                    # logger.debug("prompts_staged_and_common shape: %s", prompts_staged_and_common.shape)
+                    # logger.debug("prompts_dynamic shape: %s", prompts_dynamic.shape)
+                    # logger.debug("visual_features shape: %s", visual_features.shape)
                     
                     x = torch.cat([prompts_staged_and_common, prompts_dynamic, visual_features], dim=0)
 
@@ -515,7 +533,7 @@ class ResidualAttentionBlock(nn.Module):
                     counter += 1
             else:
                 # First check if the ith layer needs compound prompts or not
-                if not (counter > len(compound_prompts_deeper) - 1):
+                if counter < len(compound_prompts_deeper):
                     # Remove the outputs produced by learnable tokens of previous layer
                     if not self.first_layer:
                         features = x[self.prompt_length_half*3:, :, :]
@@ -528,16 +546,16 @@ class ResidualAttentionBlock(nn.Module):
                     # Add the learnable tokens of this layer with the input, by replacing previous
                     # layer learnable tokens
                     
-                    # print("prompts shape: ", prompts.shape)
-                    # print("prompts_dynamic_and_common shape: ", prompts_dynamic_and_common.shape)
-                    # print("features shape: ", features.shape)
+                    # logger.debug("counter: %d, prompts shape: %s", counter, prompts.shape)
+                    # logger.debug("prompts_dynamic_and_common shape: %s", prompts_dynamic_and_common.shape)
+                    # logger.debug("features shape: %s", features.shape)
                     
                     x = torch.cat([prompts, prompts_dynamic_and_common, features], dim=0)
                     # Once done, update the counter, so that the next time, it does not use same learnable tokens
                     counter += 1
         x = x + self.attention(self.ln_1(x))
         x = x + self.mlp(self.ln_2(x))
-        return [x, compound_prompts_deeper, counter, None]  # return again as a list, so that nn.seq can work
+        return [x, compound_prompts_deeper, counter, missing_type]  # return again as a list, so that nn.seq can work
 
 @register_model("av_hubert", dataclass=AVHubertConfig)
 class AVHubertModel(BaseFairseqModel):
@@ -605,7 +623,7 @@ class AVHubertModel(BaseFairseqModel):
         )
 
         self.prompt_length = 36
-        self.prompt_depth = 6
+        self.prompt_depth = cfg.encoder_layers
         self.modal_prompt_learner = MultiModalPromptLearner(self.prompt_length, self.prompt_depth)
         
         # print("CFG : ", cfg)
@@ -613,6 +631,15 @@ class AVHubertModel(BaseFairseqModel):
             ResidualAttentionBlock(cfg.encoder_embed_dim, cfg.encoder_attention_heads, None, self.prompt_length, i, self.prompt_depth)
             for i in range(cfg.encoder_layers)
         ])
+        
+        proj_std = (cfg.encoder_embed_dim ** -0.5) * ((2 * cfg.encoder_layers) ** -0.5)
+        attn_std = cfg.encoder_embed_dim ** -0.5
+        fc_std = (2 * cfg.encoder_embed_dim) ** -0.5
+        for block in self.resblocks:
+            nn.init.normal_(block.attn.in_proj_weight, std=attn_std)
+            nn.init.normal_(block.attn.out_proj.weight, std=proj_std)
+            nn.init.normal_(block.mlp.c_fc.weight, std=fc_std)
+            nn.init.normal_(block.mlp.c_proj.weight, std=proj_std)
         
         self.video_encoder = TransformerEncoder_prompt(cfg)
         self.audio_encoder = TransformerEncoder_prompt(cfg)
@@ -933,9 +960,6 @@ class AVHubertModel(BaseFairseqModel):
             features_video = self.forward_features(src_video, prompts_video, modality='video')
             features_audio = self.forward_features(src_audio, prompts_audio, modality='audio') # features: [B, F, T]
 
-        # print("features_video shape: ", features_video.shape)
-        # print("features_audio shape: ", features_audio.shape)
-
         features_video = features_video.transpose(1, 2)
         features_audio = features_audio.transpose(1, 2)
         
@@ -946,8 +970,9 @@ class AVHubertModel(BaseFairseqModel):
             layer=None if output_layer is None else output_layer - 1,
         )
         
-        for i, r in enumerate(self.resblocks):
-            features_video, prompts_video, _, _ = r([features_video, prompts_video, i, missing_type])         
+        features_video = self.resblocks([features_video, prompts_video, 0, missing_type])[0]
+        # for i, r in enumerate(self.resblocks):
+        #     features_video, prompts_video, _, _ = r([features_video, prompts_video, i, missing_type])         
         
         features_audio, _ = self.audio_encoder(
             features_audio,
@@ -956,13 +981,15 @@ class AVHubertModel(BaseFairseqModel):
             layer=None if output_layer is None else output_layer - 1,
         )
         
-        for i, r in enumerate(self.resblocks):
-            features_audio, prompts_audio, _, _ = r([features_audio, prompts_audio, i, missing_type])   
+        features_audio = self.resblocks([features_audio, prompts_audio, 0, missing_type])[0]
+        # for i, r in enumerate(self.resblocks):
+        #     features_audio, prompts_audio, _, _ = r([features_audio, prompts_audio, i, missing_type])           
         
         if self.modality_fuse == 'concat':
             features = torch.cat([features_audio, features_video], dim=2)
         elif self.modality_fuse == 'add':
             features = features_audio + features_video
+        logger.debug("features shape: %s", features.shape)
         features_pen = features.float().pow(2).mean()
 
         # features = features.transpose(1, 2)
@@ -978,6 +1005,7 @@ class AVHubertModel(BaseFairseqModel):
 
         if padding_mask is not None:
             padding_mask = self.forward_padding_mask(features, padding_mask)
+        logger.debug(f"padding_mask shape: {padding_mask.shape}")
 
         if self.post_extract_proj is not None:
             features = self.post_extract_proj(features)
