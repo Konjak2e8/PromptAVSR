@@ -19,7 +19,7 @@ checkpoint:
 distributed_training:
   ddp_backend: c10d
   find_unused_parameters: true
-  distributed_world_size: 1
+  distributed_world_size: 4
   # distributed_port: 29671
   nprocs_per_node: 8
 
@@ -96,6 +96,7 @@ model:
   freeze_finetune_updates: 22500
   share_decoder_input_output_embed: true
   decoder_normalize_before: true
+  prompting: true
 
 hydra:
   job:

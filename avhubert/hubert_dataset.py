@@ -359,10 +359,10 @@ class AVHubertDataset(FairseqDataset):
         
         # video缺失
         if self.type_list[index] == 1:
-            video_feats = torch.zeros_like(video_feats)
+            video_feats = torch.ones_like(video_feats)
         # audio缺失
         elif self.type_list[index] == 2:
-            audio_feats = torch.zeros_like(audio_feats)
+            audio_feats = torch.ones_like(audio_feats)
         
         if self.normalize and 'audio' in self.modalities \
             and self.type_list[index] != 2:

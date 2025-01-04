@@ -1,0 +1,5 @@
+- task.data=/workspace/lrs2/433h_data
+- task.label_dir=/workspace/lrs2/433h_data
+- task.tokenizer_bpe_model=/workspace/lrs2/spm1000/spm_unigram1000.model
+- model.w2v_path=/workspace/AV_HuBERT_pretrained/base_vox_iter5.pt
+- common.user_dir=/workspace/av_hubert/avhubert
