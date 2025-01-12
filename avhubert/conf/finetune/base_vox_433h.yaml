@@ -96,6 +96,7 @@ model:
   freeze_finetune_updates: 22500
   share_decoder_input_output_embed: true
   decoder_normalize_before: true
+  prompting: true
 
 hydra:
   job:
