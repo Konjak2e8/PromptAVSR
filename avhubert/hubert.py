@@ -252,7 +252,7 @@ class AVHubertConfig(FairseqDataclass):
     resnet_weights: Optional[str] = field(default=None, metadata={"help": 'resnet weights'})
     sim_type: str = field(default='cosine', metadata={"help": 'similarity type'})
 
-    sub_encoder_layers: int = field(default=0, metadata={'help': 'number of transformer layers for single modality'})
+    sub_encoder_layers: int = field(default=12, metadata={'help': 'number of transformer layers for single modality'})
     audio_feat_dim: int = field(default=-1, metadata={'help': 'audio feature dimension'})
     modality_dropout: float = field(default=0, metadata={'help': 'drop one modality'})
     audio_dropout: float = field(default=0, metadata={'help': 'drop audio feature'})
@@ -324,7 +324,7 @@ class MultiModalPromptLearner(nn.Module):
         super().__init__()
         prompt_length_half = prompt_length // 3 # use half length for generating static prompts, and the other for generating dynamic prompts
         # Default is 1, which is compound shallow prompting
-        embed_dim_audio = 512
+        embed_dim_audio = 768
         embed_dim_video = 768
         embed_dim = embed_dim_audio + embed_dim_video
         
@@ -401,6 +401,7 @@ class MultiModalPromptLearner(nn.Module):
                     all_prompts_video[0][i], 
                     self.common_prompt_projection_video(common_prompt)]
                     ,0)
+            # assert all_prompts_video[0][i].isnan().any(), "NaN detected in self.common_prompt_projection_video(common_prompt)"
             all_prompts_audio[0][i] = torch.cat([
                     all_prompts_audio[0][i], 
                     self.common_prompt_projection_audio(common_prompt)]
@@ -409,15 +410,10 @@ class MultiModalPromptLearner(nn.Module):
         all_prompts_video = [torch.stack(prompts) for prompts in all_prompts_video]
         all_prompts_audio = [torch.stack(prompts) for prompts in all_prompts_audio]
         
-        
-        # for i, p in enumerate(all_prompts_video):
-        #     if i > 0 and p.shape[1] == all_prompts_video[i - 1].shape[0]:
-        #         p = p.transpose(0, 1)
-        #     if i > 0 and all_prompts_audio[i].shape[1] == all_prompts_audio[i - 1].shape[0]:
-        #         all_prompts_audio[i] = all_prompts_audio[i].transpose(0, 1)
-            # logger.debug(f"all_prompts_video[{i}] shape: {p.shape}")
-        # print("length of all_prompts_video", len(all_prompts_video))
-        # print("length of all_prompts_video[0]", all_prompts_video[0].shape)
+        for i in range(len(all_prompts_video)):
+            all_prompts_video[i] = all_prompts_video[i].transpose(0, 1)
+        for i in range(len(all_prompts_audio)):
+            all_prompts_audio[i] = all_prompts_audio[i].transpose(0, 1)
         
         return all_prompts_video, all_prompts_audio   
 
@@ -428,7 +424,7 @@ class SubModel(nn.Module):
         self.proj = nn.Linear(input_dim, cfg.encoder_embed_dim)
         self.prompt_encoder = TransformerEncoder(cfg) if cfg.encoder_layers > 0 else None
 
-    def forward(self, x, prompts=None):
+    def forward(self, x, prompts):
         if self.resnet is not None:
             x = self.resnet(x)
         x = self.proj(x.transpose(1, 2))
@@ -514,11 +510,11 @@ class ResidualAttentionBlock(nn.Module):
                     prompts_dynamic = self.attn_prompt(prompts_dynamic.to(x.get_device()).to(x.dtype), visual_features, visual_features, need_weights=False, attn_mask=None)[0]
                     # Create/configure learnable tokens of this layer
                     prompts_staged_and_common = compound_prompts_deeper[counter]  # extract the correct index
-                    assert prompts_staged_and_common.isnan().any(), f"NaN detected in prompts_staged_and_common 1"
+                    # assert prompts_staged_and_common.isnan().any(), f"NaN detected in prompts_staged_and_common 1"
                     prompts_staged_and_common = prompts_staged_and_common.permute(1, 0, 2)
-                    assert prompts_staged_and_common.isnan().any(), f"NaN detected in prompts_staged_and_common 2"
+                    # assert prompts_staged_and_common.isnan().any(), f"NaN detected in prompts_staged_and_common 2"
                     
-                    assert prompts_dynamic.isnan().any(), f"NaN detected in prompts_dynamic"
+                    # assert prompts_dynamic.isnan().any(), f"NaN detected in prompts_dynamic"
                     
                     # Add the learnable tokens of this layer with the input, by replacing previous
                     # layer learnable tokens
@@ -531,7 +527,7 @@ class ResidualAttentionBlock(nn.Module):
 
                     # Once done, update the counter, so that the next time, it does not use same learnable tokens
                     counter += 1
-                    assert x.isnan().any(), f"NaN detected in x 1"
+                    # assert x.isnan().any(), f"NaN detected in x 1"
             else:
                 # First check if the ith layer needs compound prompts or not
                 if counter < len(compound_prompts_deeper):
@@ -554,12 +550,11 @@ class ResidualAttentionBlock(nn.Module):
                     x = torch.cat([prompts, prompts_dynamic_and_common, features], dim=0)
                     # Once done, update the counter, so that the next time, it does not use same learnable tokens
                     counter += 1
-                    assert x.isnan().any(), f"NaN detected in x 1"
-        print(x)
+                    # assert x.isnan().any(), f"NaN detected in x 1"
         x = x + self.attention(self.ln_1(x))
-        assert x.isnan().any(), f"NaN detected in x 2"
+        # assert x.isnan().any(), f"NaN detected in x 2"
         x = x + self.mlp(self.ln_2(x))
-        assert x.isnan().any(), f"NaN detected in x 3"
+        # assert x.isnan().any(), f"NaN detected in x 3"
         return [x, compound_prompts_deeper, counter, missing_type]  # return again as a list, so that nn.seq can work
 
 @register_model("av_hubert", dataclass=AVHubertConfig)
@@ -629,7 +624,7 @@ class AVHubertModel(BaseFairseqModel):
 
         self.prompt_length = 12
         self.prompt_depth = cfg.encoder_layers // 3
-        # self.modal_prompt_learner = MultiModalPromptLearner(self.prompt_length, self.prompt_depth)
+        self.modal_prompt_learner = MultiModalPromptLearner(self.prompt_length, self.prompt_depth)
         
         # self.resblocks = nn.Sequential(*[
         #     ResidualAttentionBlock(cfg.encoder_embed_dim, cfg.encoder_attention_heads, None, self.prompt_length, i, self.prompt_depth)
@@ -962,9 +957,11 @@ class AVHubertModel(BaseFairseqModel):
         else:
             src_audio, src_video, mask_indices = src_audio, src_video, None
 
-        prompts_video = None
-        prompts_audio = None
-        # prompts_video, prompts_audio = self.modal_prompt_learner(missing_type)
+        # prompts_video = None
+        # prompts_audio = None
+        prompts_video, prompts_audio = self.modal_prompt_learner(missing_type)
+        # print("prompts length: ", len(prompts_video))
+        # print("prompts[0] shape: ", prompts_video[0].shape)
         # for p in prompts_video:
         #     assert p.isnan().any(), f"NaN detected in prompts_video"
         # for p in prompts_audio:

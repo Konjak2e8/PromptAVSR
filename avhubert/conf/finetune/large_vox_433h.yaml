@@ -28,7 +28,7 @@ task:
   data: ???
   label_dir: ???
   tokenizer_bpe_model: ???
-  normalize: true  # must be consistent with pre-training
+  normalize: true # must be consistent with pre-training
   labels: ["wrd"]
   single_target: true
   fine_tuning: true
@@ -98,13 +98,13 @@ model:
   decoder_embed_dim: 1024
   decoder_ffn_embed_dim: 4096
   decoder_attention_heads: 8
-  
+
 hydra:
   job:
     config:
       override_dirname:
-        kv_sep: '-'
-        item_sep: '__'
+        kv_sep: "-"
+        item_sep: "__"
         exclude_keys:
           - run
           - task.data

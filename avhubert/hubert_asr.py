@@ -498,19 +498,27 @@ class AVHubertSeq2Seq(FairseqEncoderDecoderModel):
 
         if cfg.prompting:
             for k, v in AVHubertSeq2Seq_model.named_parameters():
-                # print(k)
-                if 'encoder.w2v_model.encoder.layers.4' not in k:# and 'decoder' not in k:
-                    v.requires_grad = False
+                v.requires_grad = False
+                # if f'encoder.w2v_model' in k:
+                #     for j in range(0, 4):
+                #         if f'encoder.layers.{j}.' in k:
+                #             v.requires_grad = True
+                #             break
+                if f'prompt' in k or f'resblocks' in k:
+                    v.requires_grad = True
                     # print(k)
-        for k, v in AVHubertSeq2Seq_model.named_parameters():
-            # print(k)
-            if v.requires_grad:
-                print(k)
+                        
+        # for k, v in AVHubertSeq2Seq_model.named_parameters():
+        #     # print(k)
+        #     if not v.requires_grad:
+        #         with open('/workspace/av_hubert/avhubert/non_strict_params.txt', 'a+') as f:
+        #             f.write(k)
+        #             f.write('\n')
         all_params = sum(p.numel() for p in AVHubertSeq2Seq_model.parameters())
         trainable_params = sum(p.numel() for p in AVHubertSeq2Seq_model.parameters() if p.requires_grad)
         print('all_params: %.2fM learnable_params: %.2fM' % (all_params / 1e6, trainable_params / 1e6))
         # return AVHubertSeq2Seq(encoder, decoder, tgt_dict, cfg)
-        torch.autograd.set_detect_anomaly(True)
+        # torch.autograd.set_detect_anomaly(True)
         return AVHubertSeq2Seq(encoder, decoder, tgt_dict, cfg)
 
 
