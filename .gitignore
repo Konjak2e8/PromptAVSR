@@ -4,3 +4,4 @@ decode/
 avhubert/__pycache__/
 finetune_*/
 avhubert/outputs/
+avhubert/logs/
