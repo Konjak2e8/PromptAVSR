@@ -31,7 +31,7 @@ else:
     from .decoder import TransformerDecoder
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+
 
 @dataclass
 class AVHubertAsrConfig(FairseqDataclass):
@@ -136,10 +136,6 @@ class AVHubertAsrConfig(FairseqDataclass):
     layerdrop: float = field(
         default=0.0,
         metadata={"help": "probability of dropping a layer in hubert"},
-    )
-    prompting: bool = field(
-        default=False,
-        metadata={"help": "using prompting strategy", }
     )
     normalize: bool = II("task.normalize")
     data: str = II("task.data")
@@ -377,10 +373,9 @@ class HubertEncoder(FairseqEncoder):
 
 
 class HubertEncoderWrapper(FairseqEncoder):
-    def __init__(self, w2v_model, prompting):
+    def __init__(self, w2v_model):
         super().__init__(None)
         self.w2v_model = w2v_model
-        self.prompting = prompting
 
     def forward(self, source, padding_mask, **kwargs):
         w2v_args = {
@@ -419,7 +414,6 @@ class AVHubertSeq2Seq(FairseqEncoderDecoderModel):
         super().__init__(encoder, decoder)
         self.cfg = cfg
         self.freeze_finetune_updates = cfg.freeze_finetune_updates
-        self.prompting = cfg.prompting
 
     @classmethod
     def build_model(cls, cfg, task):
@@ -442,7 +436,6 @@ class AVHubertSeq2Seq(FairseqEncoderDecoderModel):
             "no_mask_channel_overlap": cfg.no_mask_channel_overlap,
             "encoder_layerdrop": cfg.layerdrop,
             "feature_grad_mult": cfg.feature_grad_mult,
-            "prompting": cfg.prompting,
         }
 
         if cfg.w2v_args is None:
@@ -475,7 +468,7 @@ class AVHubertSeq2Seq(FairseqEncoderDecoderModel):
 
         encoder_ = task_pretrain.build_model(w2v_args.model)
 
-        encoder = HubertEncoderWrapper(encoder_, cfg.prompting)
+        encoder = HubertEncoderWrapper(encoder_)
         if state is not None and not cfg.no_pretrained_weights:
             # set strict=False because we omit some modules
             del state['model']['mask_emb']
@@ -523,15 +516,10 @@ class AVHubertSeq2Seq(FairseqEncoderDecoderModel):
 
 
     def forward(self, **kwargs):
-        if self.prompting:
-            with contextlib.ExitStack():
-                output = self.encoder(**kwargs)
-                decoder_out = self.decoder(prev_output_tokens=kwargs['prev_output_tokens'], encoder_out=output)
-        else:
-            ft = self.freeze_finetune_updates <= self.num_updates
-            with torch.no_grad() if not ft else contextlib.ExitStack():
-                output = self.encoder(**kwargs)
-            decoder_out = self.decoder(prev_output_tokens=kwargs['prev_output_tokens'], encoder_out=output)
+        ft = self.freeze_finetune_updates <= self.num_updates
+        with torch.no_grad() if not ft else contextlib.ExitStack():
+            output = self.encoder(**kwargs)
+        decoder_out = self.decoder(prev_output_tokens=kwargs['prev_output_tokens'], encoder_out=output)
         return decoder_out
 
     def upgrade_state_dict_named(self, state_dict, name):
