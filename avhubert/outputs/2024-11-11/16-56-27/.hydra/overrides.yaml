@@ -1,5 +1,0 @@
-- dataset.gen_subset=test
-- common_eval.path=/workspace/av_hubert/finetune/checkpoints/checkpoint_best.pt
-- common_eval.results_path=/workspace/av_hubert/decode/s2s/test
-- override.modalities=[video]
-- common.user_dir=/workspace/av_hubert/avhubert

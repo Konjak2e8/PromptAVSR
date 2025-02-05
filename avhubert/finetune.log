@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/workspace/av_hubert/fairseq/fairseq_cli/hydra_train.py", line 37, in hydra_main
-    cfg = OmegaConf.create(OmegaConf.to_container(cfg, resolve=True, enum_to_str=True))
-omegaconf.errors.ConfigKeyError: str interpolation key 'common.tpu' not found
-
-Set the environment variable HYDRA_FULL_ERROR=1 for a complete stack trace.

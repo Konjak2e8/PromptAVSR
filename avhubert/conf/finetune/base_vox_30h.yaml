@@ -18,8 +18,8 @@ checkpoint:
 distributed_training:
   ddp_backend: c10d
   find_unused_parameters: true
-  distributed_world_size: 8
-  distributed_port: 29671
+  distributed_world_size: 4
+  # distributed_port: 29671
   nprocs_per_node: 8
 
 task:
@@ -28,14 +28,14 @@ task:
   data: ???
   label_dir: ???
   tokenizer_bpe_model: ???
-  normalize: true  # must be consistent with pre-training
+  normalize: true # must be consistent with pre-training
   labels: ["wrd"]
   single_target: true
   fine_tuning: true
   stack_order_audio: 4
   tokenizer_bpe_name: sentencepiece
   max_sample_size: 500
-  modalities: ["video"]
+  modalities: ["video", "audio"]
   image_aug: true
   pad_audio: true
   random_crop: false
@@ -95,13 +95,14 @@ model:
   freeze_finetune_updates: 24000
   share_decoder_input_output_embed: true
   decoder_normalize_before: true
+  prompting: true
 
 hydra:
   job:
     config:
       override_dirname:
-        kv_sep: '-'
-        item_sep: '__'
+        kv_sep: "-"
+        item_sep: "__"
         exclude_keys:
           - run
           - task.data

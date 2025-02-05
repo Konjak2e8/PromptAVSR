@@ -252,7 +252,7 @@ class AVHubertConfig(FairseqDataclass):
     resnet_weights: Optional[str] = field(default=None, metadata={"help": 'resnet weights'})
     sim_type: str = field(default='cosine', metadata={"help": 'similarity type'})
 
-    sub_encoder_layers: int = field(default=12, metadata={'help': 'number of transformer layers for single modality'})
+    sub_encoder_layers: int = field(default=0, metadata={'help': 'number of transformer layers for single modality'})
     audio_feat_dim: int = field(default=-1, metadata={'help': 'audio feature dimension'})
     modality_dropout: float = field(default=0, metadata={'help': 'drop one modality'})
     audio_dropout: float = field(default=0, metadata={'help': 'drop audio feature'})
@@ -379,14 +379,14 @@ class MultiModalPromptLearner(nn.Module):
                 initial_prompt_video = self.video_prompt_complete
                 initial_prompt_audio = self.audio_prompt_complete
                 common_prompt = self.common_prompt_complete
-            elif missing_type[i] == 2:  # missing audio 
-                initial_prompt_video = self.video_prompt_complete
-                initial_prompt_audio = self.audio_prompt_missing
-                common_prompt = self.common_prompt_video
             elif missing_type[i] == 1:  # missing video 
                 initial_prompt_video = self.video_prompt_missing
                 initial_prompt_audio = self.audio_prompt_complete
                 common_prompt = self.common_prompt_audio
+            elif missing_type[i] == 2:  # missing audio 
+                initial_prompt_video = self.video_prompt_complete
+                initial_prompt_audio = self.audio_prompt_missing
+                common_prompt = self.common_prompt_video
 
             # generate the prompts of the first layer
             all_prompts_video[0].append(self.compound_prompt_projections_video[0](self.layernorm_video[0](torch.cat([initial_prompt_video, initial_prompt_audio], -1))))
@@ -422,14 +422,14 @@ class SubModel(nn.Module):
         super().__init__()
         self.resnet = resnet
         self.proj = nn.Linear(input_dim, cfg.encoder_embed_dim)
-        self.prompt_encoder = TransformerEncoder(cfg) if cfg.encoder_layers > 0 else None
+        self.encoder = TransformerEncoder(cfg) if cfg.encoder_layers > 0 else None
 
-    def forward(self, x, prompts):
+    def forward(self, x):
         if self.resnet is not None:
             x = self.resnet(x)
         x = self.proj(x.transpose(1, 2))
-        if self.prompt_encoder is not None:
-            x = self.prompt_encoder(x, prompts)[0].transpose(1, 2)
+        if self.encoder is not None:
+            x = self.encoder(x)[0].transpose(1, 2)
         else:
             x = x.transpose(1, 2)
         return x
@@ -475,7 +475,8 @@ class ResidualAttentionBlock(nn.Module):
         # as the shallow version
         x = inputs[0]  # [length, batch, channel]
         compound_prompts_deeper = inputs[1]
-                
+        # print("x:", x.shape)
+        # print("compound_prompts_deeper[0]:", compound_prompts_deeper[0].shape)
         counter = inputs[2]
         missing_type = inputs[3]
         if len(compound_prompts_deeper) > 0:
@@ -497,9 +498,9 @@ class ResidualAttentionBlock(nn.Module):
                         if missing_type[i] == 0:  # modality complete
                             prompts_dynamic.append(self.prompts_dynamic_complete)
                         elif missing_type[i] == 1:  # missing video 
-                            prompts_dynamic.append(self.prompts_dynamic_video)
-                        elif missing_type[i] == 2:  # missing audio
                             prompts_dynamic.append(self.prompts_dynamic_audio)
+                        elif missing_type[i] == 2:  # missing audio
+                            prompts_dynamic.append(self.prompts_dynamic_video)
                     # print("prompts_dynamic[0] shape: ", prompts_dynamic[0].shape)
                     # print("prompts_dynamic length: ", len(prompts_dynamic))
                     prompts_dynamic = torch.cat(prompts_dynamic, 1)
@@ -511,17 +512,13 @@ class ResidualAttentionBlock(nn.Module):
                     # Create/configure learnable tokens of this layer
                     prompts_staged_and_common = compound_prompts_deeper[counter]  # extract the correct index
                     # assert prompts_staged_and_common.isnan().any(), f"NaN detected in prompts_staged_and_common 1"
-                    prompts_staged_and_common = prompts_staged_and_common.permute(1, 0, 2)
+                    # prompts_staged_and_common = prompts_staged_and_common.permute(1, 0, 2)
                     # assert prompts_staged_and_common.isnan().any(), f"NaN detected in prompts_staged_and_common 2"
                     
                     # assert prompts_dynamic.isnan().any(), f"NaN detected in prompts_dynamic"
                     
                     # Add the learnable tokens of this layer with the input, by replacing previous
                     # layer learnable tokens
-                    
-                    # logger.debug("prompts_staged_and_common shape: %s", prompts_staged_and_common.shape)
-                    # logger.debug("prompts_dynamic shape: %s", prompts_dynamic.shape)
-                    # logger.debug("visual_features shape: %s", visual_features.shape)
                     
                     x = torch.cat([prompts_staged_and_common, prompts_dynamic, visual_features], dim=0)
 
@@ -539,7 +536,7 @@ class ResidualAttentionBlock(nn.Module):
                     prompts_dynamic_and_common = x[self.prompt_length_half:self.prompt_length_half*3, :, :]
                     # Create/configure learnable tokens of this layer
                     prompts = compound_prompts_deeper[counter]  # extract the correct index
-                    prompts = prompts.permute(1, 0, 2)
+                    # prompts = prompts.permute(1, 0, 2)
                     # Add the learnable tokens of this layer with the input, by replacing previous
                     # layer learnable tokens
                     
@@ -555,6 +552,7 @@ class ResidualAttentionBlock(nn.Module):
         # assert x.isnan().any(), f"NaN detected in x 2"
         x = x + self.mlp(self.ln_2(x))
         # assert x.isnan().any(), f"NaN detected in x 3"
+        # print("x2:", x.shape)
         return [x, compound_prompts_deeper, counter, missing_type]  # return again as a list, so that nn.seq can work
 
 @register_model("av_hubert", dataclass=AVHubertConfig)
@@ -568,6 +566,10 @@ class AVHubertModel(BaseFairseqModel):
     ) -> None:
         super().__init__()
         logger.info(f"HubertModel Config: {cfg}")
+
+        self.prompt_length = 12
+        self.prompt_depth = cfg.encoder_layers // 3
+        self.modal_prompt_learner = MultiModalPromptLearner(self.prompt_length, self.prompt_depth)
 
         feature_ds_rate = 1
         self.feat2tar_ratio = cfg.label_rate * feature_ds_rate / task_cfg.sample_rate
@@ -622,29 +624,33 @@ class AVHubertModel(BaseFairseqModel):
             torch.FloatTensor(cfg.audio_feat_dim).uniform_() if self.masking_type == 'input' else torch.FloatTensor(cfg.encoder_embed_dim).uniform_()
         )
 
-        self.prompt_length = 12
-        self.prompt_depth = cfg.encoder_layers // 3
-        self.modal_prompt_learner = MultiModalPromptLearner(self.prompt_length, self.prompt_depth)
         
-        # self.resblocks = nn.Sequential(*[
-        #     ResidualAttentionBlock(cfg.encoder_embed_dim, cfg.encoder_attention_heads, None, self.prompt_length, i, self.prompt_depth)
-        #     for i in range(self.prompt_depth)
-        # ])
-        
+        self.resblocks_audio = nn.Sequential(*[
+            ResidualAttentionBlock(cfg.encoder_embed_dim, cfg.encoder_attention_heads, None, self.prompt_length, i, self.prompt_depth)
+            for i in range(cfg.sub_encoder_layers)
+        ])
         proj_std = (cfg.encoder_embed_dim ** -0.5) * ((2 * cfg.encoder_layers) ** -0.5)
         attn_std = cfg.encoder_embed_dim ** -0.5
         fc_std = (2 * cfg.encoder_embed_dim) ** -0.5
-        # for block in self.resblocks:
-        #     nn.init.normal_(block.attn.in_proj_weight, std=attn_std)
-        #     nn.init.normal_(block.attn.out_proj.weight, std=proj_std)
-        #     nn.init.normal_(block.mlp.c_fc.weight, std=fc_std)
-        #     nn.init.normal_(block.mlp.c_proj.weight, std=proj_std)
+        for block in self.resblocks_audio:
+            nn.init.normal_(block.attn.in_proj_weight, std=attn_std)
+            nn.init.normal_(block.attn.out_proj.weight, std=proj_std)
+            nn.init.normal_(block.mlp.c_fc.weight, std=fc_std)
+            nn.init.normal_(block.mlp.c_proj.weight, std=proj_std)
         
-        # self.video_encoder = TransformerEncoder_prompt(cfg)
-        # self.audio_encoder = TransformerEncoder_prompt(cfg)
+        self.resblocks_video = nn.Sequential(*[
+            ResidualAttentionBlock(cfg.encoder_embed_dim, cfg.encoder_attention_heads, None, self.prompt_length, i, self.prompt_depth)
+            for i in range(cfg.sub_encoder_layers)
+        ])
+        for block in self.resblocks_video:
+            nn.init.normal_(block.attn.in_proj_weight, std=attn_std)
+            nn.init.normal_(block.attn.out_proj.weight, std=proj_std)
+            nn.init.normal_(block.mlp.c_fc.weight, std=fc_std)
+            nn.init.normal_(block.mlp.c_proj.weight, std=proj_std)
         
         self.encoder = TransformerEncoder(cfg)
         self.layer_norm = LayerNorm(self.embed)
+        self.ln_final = LayerNorm(cfg.encoder_embed_dim)
 
         self.target_glu = None
         if cfg.target_glu:
@@ -782,15 +788,15 @@ class AVHubertModel(BaseFairseqModel):
 
         return x, mask_indices
 
-    def forward_features(self, source: torch.Tensor, prompts: torch.Tensor, modality: str) -> torch.Tensor:
+    def forward_features(self, source: torch.Tensor, modality: str) -> torch.Tensor:
         extractor = eval(f"self.feature_extractor_{modality}")
         if self.feature_grad_mult > 0:
-            features = extractor(source, prompts)
+            features = extractor(source)
             if self.feature_grad_mult != 1.0:
                 features = GradMultiply.apply(features, self.feature_grad_mult)
         else:
             with torch.no_grad():
-                features = extractor(source, prompts)
+                features = extractor(source)
         return features
 
     def forward_targets(
@@ -957,8 +963,6 @@ class AVHubertModel(BaseFairseqModel):
         else:
             src_audio, src_video, mask_indices = src_audio, src_video, None
 
-        # prompts_video = None
-        # prompts_audio = None
         prompts_video, prompts_audio = self.modal_prompt_learner(missing_type)
         # print("prompts length: ", len(prompts_video))
         # print("prompts[0] shape: ", prompts_video[0].shape)
@@ -967,27 +971,31 @@ class AVHubertModel(BaseFairseqModel):
         # for p in prompts_audio:
         #     assert p.isnan().any(), f"NaN detected in prompts_audio"
         if src_audio is not None and src_video is None:
-            features_audio = self.forward_features(src_audio, prompts_audio, modality='audio') # features: [B, F, T]
+            features_audio = self.forward_features(src_audio, modality='audio') # features: [B, F, T]
             features_video = features_audio.new_zeros(features_audio.size(0), self.encoder_embed_dim, features_audio.size(-1))
         elif src_audio is None and src_video is not None:
-            features_video = self.forward_features(src_video, prompts_video, modality='video')
+            features_video = self.forward_features(src_video, modality='video')
             features_audio = features_video.new_zeros(features_video.size(0), self.encoder_embed_dim, features_video.size(-1))
         elif src_audio is not None and src_video is not None:
-            features_video = self.forward_features(src_video, prompts_video, modality='video')
-            features_audio = self.forward_features(src_audio, prompts_audio, modality='audio') # features: [B, F, T]
+            features_video = self.forward_features(src_video, modality='video')
+            features_audio = self.forward_features(src_audio, modality='audio') # features: [B, F, T]
 
-        features_video = features_video.transpose(1, 2)#.detach()
-        features_audio = features_audio.transpose(1, 2)#.detach()
+        features_video = features_video.transpose(1, 2)
+        features_audio = features_audio.transpose(1, 2)
+        # print("features_video shape1: ", features_video.shape)
+        # print("features_audio shape1: ", features_audio.shape)
         
-        # features_video = self.resblocks([features_video, prompts_video, 0, missing_type])[0]        
-        # features_audio = self.resblocks([features_audio, prompts_audio, 0, missing_type])[0]
+        features_video = self.resblocks_video([features_video, prompts_video, 0, missing_type])[0].transpose(0, 1)#[:, self.prompt_length:, :]
+        features_audio = self.resblocks_audio([features_audio, prompts_audio, 0, missing_type])[0].transpose(0, 1)#[:, self.prompt_length:, :]
+        # print("features_video shape2: ", features_video.shape)
+        # print("features_audio shape2: ", features_audio.shape)
         
         if self.modality_fuse == 'concat':
             features = torch.cat([features_audio, features_video], dim=2)
         elif self.modality_fuse == 'add':
             features = features_audio + features_video
-        # print("features shape: %s", features.shape)
-        # features = features.transpose(0, 1)
+        # print("features shape:", features.shape)
+        features = features.transpose(0, 1)
         features_pen = features.float().pow(2).mean()
 
         # features = features.transpose(1, 2)
@@ -1022,6 +1030,7 @@ class AVHubertModel(BaseFairseqModel):
             padding_mask=padding_mask,
             layer=None if output_layer is None else output_layer - 1
         )
+        # x = self.ln_final(x)
 
         return x, padding_mask
 

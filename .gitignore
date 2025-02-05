@@ -2,3 +2,5 @@ finetune/
 finetune_prompt/
 decode/
 avhubert/__pycache__/
+finetune_*/
+avhubert/outputs/

@@ -1,0 +1,418 @@
+2025-01-29 20:03:15 | INFO | fairseq.distributed.utils | distributed init (rank 0): tcp://localhost:16244
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | distributed init (rank 4): tcp://localhost:16244
+[W129 20:03:16.586448849 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 4
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | distributed init (rank 6): tcp://localhost:16244
+[W129 20:03:16.706018487 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 6
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | distributed init (rank 5): tcp://localhost:16244
+[W129 20:03:16.713745446 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 5
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | distributed init (rank 7): tcp://localhost:16244
+[W129 20:03:16.729590622 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 7
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | distributed init (rank 2): tcp://localhost:16244
+[W129 20:03:16.750496968 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 2
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | distributed init (rank 3): tcp://localhost:16244
+[W129 20:03:16.759259348 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 3
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | distributed init (rank 1): tcp://localhost:16244
+[W129 20:03:16.766925953 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 1
+[W129 20:03:16.770779681 CUDAAllocatorConfig.h:28] Warning: expandable_segments not supported on this platform (function operator())
+2025-01-29 20:03:16 | INFO | fairseq.distributed.utils | initialized host dell-SYS-4029GP-TRT as rank 0
+[2025-01-29 20:03:17,314][fairseq_cli.train][INFO] - {'_name': None, 'common': {'_name': None, 'no_progress_bar': False, 'log_interval': 200, 'log_format': 'json', 'log_file': None, 'tensorboard_logdir': 'tblog', 'wandb_project': None, 'azureml_logging': False, 'seed': 1337, 'cpu': False, 'tpu': False, 'bf16': False, 'memory_efficient_bf16': False, 'fp16': True, 'memory_efficient_fp16': False, 'fp16_no_flatten_grads': False, 'fp16_init_scale': 128, 'fp16_scale_window': None, 'fp16_scale_tolerance': 0.0, 'on_cpu_convert_precision': False, 'min_loss_scale': 0.0001, 'threshold_loss_scale': None, 'amp': False, 'amp_batch_retries': 2, 'amp_init_scale': 128, 'amp_scale_window': None, 'user_dir': '/workspace/hubert/av_hubert-main/avhubert', 'empty_cache_freq': 0, 'all_gather_list_size': 16384, 'model_parallel_size': 1, 'quantization_config_path': None, 'profile': False, 'reset_logging': False, 'suppress_crashes': False, 'use_plasma_view': False, 'plasma_path': '/tmp/plasma'}, 'common_eval': {'_name': None, 'path': None, 'post_process': None, 'quiet': False, 'model_overrides': '{}', 'results_path': None}, 'distributed_training': {'_name': None, 'distributed_world_size': 8, 'distributed_num_procs': 8, 'distributed_rank': 0, 'distributed_backend': 'nccl', 'distributed_init_method': 'tcp://localhost:16244', 'distributed_port': -1, 'device_id': 0, 'distributed_no_spawn': False, 'ddp_backend': 'c10d', 'ddp_comm_hook': 'none', 'bucket_cap_mb': 25, 'fix_batches_to_gpus': False, 'find_unused_parameters': True, 'fast_stat_sync': False, 'heartbeat_timeout': -1, 'broadcast_buffers': False, 'slowmo_momentum': None, 'slowmo_algorithm': 'LocalSGD', 'localsgd_frequency': 3, 'nprocs_per_node': 8, 'pipeline_model_parallel': False, 'pipeline_balance': None, 'pipeline_devices': None, 'pipeline_chunks': 0, 'pipeline_encoder_balance': None, 'pipeline_encoder_devices': None, 'pipeline_decoder_balance': None, 'pipeline_decoder_devices': None, 'pipeline_checkpoint': 'never', 'zero_sharding': 'none', 'fp16': True, 'memory_efficient_fp16': False, 'tpu': False, 'no_reshard_after_forward': False, 'fp32_reduce_scatter': False, 'cpu_offload': False, 'use_sharded_state': False}, 'dataset': {'_name': None, 'num_workers': 6, 'skip_invalid_size_inputs_valid_test': False, 'max_tokens': 1000, 'batch_size': None, 'required_batch_size_multiple': 8, 'required_seq_len_multiple': 1, 'dataset_impl': None, 'data_buffer_size': 10, 'train_subset': 'train', 'valid_subset': 'valid', 'combine_valid_subsets': None, 'ignore_unused_valid_subsets': False, 'validate_interval': 2, 'validate_interval_updates': 0, 'validate_after_updates': 0, 'fixed_validation_seed': None, 'disable_validation': False, 'max_tokens_valid': 1000, 'batch_size_valid': None, 'max_valid_steps': None, 'curriculum': 0, 'gen_subset': 'test', 'num_shards': 1, 'shard_id': 0}, 'optimization': {'_name': None, 'max_epoch': 0, 'max_update': 45000, 'stop_time_hours': 0.0, 'clip_norm': 0.0, 'sentence_avg': True, 'update_freq': [1], 'lr': [0.001], 'stop_min_lr': -1.0, 'use_bmuf': False}, 'checkpoint': {'_name': None, 'save_dir': 'checkpoints', 'restore_file': 'checkpoint_last.pt', 'finetune_from_model': None, 'reset_dataloader': False, 'reset_lr_scheduler': False, 'reset_meters': False, 'reset_optimizer': True, 'optimizer_overrides': '{}', 'save_interval': 2, 'save_interval_updates': 0, 'keep_interval_updates': 1, 'keep_interval_updates_pattern': -1, 'keep_last_epochs': -1, 'keep_best_checkpoints': -1, 'no_save': False, 'no_epoch_checkpoints': True, 'no_last_checkpoints': False, 'no_save_optimizer_state': False, 'best_checkpoint_metric': 'accuracy', 'maximize_best_checkpoint_metric': True, 'patience': -1, 'checkpoint_suffix': '', 'checkpoint_shard_count': 1, 'load_checkpoint_on_all_dp_ranks': False, 'write_checkpoints_asynchronously': False, 'model_parallel_size': 1}, 'bmuf': {'_name': None, 'block_lr': 1.0, 'block_momentum': 0.875, 'global_sync_iter': 50, 'warmup_iterations': 500, 'use_nbm': False, 'average_sync': False, 'distributed_world_size': 8}, 'generation': {'_name': None, 'beam': 5, 'nbest': 1, 'max_len_a': 0.0, 'max_len_b': 200, 'min_len': 1, 'match_source_len': False, 'unnormalized': False, 'no_early_stop': False, 'no_beamable_mm': False, 'lenpen': 1.0, 'unkpen': 0.0, 'replace_unk': None, 'sacrebleu': False, 'score_reference': False, 'prefix_size': 0, 'no_repeat_ngram_size': 0, 'sampling': False, 'sampling_topk': -1, 'sampling_topp': -1.0, 'constraints': None, 'temperature': 1.0, 'diverse_beam_groups': -1, 'diverse_beam_strength': 0.5, 'diversity_rate': -1.0, 'print_alignment': None, 'print_step': False, 'lm_path': None, 'lm_weight': 0.0, 'iter_decode_eos_penalty': 0.0, 'iter_decode_max_iter': 10, 'iter_decode_force_max_iter': False, 'iter_decode_with_beam': 1, 'iter_decode_with_external_reranker': False, 'retain_iter_history': False, 'retain_dropout': False, 'retain_dropout_modules': None, 'decoding_format': None, 'no_seed_provided': False}, 'eval_lm': {'_name': None, 'output_word_probs': False, 'output_word_stats': False, 'context_window': 0, 'softmax_batch': 9223372036854775807}, 'interactive': {'_name': None, 'buffer_size': 0, 'input': '-'}, 'model': {'_name': 'av_hubert_seq2seq', 'w2v_path': '/workspace/AV_HuBERT_pretrained/base_vox_iter5.pt', 'apply_mask': False, 'mask_selection': 'static', 'mask_length': 10, 'mask_other': 0, 'mask_prob': 0.75, 'mask_channel_selection': 'static', 'mask_channel_length': 64, 'mask_channel_other': 0, 'mask_channel_prob': 0.5, 'layerdrop': 0.1, 'dropout': 0.0, 'activation_dropout': 0.1, 'attention_dropout': 0.0, 'feature_grad_mult': 1.0, 'decoder_layers': 6, 'decoder_dropout': 0.1, 'decoder_attention_dropout': 0.0, 'decoder_activation_dropout': 0.1, 'freeze_finetune_updates': 22500, 'share_decoder_input_output_embed': True, 'decoder_normalize_before': True, 'prompting': True}, 'task': {'_name': 'av_hubert_pretraining', 'is_s2s': True, 'data': '/workspace/lrs2/433h_data', 'label_dir': '/workspace/lrs2/433h_data', 'tokenizer_bpe_model': '/workspace/lrs2/spm1000/spm_unigram1000.model', 'normalize': True, 'labels': ['wrd'], 'single_target': True, 'fine_tuning': True, 'stack_order_audio': 4, 'tokenizer_bpe_name': 'sentencepiece', 'max_sample_size': 500, 'modalities': ['video', 'audio'], 'image_aug': True, 'pad_audio': True, 'random_crop': False}, 'criterion': {'_name': 'label_smoothed_cross_entropy', 'label_smoothing': 0.1, 'report_accuracy': True, 'ignore_prefix_size': 0, 'sentence_avg': True}, 'optimizer': {'_name': 'adam', 'adam_betas': '(0.9,0.98)', 'adam_eps': 1e-08, 'weight_decay': 0.0, 'use_old_adam': False, 'tpu': False, 'lr': [0.001]}, 'lr_scheduler': {'_name': 'tri_stage', 'warmup_steps': 15000, 'hold_steps': 0, 'decay_steps': 30000, 'phase_ratio': None, 'init_lr_scale': 0.01, 'final_lr_scale': 0.05, 'max_update': 45000, 'lr': [0.001]}, 'scoring': None, 'bpe': None, 'tokenizer': None, 'job_logging_cfg': {'version': 1, 'formatters': {'simple': {'format': '[%(asctime)s][%(name)s][%(levelname)s] - %(message)s'}}, 'handlers': {'console': {'class': 'logging.StreamHandler', 'formatter': 'simple', 'stream': 'ext://sys.stdout'}, 'file': {'class': 'logging.FileHandler', 'formatter': 'simple', 'filename': 'hydra_train.log'}}, 'root': {'level': 'INFO', 'handlers': ['console', 'file']}, 'disable_existing_loggers': False}}
+[2025-01-29 20:03:17,320][avhubert.hubert_pretraining][INFO] - current directory is /workspace/av_hubert/avhubert/finetune_baseline
+[2025-01-29 20:03:17,321][avhubert.hubert_pretraining][INFO] - AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/workspace/lrs2/433h_data', 'labels': ['wrd'], 'label_dir': '/workspace/lrs2/433h_data', 'label_rate': -1, 'sample_rate': 16000, 'normalize': True, 'enable_padding': False, 'max_sample_size': 500, 'min_sample_size': None, 'max_trim_sample_size': '${task.max_sample_size}', 'single_target': True, 'random_crop': False, 'pad_audio': True, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['video', 'audio'], 'is_s2s': True, 'tokenizer_bpe_name': 'sentencepiece', 'tokenizer_bpe_model': '/workspace/lrs2/spm1000/spm_unigram1000.model', 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': True}
+[2025-01-29 20:03:18,209][avhubert.hubert_pretraining][INFO] - current directory is /workspace/av_hubert/avhubert/finetune_baseline
+[2025-01-29 20:03:18,209][avhubert.hubert_pretraining][INFO] - AVHubertPretrainingTask Config {'_name': 'av_hubert_pretraining', 'data': '/workspace/lrs2/433h_data', 'labels': ['km'], 'label_dir': '/checkpoint/bshi/data/lrs3//video/hubert/stitch-iters/envox-iter4-l12c2000/', 'label_rate': 25, 'sample_rate': 25, 'normalize': True, 'enable_padding': False, 'max_sample_size': 2000, 'min_sample_size': 5, 'max_trim_sample_size': 400, 'single_target': False, 'random_crop': True, 'pad_audio': False, 'pdb': False, 'stack_order_audio': 4, 'skip_verify': False, 'image_aug': True, 'image_crop_size': 88, 'image_mean': 0.421, 'image_std': 0.165, 'modalities': ['audio', 'video'], 'is_s2s': False, 'tokenizer_bpe_name': None, 'tokenizer_bpe_model': None, 'noise_wav': None, 'noise_prob': 0.0, 'noise_snr': '0', 'noise_num': 1, 'fine_tuning': False}
+[2025-01-29 20:03:18,218][avhubert.hubert][INFO] - HubertModel Config: {'_name': 'av_hubert', 'label_rate': 25, 'input_modality': '${task.input_modality}', 'extractor_mode': default, 'encoder_layers': 12, 'encoder_embed_dim': 768, 'encoder_ffn_embed_dim': 3072, 'encoder_attention_heads': 12, 'activation_fn': gelu, 'dropout': 0.0, 'attention_dropout': 0.0, 'activation_dropout': 0.1, 'encoder_layerdrop': 0.1, 'dropout_input': 0.0, 'dropout_features': 0.1, 'final_dim': 256, 'untie_final_proj': True, 'layer_norm_first': True, 'conv_feature_layers': '[(512,10,5)] + [(512,3,2)] * 4 + [(512,2,2)] * 2', 'conv_bias': False, 'logit_temp': 0.1, 'target_glu': False, 'feature_grad_mult': 1.0, 'mask_length_audio': 10, 'mask_prob_audio': 0.8, 'mask_length_image': 5, 'mask_prob_image': 0.3, 'mask_selection': static, 'mask_other': 0.0, 'no_mask_overlap': False, 'mask_min_space': 1, 'mask_channel_length': 10, 'mask_channel_prob': 0.0, 'mask_channel_selection': static, 'mask_channel_other': 0.0, 'no_mask_channel_overlap': False, 'mask_channel_min_space': 1, 'conv_pos': 128, 'conv_pos_groups': 16, 'latent_temp': [2.0, 0.5, 0.999995], 'skip_masked': False, 'skip_nomask': False, 'resnet_relu_type': 'prelu', 'resnet_weights': None, 'sim_type': 'cosine', 'sub_encoder_layers': 4, 'audio_feat_dim': 104, 'modality_dropout': 0.5, 'audio_dropout': 0.5, 'modality_fuse': 'concat', 'selection_type': 'same_seq', 'masking_type': 'input', 'decoder_embed_dim': 768, 'decoder_ffn_embed_dim': 3072, 'decoder_layers': 6, 'decoder_layerdrop': 0.0, 'decoder_attention_heads': 4, 'decoder_learned_pos': False, 'decoder_normalize_before': False, 'no_token_positional_embeddings': False, 'decoder_dropout': 0.1, 'decoder_attention_dropout': 0.1, 'decoder_activation_dropout': 0.0, 'max_target_positions': 2048, 'share_decoder_input_output_embed': False, 'no_scale_embedding': True}
+[2025-01-29 20:03:24,975][fairseq_cli.train][INFO] - AVHubertSeq2Seq(
+  (encoder): HubertEncoderWrapper(
+    (w2v_model): AVHubertModel(
+      (feature_extractor_audio): SubModel(
+        (proj): Linear(in_features=104, out_features=768, bias=True)
+        (encoder): TransformerEncoder(
+          (pos_conv): Sequential(
+            (0): Conv1d(768, 768, kernel_size=(128,), stride=(1,), padding=(64,), groups=16)
+            (1): SamePad()
+            (2): GELU(approximate='none')
+          )
+          (layers): ModuleList(
+            (0-3): 4 x TransformerSentenceEncoderLayer(
+              (self_attn): MultiheadAttention(
+                (dropout_module): FairseqDropout()
+                (k_proj): Linear(in_features=768, out_features=768, bias=True)
+                (v_proj): Linear(in_features=768, out_features=768, bias=True)
+                (q_proj): Linear(in_features=768, out_features=768, bias=True)
+                (out_proj): Linear(in_features=768, out_features=768, bias=True)
+              )
+              (dropout1): Dropout(p=0.0, inplace=False)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (dropout3): Dropout(p=0.0, inplace=False)
+              (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            )
+          )
+          (layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (feature_extractor_video): SubModel(
+        (resnet): ResEncoder(
+          (frontend3D): Sequential(
+            (0): Conv3d(1, 64, kernel_size=(5, 7, 7), stride=(1, 2, 2), padding=(2, 3, 3), bias=False)
+            (1): BatchNorm3d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+            (2): PReLU(num_parameters=64)
+            (3): MaxPool3d(kernel_size=(1, 3, 3), stride=(1, 2, 2), padding=(0, 1, 1), dilation=1, ceil_mode=False)
+          )
+          (trunk): ResNet(
+            (layer1): Sequential(
+              (0): BasicBlock(
+                (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (relu1): PReLU(num_parameters=64)
+                (relu2): PReLU(num_parameters=64)
+                (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+              (1): BasicBlock(
+                (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (relu1): PReLU(num_parameters=64)
+                (relu2): PReLU(num_parameters=64)
+                (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (layer2): Sequential(
+              (0): BasicBlock(
+                (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+                (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (relu1): PReLU(num_parameters=128)
+                (relu2): PReLU(num_parameters=128)
+                (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (downsample): Sequential(
+                  (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+                  (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                )
+              )
+              (1): BasicBlock(
+                (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (relu1): PReLU(num_parameters=128)
+                (relu2): PReLU(num_parameters=128)
+                (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (layer3): Sequential(
+              (0): BasicBlock(
+                (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+                (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (relu1): PReLU(num_parameters=256)
+                (relu2): PReLU(num_parameters=256)
+                (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (downsample): Sequential(
+                  (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+                  (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                )
+              )
+              (1): BasicBlock(
+                (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (relu1): PReLU(num_parameters=256)
+                (relu2): PReLU(num_parameters=256)
+                (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (layer4): Sequential(
+              (0): BasicBlock(
+                (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+                (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (relu1): PReLU(num_parameters=512)
+                (relu2): PReLU(num_parameters=512)
+                (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (downsample): Sequential(
+                  (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+                  (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                )
+              )
+              (1): BasicBlock(
+                (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (relu1): PReLU(num_parameters=512)
+                (relu2): PReLU(num_parameters=512)
+                (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+                (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+            (avgpool): AdaptiveAvgPool2d(output_size=1)
+          )
+        )
+        (proj): Linear(in_features=512, out_features=768, bias=True)
+        (encoder): TransformerEncoder(
+          (pos_conv): Sequential(
+            (0): Conv1d(768, 768, kernel_size=(128,), stride=(1,), padding=(64,), groups=16)
+            (1): SamePad()
+            (2): GELU(approximate='none')
+          )
+          (layers): ModuleList(
+            (0-3): 4 x TransformerSentenceEncoderLayer(
+              (self_attn): MultiheadAttention(
+                (dropout_module): FairseqDropout()
+                (k_proj): Linear(in_features=768, out_features=768, bias=True)
+                (v_proj): Linear(in_features=768, out_features=768, bias=True)
+                (q_proj): Linear(in_features=768, out_features=768, bias=True)
+                (out_proj): Linear(in_features=768, out_features=768, bias=True)
+              )
+              (dropout1): Dropout(p=0.0, inplace=False)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (dropout3): Dropout(p=0.0, inplace=False)
+              (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            )
+          )
+          (layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (post_extract_proj): Linear(in_features=1536, out_features=768, bias=True)
+      (dropout_input): Dropout(p=0.0, inplace=False)
+      (dropout_features): Dropout(p=0.1, inplace=False)
+      (encoder): TransformerEncoder(
+        (pos_conv): Sequential(
+          (0): Conv1d(768, 768, kernel_size=(128,), stride=(1,), padding=(64,), groups=16)
+          (1): SamePad()
+          (2): GELU(approximate='none')
+        )
+        (layers): ModuleList(
+          (0-11): 12 x TransformerSentenceEncoderLayer(
+            (self_attn): MultiheadAttention(
+              (dropout_module): FairseqDropout()
+              (k_proj): Linear(in_features=768, out_features=768, bias=True)
+              (v_proj): Linear(in_features=768, out_features=768, bias=True)
+              (q_proj): Linear(in_features=768, out_features=768, bias=True)
+              (out_proj): Linear(in_features=768, out_features=768, bias=True)
+            )
+            (dropout1): Dropout(p=0.0, inplace=False)
+            (dropout2): Dropout(p=0.1, inplace=False)
+            (dropout3): Dropout(p=0.0, inplace=False)
+            (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (fc1): Linear(in_features=768, out_features=3072, bias=True)
+            (fc2): Linear(in_features=3072, out_features=768, bias=True)
+            (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+          )
+        )
+        (layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      )
+      (layer_norm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+      (final_proj): None
+    )
+  )
+  (decoder): TransformerDecoder(
+    (embed_tokens): Embedding(1000, 768, padding_idx=1)
+    (embed_positions): SinusoidalPositionalEmbedding()
+    (layers): ModuleList(
+      (0-5): 6 x TransformerDecoderLayer(
+        (dropout_module): FairseqDropout()
+        (self_attn): MultiheadAttention(
+          (dropout_module): FairseqDropout()
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (activation_dropout_module): FairseqDropout()
+        (self_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (encoder_attn): MultiheadAttention(
+          (dropout_module): FairseqDropout()
+          (k_proj): Linear(in_features=768, out_features=768, bias=True)
+          (v_proj): Linear(in_features=768, out_features=768, bias=True)
+          (q_proj): Linear(in_features=768, out_features=768, bias=True)
+          (out_proj): Linear(in_features=768, out_features=768, bias=True)
+        )
+        (encoder_attn_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        (fc1): Linear(in_features=768, out_features=3072, bias=True)
+        (fc2): Linear(in_features=3072, out_features=768, bias=True)
+        (final_layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+    (layer_norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+  )
+)
+[2025-01-29 20:03:24,981][fairseq_cli.train][INFO] - task: AVHubertPretrainingTask
+[2025-01-29 20:03:24,981][fairseq_cli.train][INFO] - model: AVHubertSeq2Seq
+[2025-01-29 20:03:24,981][fairseq_cli.train][INFO] - criterion: LabelSmoothedCrossEntropyCriterion
+[2025-01-29 20:03:25,001][fairseq_cli.train][INFO] - num. shared model params: 226,758,632 (num. trained: 226,758,632)
+[2025-01-29 20:03:25,004][fairseq_cli.train][INFO] - num. expert model params: 0 (num. trained: 0)
+[2025-01-29 20:03:25,019][avhubert.hubert_pretraining][INFO] - Using tokenizer
+[2025-01-29 20:03:25,031][avhubert.hubert_dataset][INFO] - max_keep=500, min_keep=None, loaded 1082, skipped 0 short and 0 long and 0 unaligned, longest-loaded=153, shortest-loaded=14
+[2025-01-29 20:03:25,055][avhubert.hubert_dataset][INFO] - /workspace/lrs2/433h_data/valid.wrd is sequence label. skipped
+[2025-01-29 20:03:25,055][avhubert.hubert_dataset][INFO] - image transform: Compose(
+    Normalize(mean=0.0, std=255.0)
+    <avhubert.utils.CenterCrop object at 0x7f6548e191f0>
+    Normalize(mean=0.421, std=0.165)
+)
+[2025-01-29 20:03:25,055][avhubert.hubert_dataset][INFO] - pad_audio=True, random_crop=False, normalize=True, max_sample_size=500, seqs2seq data=True,
+[2025-01-29 20:03:25,055][avhubert.hubert_dataset][INFO] - Noise wav: None->0 wav, Prob: 0.0, SNR: 0, Number of mixture: 1
+[2025-01-29 20:03:36,555][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.0.conv1.bias
+[2025-01-29 20:03:36,579][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.0.conv2.bias
+[2025-01-29 20:03:36,579][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.1.conv1.bias
+[2025-01-29 20:03:36,579][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer1.1.conv2.bias
+[2025-01-29 20:03:36,580][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.0.conv1.bias
+[2025-01-29 20:03:36,580][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.0.conv2.bias
+[2025-01-29 20:03:36,580][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.0.downsample.0.bias
+[2025-01-29 20:03:36,580][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.1.conv1.bias
+[2025-01-29 20:03:36,581][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer2.1.conv2.bias
+[2025-01-29 20:03:36,581][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.0.conv1.bias
+[2025-01-29 20:03:36,581][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.0.conv2.bias
+[2025-01-29 20:03:36,581][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.0.downsample.0.bias
+[2025-01-29 20:03:36,581][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.1.conv1.bias
+[2025-01-29 20:03:36,582][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer3.1.conv2.bias
+[2025-01-29 20:03:36,582][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.0.conv1.bias
+[2025-01-29 20:03:36,582][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.0.conv2.bias
+[2025-01-29 20:03:36,582][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.0.downsample.0.bias
+[2025-01-29 20:03:36,582][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.1.conv1.bias
+[2025-01-29 20:03:36,583][fairseq.trainer][INFO] - detected shared parameter: encoder.w2v_model.feature_extractor_video.resnet.frontend3D.0.bias <- encoder.w2v_model.feature_extractor_video.resnet.trunk.layer4.1.conv2.bias
+[2025-01-29 20:03:43,948][fairseq.utils][INFO] - ***********************CUDA enviroments for all 8 workers***********************
+[2025-01-29 20:03:43,948][fairseq.utils][INFO] - rank   0: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2025-01-29 20:03:43,948][fairseq.utils][INFO] - rank   1: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2025-01-29 20:03:43,948][fairseq.utils][INFO] - rank   2: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2025-01-29 20:03:43,948][fairseq.utils][INFO] - rank   3: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2025-01-29 20:03:43,948][fairseq.utils][INFO] - rank   4: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2025-01-29 20:03:43,948][fairseq.utils][INFO] - rank   5: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2025-01-29 20:03:43,949][fairseq.utils][INFO] - rank   6: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2025-01-29 20:03:43,949][fairseq.utils][INFO] - rank   7: capabilities =  8.6  ; total memory = 11.762 GB ; name = NVIDIA GeForce RTX 3060                 
+[2025-01-29 20:03:43,949][fairseq.utils][INFO] - ***********************CUDA enviroments for all 8 workers***********************
+[2025-01-29 20:03:43,949][fairseq_cli.train][INFO] - training on 8 devices (GPUs/TPUs)
+[2025-01-29 20:03:43,949][fairseq_cli.train][INFO] - max tokens per device = 1000 and max sentences per device = None
+[2025-01-29 20:03:43,950][fairseq.trainer][INFO] - Preparing to load checkpoint checkpoints/checkpoint_last.pt
+[2025-01-29 20:04:05,039][fairseq.trainer][INFO] - Loaded checkpoint checkpoints/checkpoint_last.pt (epoch 38 @ 0 updates)
+[2025-01-29 20:04:05,164][fairseq.trainer][INFO] - loading train data for epoch 38
+[2025-01-29 20:04:05,165][avhubert.hubert_pretraining][INFO] - Using tokenizer
+[2025-01-29 20:04:05,740][avhubert.hubert_dataset][INFO] - max_keep=500, min_keep=None, loaded 163822, skipped 0 short and 292 long and 0 unaligned, longest-loaded=500, shortest-loaded=0
+[2025-01-29 20:04:05,832][avhubert.hubert_dataset][INFO] - /workspace/lrs2/433h_data/train.wrd is sequence label. skipped
+[2025-01-29 20:04:05,832][avhubert.hubert_dataset][INFO] - image transform: Compose(
+    Normalize(mean=0.0, std=255.0)
+    RandomCrop(size=(88, 88))
+    <avhubert.utils.HorizontalFlip object at 0x7f663a320100>
+    Normalize(mean=0.421, std=0.165)
+)
+[2025-01-29 20:04:05,832][avhubert.hubert_dataset][INFO] - pad_audio=True, random_crop=False, normalize=True, max_sample_size=500, seqs2seq data=True,
+[2025-01-29 20:04:05,832][avhubert.hubert_dataset][INFO] - Noise wav: None->0 wav, Prob: 0.0, SNR: 0, Number of mixture: 1
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  obj = torch.load(buffer, map_location="cpu")
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  obj = torch.load(buffer, map_location="cpu")
+[2025-01-29 20:04:07,174][fairseq.trainer][INFO] - begin training epoch 38
+[2025-01-29 20:04:07,174][fairseq_cli.train][INFO] - Start iterating over samples
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  obj = torch.load(buffer, map_location="cpu")
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  obj = torch.load(buffer, map_location="cpu")
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  obj = torch.load(buffer, map_location="cpu")
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  obj = torch.load(buffer, map_location="cpu")
+/workspace/av_hubert/fairseq/fairseq/checkpoint_utils.py:304: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state = torch.load(f, map_location=torch.device("cpu"))
+/root/miniconda3/envs/avhubert/lib/python3.8/site-packages/torch/nn/utils/weight_norm.py:134: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/workspace/av_hubert/fairseq/fairseq/trainer.py:131: UserWarning: The torch.cuda.*DtypeTensor constructors are no longer recommended. It's best to use methods such as torch.tensor(data, dtype=*, device='cuda') to create tensors. (Triggered internally at ../torch/csrc/tensor/python_tensor.cpp:78.)
+  self._grad_norm_buf = torch.cuda.DoubleTensor(self.data_parallel_world_size)
+/workspace/av_hubert/fairseq/fairseq/distributed/utils.py:767: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  obj = torch.load(buffer, map_location="cpu")
+[2025-01-29 20:05:55,370][fairseq.trainer][INFO] - NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 64.0
+[2025-01-29 20:11:12,671][fairseq.trainer][INFO] - NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 32.0
+[2025-01-29 20:11:18,769][train_inner][INFO] - {"epoch": 38, "update": 37.158, "loss": "166.57", "nll_loss": "6.418", "total": "1329.84", "n_correct": "256.04", "ppl": "85.52", "accuracy": "19.254", "wps": "540.3", "ups": "0.41", "wpb": "1329.8", "bsz": "55.9", "num_updates": "200", "lr": "2.32e-05", "gnorm": "37.531", "loss_scale": "32", "train_wall": "387", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 20:17:11,873][train_inner][INFO] - {"epoch": 38, "update": 37.227, "loss": "164.698", "nll_loss": "6.314", "total": "1332.69", "n_correct": "260.305", "ppl": "79.57", "accuracy": "19.532", "wps": "754.9", "ups": "0.57", "wpb": "1332.7", "bsz": "55.8", "num_updates": "400", "lr": "3.64e-05", "gnorm": "32.802", "loss_scale": "32", "train_wall": "342", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 20:22:58,660][train_inner][INFO] - {"epoch": 38, "update": 37.295, "loss": "164.917", "nll_loss": "6.305", "total": "1329.97", "n_correct": "258.665", "ppl": "79.05", "accuracy": "19.449", "wps": "767.1", "ups": "0.58", "wpb": "1330", "bsz": "55.5", "num_updates": "600", "lr": "4.96e-05", "gnorm": "40.049", "loss_scale": "32", "train_wall": "337", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 20:24:01,786][fairseq.trainer][INFO] - NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 16.0
+[2025-01-29 20:28:50,371][train_inner][INFO] - {"epoch": 38, "update": 37.363, "loss": "163.01", "nll_loss": "6.264", "total": "1335.9", "n_correct": "264.69", "ppl": "76.85", "accuracy": "19.814", "wps": "759.7", "ups": "0.57", "wpb": "1335.9", "bsz": "56.1", "num_updates": "800", "lr": "6.28e-05", "gnorm": "39.594", "loss_scale": "16", "train_wall": "342", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 20:34:38,575][train_inner][INFO] - {"epoch": 38, "update": 37.432, "loss": "160.937", "nll_loss": "6.218", "total": "1339.31", "n_correct": "268.24", "ppl": "74.44", "accuracy": "20.028", "wps": "769.3", "ups": "0.57", "wpb": "1339.3", "bsz": "56.6", "num_updates": "1000", "lr": "7.6e-05", "gnorm": "36.871", "loss_scale": "16", "train_wall": "338", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 20:40:23,883][train_inner][INFO] - {"epoch": 38, "update": 37.5, "loss": "162.759", "nll_loss": "6.207", "total": "1322.18", "n_correct": "264.91", "ppl": "73.87", "accuracy": "20.036", "wps": "765.8", "ups": "0.58", "wpb": "1322.2", "bsz": "55.2", "num_updates": "1200", "lr": "8.92e-05", "gnorm": "35.913", "loss_scale": "16", "train_wall": "337", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 20:41:52,531][fairseq.trainer][INFO] - NOTE: gradient overflow detected, ignoring gradient, setting loss scale to: 8.0
+[2025-01-29 20:46:17,226][train_inner][INFO] - {"epoch": 38, "update": 37.568, "loss": "158.803", "nll_loss": "6.169", "total": "1337.15", "n_correct": "270.08", "ppl": "71.96", "accuracy": "20.198", "wps": "757", "ups": "0.57", "wpb": "1337.2", "bsz": "56.9", "num_updates": "1400", "lr": "0.0001024", "gnorm": "30.362", "loss_scale": "8", "train_wall": "343", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 20:52:00,300][train_inner][INFO] - {"epoch": 38, "update": 37.637, "loss": "162.777", "nll_loss": "6.174", "total": "1328.58", "n_correct": "266.99", "ppl": "72.2", "accuracy": "20.096", "wps": "774.6", "ups": "0.58", "wpb": "1328.6", "bsz": "55.2", "num_updates": "1600", "lr": "0.0001156", "gnorm": "31.463", "loss_scale": "8", "train_wall": "334", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 20:57:53,198][train_inner][INFO] - {"epoch": 38, "update": 37.705, "loss": "159.327", "nll_loss": "6.141", "total": "1332.53", "n_correct": "271.21", "ppl": "70.59", "accuracy": "20.353", "wps": "755.2", "ups": "0.57", "wpb": "1332.5", "bsz": "56.4", "num_updates": "1800", "lr": "0.0001288", "gnorm": "42.565", "loss_scale": "8", "train_wall": "343", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 21:03:34,408][train_inner][INFO] - {"epoch": 38, "update": 37.773, "loss": "163.624", "nll_loss": "6.145", "total": "1325.93", "n_correct": "267.68", "ppl": "70.78", "accuracy": "20.188", "wps": "777.2", "ups": "0.59", "wpb": "1325.9", "bsz": "54.6", "num_updates": "2000", "lr": "0.000142", "gnorm": "34.159", "loss_scale": "8", "train_wall": "332", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 21:09:23,200][train_inner][INFO] - {"epoch": 38, "update": 37.841, "loss": "158.6", "nll_loss": "6.13", "total": "1322.55", "n_correct": "266.93", "ppl": "70.02", "accuracy": "20.183", "wps": "758.4", "ups": "0.57", "wpb": "1322.5", "bsz": "56.1", "num_updates": "2200", "lr": "0.0001552", "gnorm": "34.285", "loss_scale": "8", "train_wall": "341", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 21:15:11,439][train_inner][INFO] - {"epoch": 38, "update": 37.91, "loss": "155.473", "nll_loss": "6.075", "total": "1327.04", "n_correct": "274.715", "ppl": "67.43", "accuracy": "20.701", "wps": "762.2", "ups": "0.57", "wpb": "1327", "bsz": "57", "num_updates": "2400", "lr": "0.0001684", "gnorm": "39.673", "loss_scale": "8", "train_wall": "339", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 21:20:52,644][train_inner][INFO] - {"epoch": 38, "update": 37.978, "loss": "163.581", "nll_loss": "6.08", "total": "1332.93", "n_correct": "271.885", "ppl": "67.64", "accuracy": "20.397", "wps": "781.4", "ups": "0.59", "wpb": "1332.9", "bsz": "54.5", "num_updates": "2600", "lr": "0.0001816", "gnorm": "33.154", "loss_scale": "8", "train_wall": "331", "gb_free": "6.5", "wall": "0"}
+[2025-01-29 21:22:15,428][fairseq_cli.train][INFO] - begin validation on "valid" subset
+/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
+/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
+/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
+/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
+/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
+/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
+/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
+/workspace/av_hubert/fairseq/fairseq/tasks/fairseq_task.py:502: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=(isinstance(optimizer, AMPOptimizer))):
+[2025-01-29 21:23:06,728][valid][INFO] - {"epoch": 38, "valid_loss": "77.273", "valid_nll_loss": "5.431", "valid_total": "1356.8", "valid_n_correct": "372.7", "valid_ppl": "43.15", "valid_accuracy": "27.469", "valid_wps": "1109.2", "valid_wpb": "1356.8", "valid_bsz": "108.2", "valid_num_updates": "2665"}
+[2025-01-29 21:23:06,732][fairseq.checkpoint_utils][INFO] - Preparing to save checkpoint for epoch 38 @ 2665 updates
+[2025-01-29 21:23:06,733][fairseq.trainer][INFO] - Saving checkpoint to checkpoints/checkpoint_best.pt
+[2025-01-29 21:23:15,165][fairseq.trainer][INFO] - Finished saving checkpoint to checkpoints/checkpoint_best.pt
+[2025-01-29 21:23:23,975][fairseq.checkpoint_utils][INFO] - Saved checkpoint checkpoints/checkpoint_best.pt (epoch 38 @ 2665 updates, score 27.469) (writing took 17.242811371572316 seconds)
+[2025-01-29 21:23:23,976][fairseq_cli.train][INFO] - end of epoch 38 (average epoch stats below)
+[2025-01-29 21:23:23,987][train][INFO] - {"epoch": 38, "train_loss": "153.525", "train_nll_loss": "6.145", "train_total": "1275.41", "train_n_correct": "261.229", "train_ppl": "70.79", "train_accuracy": "20.482", "train_wps": "699.5", "train_ups": "0.55", "train_wpb": "1275.4", "train_bsz": "56", "train_num_updates": "2665", "train_lr": "0.00018589", "train_gnorm": "34.451", "train_loss_scale": "8", "train_train_wall": "4996", "train_gb_free": "6.5", "train_wall": "0"}
+[2025-01-29 21:23:24,837][fairseq.trainer][INFO] - begin training epoch 39
+[2025-01-29 21:23:24,838][fairseq_cli.train][INFO] - Start iterating over samples
+[2025-01-29 21:28:10,703][train_inner][INFO] - {"epoch": 39, "update": 38.046, "loss": "163.985", "nll_loss": "6.057", "total": "1335.01", "n_correct": "275.225", "ppl": "66.56", "accuracy": "20.616", "wps": "609.5", "ups": "0.46", "wpb": "1335", "bsz": "54.3", "num_updates": "2800", "lr": "0.0001948", "gnorm": "30.784", "loss_scale": "8", "train_wall": "309", "gb_free": "6.5", "wall": "0"}

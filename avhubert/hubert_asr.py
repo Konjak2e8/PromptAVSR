@@ -504,9 +504,9 @@ class AVHubertSeq2Seq(FairseqEncoderDecoderModel):
                 #         if f'encoder.layers.{j}.' in k:
                 #             v.requires_grad = True
                 #             break
-                if f'prompt' in k or f'resblocks' in k:
+                if f'modal_prompt_learner' in k or f'resblocks' in k or 'decoder' in k:
                     v.requires_grad = True
-                    # print(k)
+                    print(k)
                         
         # for k, v in AVHubertSeq2Seq_model.named_parameters():
         #     # print(k)
