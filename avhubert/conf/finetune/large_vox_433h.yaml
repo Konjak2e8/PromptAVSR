@@ -35,7 +35,7 @@ task:
   stack_order_audio: 4
   tokenizer_bpe_name: sentencepiece
   max_sample_size: 500
-  modalities: ["video"]
+  modalities: ["video", "audio"]
   image_aug: true
   pad_audio: true
   random_crop: false
@@ -98,6 +98,7 @@ model:
   decoder_embed_dim: 1024
   decoder_ffn_embed_dim: 4096
   decoder_attention_heads: 8
+  prompting: true
 
 hydra:
   job:

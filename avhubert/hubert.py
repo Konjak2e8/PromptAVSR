@@ -324,8 +324,8 @@ class MultiModalPromptLearner(nn.Module):
         super().__init__()
         prompt_length_half = prompt_length // 3 # use half length for generating static prompts, and the other for generating dynamic prompts
         # Default is 1, which is compound shallow prompting
-        embed_dim_audio = 768
-        embed_dim_video = 768
+        embed_dim_audio = 104
+        embed_dim_video = 512
         embed_dim = embed_dim_audio + embed_dim_video
         
         self.prompt_depth = prompt_depth  # max=12, but will create 11 such shared prompts
@@ -363,11 +363,11 @@ class MultiModalPromptLearner(nn.Module):
                 nn.GELU(),
                 nn.Linear(embed_dim_audio//r, embed_dim_audio),
                 )
+        
+        self.a_fc = nn.Linear(8, 1)
+        self.v_fc = nn.Linear(8, 1)
 
     def forward(self, missing_type):
-
-        # Before returning, need to transform
-        # prompts to 768 for the video side   
         
         # Prompts of prompt_depth layers (combination of 3 kinds)
         all_prompts_video = [ [] for _ in range(self.prompt_depth)]
@@ -411,11 +411,15 @@ class MultiModalPromptLearner(nn.Module):
         all_prompts_audio = [torch.stack(prompts) for prompts in all_prompts_audio]
         
         for i in range(len(all_prompts_video)):
-            all_prompts_video[i] = all_prompts_video[i].transpose(0, 1)
+            all_prompts_video[i] = all_prompts_video[i].transpose(1, 2)
+            all_prompts_video[i] = self.v_fc(all_prompts_video[i])
+            all_prompts_video[i] = all_prompts_video[i].squeeze(-1)
         for i in range(len(all_prompts_audio)):
-            all_prompts_audio[i] = all_prompts_audio[i].transpose(0, 1)
-        
-        return all_prompts_video, all_prompts_audio   
+            all_prompts_audio[i] = all_prompts_audio[i].permute(0, 2, 1)
+            all_prompts_audio[i] = self.a_fc(all_prompts_audio[i])
+            all_prompts_audio[i] = all_prompts_audio[i].squeeze(-1)
+            
+        return all_prompts_video, all_prompts_audio
 
 class SubModel(nn.Module):
     def __init__(self, resnet=None, input_dim=None, cfg=None):
@@ -424,10 +428,10 @@ class SubModel(nn.Module):
         self.proj = nn.Linear(input_dim, cfg.encoder_embed_dim)
         self.encoder = TransformerEncoder(cfg) if cfg.encoder_layers > 0 else None
 
-    def forward(self, x):
+    def forward(self, x, prompt):
         if self.resnet is not None:
             x = self.resnet(x)
-        x = self.proj(x.transpose(1, 2))
+        x = self.proj((x + prompt[0].unsqueeze(-1)).transpose(1, 2))
         if self.encoder is not None:
             x = self.encoder(x)[0].transpose(1, 2)
         else:
@@ -568,7 +572,7 @@ class AVHubertModel(BaseFairseqModel):
         logger.info(f"HubertModel Config: {cfg}")
 
         self.prompt_length = 12
-        self.prompt_depth = cfg.encoder_layers // 3
+        self.prompt_depth = 1
         self.modal_prompt_learner = MultiModalPromptLearner(self.prompt_length, self.prompt_depth)
 
         feature_ds_rate = 1
@@ -788,15 +792,15 @@ class AVHubertModel(BaseFairseqModel):
 
         return x, mask_indices
 
-    def forward_features(self, source: torch.Tensor, modality: str) -> torch.Tensor:
+    def forward_features(self, source: torch.Tensor, prompts, modality: str) -> torch.Tensor:
         extractor = eval(f"self.feature_extractor_{modality}")
         if self.feature_grad_mult > 0:
-            features = extractor(source)
+            features = extractor(source, prompts)
             if self.feature_grad_mult != 1.0:
                 features = GradMultiply.apply(features, self.feature_grad_mult)
         else:
             with torch.no_grad():
-                features = extractor(source)
+                features = extractor(source, prompts)
         return features
 
     def forward_targets(
@@ -964,21 +968,20 @@ class AVHubertModel(BaseFairseqModel):
             src_audio, src_video, mask_indices = src_audio, src_video, None
 
         prompts_video, prompts_audio = self.modal_prompt_learner(missing_type)
-        # print("prompts length: ", len(prompts_video))
-        # print("prompts[0] shape: ", prompts_video[0].shape)
+
         # for p in prompts_video:
         #     assert p.isnan().any(), f"NaN detected in prompts_video"
         # for p in prompts_audio:
         #     assert p.isnan().any(), f"NaN detected in prompts_audio"
         if src_audio is not None and src_video is None:
-            features_audio = self.forward_features(src_audio, modality='audio') # features: [B, F, T]
+            features_audio = self.forward_features(src_audio, prompts_audio, modality='audio') # features: [B, F, T]
             features_video = features_audio.new_zeros(features_audio.size(0), self.encoder_embed_dim, features_audio.size(-1))
         elif src_audio is None and src_video is not None:
-            features_video = self.forward_features(src_video, modality='video')
+            features_video = self.forward_features(src_video, prompts_video, modality='video')
             features_audio = features_video.new_zeros(features_video.size(0), self.encoder_embed_dim, features_video.size(-1))
         elif src_audio is not None and src_video is not None:
-            features_video = self.forward_features(src_video, modality='video')
-            features_audio = self.forward_features(src_audio, modality='audio') # features: [B, F, T]
+            features_video = self.forward_features(src_video, prompts_video, modality='video')
+            features_audio = self.forward_features(src_audio, prompts_audio, modality='audio') # features: [B, F, T]
 
         features_video = features_video.transpose(1, 2)
         features_audio = features_audio.transpose(1, 2)
