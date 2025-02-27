@@ -234,7 +234,7 @@ class AVHubertDataset(FairseqDataset):
             f"Noise wav: {noise_fn}->{len(self.noise_wav)} wav, Prob: {self.noise_prob}, SNR: {self.noise_snr}, Number of mixture: {self.noise_num}"
         )
         count_of_each = len(self.names) // 100
-        eta = 25
+        eta = 40
         type_list = [1] * count_of_each * eta  + [2]  * count_of_each * eta
         complete = (len(self.names) - len(type_list)) * [0]
         type_list += complete

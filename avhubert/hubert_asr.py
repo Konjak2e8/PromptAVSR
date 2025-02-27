@@ -498,7 +498,7 @@ class AVHubertSeq2Seq(FairseqEncoderDecoderModel):
 
         if cfg.prompting:
             for k, v in AVHubertSeq2Seq_model.named_parameters():
-                # v.requires_grad = False
+                v.requires_grad = False
                 # if f'encoder.w2v_model' in k:
                 #     for j in range(0, 4):
                 #         if f'encoder.layers.{j}.' in k:

@@ -322,13 +322,12 @@ def _get_clones(module, N):
 class MultiModalPromptLearner(nn.Module):
     def __init__(self, prompt_length, prompt_depth, dtype=torch.float32):
         super().__init__()
-        prompt_length_half = prompt_length // 3 # use half length for generating static prompts, and the other for generating dynamic prompts
-        # Default is 1, which is compound shallow prompting
+        prompt_length_half = prompt_length // 3 # use half length for generating static prompts, and the other for generating input prompts
+        self.prompt_depth = prompt_depth
         embed_dim_audio = 104
         embed_dim_video = 512
         embed_dim = embed_dim_audio + embed_dim_video
         
-        self.prompt_depth = prompt_depth  # max=12, but will create 11 such shared prompts
         self.video_prompt_complete = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_video, dtype=dtype), std=0.02))
         self.video_prompt_missing = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_video, dtype=dtype), std=0.02))
         self.audio_prompt_complete = nn.Parameter(nn.init.normal_(torch.empty(prompt_length_half, embed_dim_audio, dtype=dtype), std=0.02))
